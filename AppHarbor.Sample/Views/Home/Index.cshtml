@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h2>@ViewBag.Message</h2>
+<p>
+    This is the AppHarbor.NET sample site. Click the link below to authenticate this application and retrieve your token for testing puropses.
+</p>
+<p>
+    @if (ViewBag.HasToken)
+    {
+        <text> Current Token: @ViewBag.Token
+        <br />
+        </text>
+    }
+    <a href="@ViewBag.AuthLink">Authenticate</a>
+</p>

@@ -1,0 +1,12 @@
+﻿{
+    "status" : "Succeeded",
+    "created" : "2012-02-28T13:36:30",
+    "deployed" : "2012-02-28T13:37:30",
+    "commit" :
+    {
+        "id" : "9f0fcea24cbb441c3ed848af3ccc5061d69cc7db",
+        "message" : "foo"
+    },
+    "download_url" : "https://appharbor.com/applications/:application/builds/:build/download",
+    "tests_url" : "https://appharbor.com/applications/:application/builds/:build/tests"
+}

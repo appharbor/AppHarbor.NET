@@ -1,0 +1,10 @@
+﻿<configuration>
+  <appSettings>
+    <!-- Begin - Enter your client details below, you can obtain them here as well as create a new client: https://appharbor.com/clients/  -->
+    <add key="ClientID" value="yourclientid"/>
+    <add key="ClientSecret" value="yoursecret"/>
+    <add key="ClientUrl" value="http://yourdomain/"/>
+    <add key="ClientCallbackUrl" value="http://yourdomain/Home/Auth"/>
+    <!-- End - Enter your client details below, you can obtain them here as well as create a new client: https://appharbor.com/clients/  -->
+  </appSettings>
+</configuration>

@@ -1,0 +1,14 @@
+﻿[{
+   "commit_id" : "foo",
+    "date" : "2012-03-05T15:01:11",
+    "request_path" : "/",
+    "message" : "An unhandled exception has occurred.",
+    "exception" :
+    {
+        "stack_trace" : "at FooController.Show(Bar bar)",
+        "message" : "Object reference not set to an instance of an object.",
+        "type" : "System.NullReferenceException",
+        "inner_exception" : null
+    },
+   "url" : "https://appharbor.com/applications/:application/errors/5"
+}]

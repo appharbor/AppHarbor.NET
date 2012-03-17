@@ -1,0 +1,5 @@
+﻿[{
+    "name" : "Hello World",
+    "slug" : "helloworld",
+    "url" : "https://appharbor.com/applications/:application"
+}]

@@ -1,0 +1,48 @@
+﻿[{
+    "id": "1",
+    "name": "FooTest",
+    "status": "Failed",
+    "kind": "Group",
+    "duration": "00:00:03.3852434",
+    "tests": 
+    [{
+        "id": "1.1",
+        "name": "CanCreateFoo",
+        "status": "Failed",
+        "kind": "Test",
+        "duration": "00:00:00.0156002",
+        "tests": []
+    },
+    {
+        "id": "1.2",
+        "name": "CanDeleteFoo",
+        "status": "Passed",
+        "kind": "Test",
+        "duration": "00:00:00.0468006",
+        "tests": []
+    }]
+    },
+    {
+    "id": "2",
+    "name": "BarTest",
+    "status": "Passed",
+    "kind": "Group",
+    "duration": "00:00:04.1028526",
+    "tests": 
+    [{
+        "id": "2.1",
+        "name": "CanCreateBar",
+        "status": "Passed",
+        "kind": "Test",
+        "duration": "00:00:00.1248016",
+        "tests": []
+    },
+    {
+        "id": "2.2",
+        "name": "CanDeleteBar",
+        "status": "Skipped",
+        "kind": "Test",
+        "duration": "00:00:00.0936012",
+        "tests": []
+    }]
+}]
