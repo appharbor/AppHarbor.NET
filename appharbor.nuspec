@@ -2,17 +2,18 @@
 <package >
   <metadata>
     <id>AppHarbor.NET</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <authors>Nikolas Tziolis</authors>
     <owners>Nikolas Tziolis</owners>
-    <licenseUrl>https://github.com/ntziolis/AppHarbor.NET/blob/master/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://raw.github.com/ntziolis/AppHarbor.NET/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/ntziolis/AppHarbor.NET</projectUrl>
-    <iconUrl>https://github.com/ntziolis/AppHarbor.NET/blob/master/AppHarbor.png</iconUrl>
+    <iconUrl>https://github.com/ntziolis/AppHarbor.NET/raw/master/AppHarbor.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Managed .NET client for the AppHarbor API</description>
     <releaseNotes>
-		1.0.1 - Reference to Newtonsoft.Json was fixed to 4.0.8 (because of issues with RestSharp dependencies)
-		1.0.0 - Fully supports the AppHabor API (2012.03.21)
+1.0.2 - Updated icon and License info  
+1.0.1 - Reference to Newtonsoft.Json was fixed to 4.0.8 (because of issues with RestSharp dependencies)
+1.0.0 - Fully supports the AppHabor API (2012.03.21)
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>AppHarbor Rest API</tags>
