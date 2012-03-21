@@ -8,7 +8,7 @@
 * Full support for the AppHarbor API (2012.03.21)
 * Managed API Access (currently .NET 3.5, could be made .NET 2.0 compatible if requested)
 * Implements AppHarbor OAuth header: `Authorization: BEARER :access_token`
-* Sample Web Application with AppHarbor OAUth sample
+* Sample web application with AppHarbor OAUth sample
 * Unit tested
 
 ### Usage
@@ -36,7 +36,7 @@ foreach (var application in applications)
 
 ### Todo
 
-* More unit Tests
+* More unit tests
 * Expand sample web application
 
   [1]: http://support.appharbor.com/kb/api/api-overview
