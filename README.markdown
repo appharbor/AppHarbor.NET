@@ -1,18 +1,19 @@
-# AppHarbort.NET - A .NET client for the [AppHarbor API][1]
+# AppHarbor.NET - A .NET client for the [AppHarbor API][1]
 
 ### License: Apache License 2.0
 
 ### Features
 
-* Supports the full AppHarbor API support
-* Fully managed API
-* Handles oAuth token
+* Full support for the AppHarbor API (2012.03.21)
+* Managed API
+* Implements AppHarbor OAuth handling
+* Unit tested
 
 ```csharp
 // create an Api instance with the token obtained from oAuth
 var api = new AppHarborApi(new AuthInfo()
 {
-	Token = "token obtained via oAuth"
+	AccessToken = "token obtained via oAuth"
 });
 
 // get a list of all applications

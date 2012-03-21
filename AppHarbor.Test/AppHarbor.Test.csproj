@@ -60,7 +60,6 @@
     <Compile Include="Mocks\MockHttp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MockedApiTests.cs" />
-    <Compile Include="DeserilizationTest.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
