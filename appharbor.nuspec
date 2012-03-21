@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Managed .NET client for the AppHarbor API</description>
     <releaseNotes>
-		1.0.1 - Reference to Newtonsoft.Json was fixed to 4.0.8 (becasue of issues with RestSharp dependencies)
+		1.0.1 - Reference to Newtonsoft.Json was fixed to 4.0.8 (because of issues with RestSharp dependencies)
 		1.0.0 - Fully supports the AppHabor API (2012.03.21)
     </releaseNotes>
     <copyright>Copyright 2012</copyright>
