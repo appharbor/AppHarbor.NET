@@ -17,11 +17,11 @@ var api = new AppHarborApi(new AuthInfo()
 });
 
 // get a list of all applications
-List<Application> applications = api.GetApplications();
+IList<Application> applications = api.GetApplications();
 
-foreach(var application in applications)
+foreach (var application in applications)
 {
-	Console.WrileLine(string.Format("Application name: {0}, Url: {1}", application.Name, application.Url));	
+	Console.WriteLine(string.Format("Application name: {0}, Url: {1}", application.Name, application.Url));
 }
 ```
 
