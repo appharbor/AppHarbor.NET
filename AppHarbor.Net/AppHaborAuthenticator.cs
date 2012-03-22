@@ -21,23 +21,44 @@ using System.Text;
 
 namespace AppHarbor
 {
-    public class AppHaborAuthenticator : RestSharp.IAuthenticator
-    {        
-        private readonly string _AuthorizationValue;
-        public AppHaborAuthenticator(AuthInfo authInfo)
-	    {
+    public class QUeryStringAppHaborAuthenticator : RestSharp.IAuthenticator
+    {
+        private readonly string _AuthorizationQueryString;
+
+        public QUeryStringAppHaborAuthenticator(AuthInfo authInfo)
+        {
+            if (authInfo == null)
+                throw new ArgumentNullException("authInfo");
+
+            if (authInfo.AccessToken == null)
+                throw new ArgumentNullException("authInfo.AccessToken");
+            _AuthorizationQueryString = string.Format("?access_token={0}", authInfo.AccessToken);
+        }
+
+        public void Authenticate(RestSharp.IRestClient client, RestSharp.IRestRequest request)
+        {
+            request.Resource += _AuthorizationQueryString;
+        }
+    }
+
+    public class HeaderAppHaborAuthenticator : RestSharp.IAuthenticator
+    {
+        private readonly string _AuthorizationHeaderValue;
+
+        public HeaderAppHaborAuthenticator(AuthInfo authInfo)
+        {
             if (authInfo == null)
                 throw new ArgumentNullException("authInfo");
 
             if (authInfo.AccessToken == null)
                 throw new ArgumentNullException("authInfo.AccessToken");
 
-            _AuthorizationValue = string.Format("BEARER {0}", authInfo.AccessToken);
-	    }
+            _AuthorizationHeaderValue = string.Format("BEARER {0}", authInfo.AccessToken);
+        }
 
         public void Authenticate(RestSharp.IRestClient client, RestSharp.IRestRequest request)
         {
-            request.AddHeader("Authorization", _AuthorizationValue);
+            request.AddHeader("Authorization", _AuthorizationHeaderValue);
         }
     }
 }

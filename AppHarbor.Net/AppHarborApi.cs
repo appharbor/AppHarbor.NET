@@ -102,7 +102,7 @@ namespace AppHarbor
                 throw new ArgumentNullException("restClient");
 
             _Client = restClient;
-            _Client.Authenticator = new AppHaborAuthenticator(authInfo);
+            _Client.Authenticator = new HeaderAppHaborAuthenticator(authInfo);
 
             _BaseUri = new Uri(BaseUrl);
             _JsonDeserializer = new CustomJsonDeserializer();
@@ -230,6 +230,8 @@ namespace AppHarbor
             if (response == null)
                 return false;
 
+            // System.Net.HttpStatusCode.NotFound is returned if there is nothing to delete
+
             return (response.StatusCode == System.Net.HttpStatusCode.NoContent);
         }
 
@@ -262,11 +264,11 @@ namespace AppHarbor
         }
 
         /// <summary>
-        /// Creates a new application
+        /// Creates a new AppHarbor application
         /// </summary>
         /// <param name="name">Name of the application.</param>
-        /// <param name="regionIdentifier">Region the application will be created at, will default to "amazon-web-services::us-east-1".</param>
-        /// <returns></returns>
+        /// <param name="regionIdentifier">Region the application will be created in. If null, it will default to "amazon-web-services::us-east-1".</param>
+        /// <returns>Returns a create result. The Status of the CreateResult indicates whether the creation was successfull or not.</returns>
         public CreateResult<string> CreateApplication(string name, string regionIdentifier)
         {
             CheckArgumentNull("name", name);
