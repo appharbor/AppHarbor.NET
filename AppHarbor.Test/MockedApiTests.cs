@@ -39,9 +39,9 @@ namespace AppHarbor.Test
         [TestMethod]
         public void Create_Non_Existing_Application()
         {
-            var createResult = Api.CreateApplication(ApplicationId, ApplicationId, null);
+            var createResult = Api.CreateApplication(ApplicationId, null);
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
             Assert.AreEqual(ApplicationId, createResult.ID);
             Assert.AreEqual("https://appharbor.com/applications/:application", createResult.Location);
         }
@@ -49,9 +49,9 @@ namespace AppHarbor.Test
         [TestMethod]
         public void Try_Create_Existing_Application()
         {
-            var createResult = ExistingDataDataApi.CreateApplication(ApplicationId, ApplicationId, null);
+            var createResult = ExistingDataDataApi.CreateApplication(ApplicationId, null);
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
             Assert.AreEqual(null, createResult.ID);
             Assert.AreEqual(null, createResult.Location);
         }
@@ -61,7 +61,7 @@ namespace AppHarbor.Test
         {
             var createResult = Api.CreateCollaborator(ApplicationId, "some@mail.com", Model.CollaboratorType.Collaborator);
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
             Assert.AreEqual(5, createResult.ID);
             Assert.AreEqual("https://appharbor.com/applications/:application/collaborators/5", createResult.Location);
         }
@@ -71,7 +71,7 @@ namespace AppHarbor.Test
         {
             var createResult = ExistingDataDataApi.CreateCollaborator(ApplicationId, "some@mail.com", Model.CollaboratorType.Collaborator);
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
             Assert.AreEqual(0, createResult.ID);
             Assert.AreEqual(null, createResult.Location);
         }
@@ -81,7 +81,7 @@ namespace AppHarbor.Test
         {
             var createResult = Api.CreateConfigurationVariable(ApplicationId, "somekey", "somevalue");
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
             Assert.AreEqual(5, createResult.ID);
             Assert.AreEqual("https://appharbor.com/applications/:application/configurationvariables/5", createResult.Location);
         }
@@ -91,7 +91,7 @@ namespace AppHarbor.Test
         {
             var createResult = ExistingDataDataApi.CreateConfigurationVariable(ApplicationId, "somekey", "somevalue");
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
             Assert.AreEqual(0, createResult.ID);
             Assert.AreEqual(null, createResult.Location);
         }
@@ -101,7 +101,7 @@ namespace AppHarbor.Test
         {
             var createResult = Api.CreateHostname(ApplicationId, "somehostname.com");
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
             Assert.AreEqual(5, createResult.ID);
             Assert.AreEqual("https://appharbor.com/applications/:application/hostnames/5", createResult.Location);
         }
@@ -111,7 +111,7 @@ namespace AppHarbor.Test
         {
             var createResult = ExistingDataDataApi.CreateHostname(ApplicationId, "somehostname.com");
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
             Assert.AreEqual(0, createResult.ID);
             Assert.AreEqual(null, createResult.Location);
         }
@@ -121,7 +121,7 @@ namespace AppHarbor.Test
         {
             var createResult = Api.CreateServicehook(ApplicationId, "http://someurl.com");
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
             Assert.AreEqual(5, createResult.ID);
             Assert.AreEqual("https://appharbor.com/applications/:application/servicehooks/5", createResult.Location);
         }
@@ -131,7 +131,7 @@ namespace AppHarbor.Test
         {
             var createResult = ExistingDataDataApi.CreateServicehook(ApplicationId, "http://someurl.com");
             Assert.IsNotNull(createResult);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.CreateStatus);
+            Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
             Assert.AreEqual(0, createResult.ID);
             Assert.AreEqual(null, createResult.Location);
         }
@@ -139,14 +139,20 @@ namespace AppHarbor.Test
         [TestMethod]
         public void Edit_Existing_Application()
         {
-            var edited = Api.EditApplication(ApplicationId, new Model.Application());
+            var edited = Api.EditApplication(ApplicationId, new Model.Application()
+                {
+                    Name = "SomeName"
+                });
             Assert.IsTrue(edited);
         }
 
         [TestMethod]
         public void Edit_Non_Existing_Application()
         {
-            var edited = Api.EditApplication(":notexistsapplication", new Model.Application());
+            var edited = Api.EditApplication(":notexistsapplication", new Model.Application()
+                {
+                    Name = "SomeName"
+                });
             Assert.IsFalse(edited);
         }
 
@@ -155,7 +161,8 @@ namespace AppHarbor.Test
         {
             var edited = Api.EditCollaborator(ApplicationId, new Model.Collaborator()
                 {
-                    ID = 5
+                    ID = 5,
+                    Role = Model.CollaboratorType.Collaborator,
                 });
             Assert.IsTrue(edited);
         }
@@ -165,7 +172,8 @@ namespace AppHarbor.Test
         {
             var edited = Api.EditCollaborator(ApplicationId, new Model.Collaborator()
             {
-                ID = 6
+                ID = 6,
+                Role = Model.CollaboratorType.Collaborator,
             });
             Assert.IsFalse(edited);
         }
@@ -175,17 +183,21 @@ namespace AppHarbor.Test
         {
             var edited = Api.EditConfigurationVariable(ApplicationId, new Model.ConfigurationVariable()
             {
-                ID = 5
+                ID = 5,
+                Key = "somekey",
+                Value = "somevalue",
             });
             Assert.IsTrue(edited);
         }
 
         [TestMethod]
-        public void Edit_Non_Existing_Hostname()
+        public void Edit_Non_Existing_ConfigurationVariable()
         {
             var edited = Api.EditConfigurationVariable(ApplicationId, new Model.ConfigurationVariable()
             {
-                ID = 6
+                ID = 6,
+                Key = "somekey",
+                Value = "somevalue",
             });
             Assert.IsFalse(edited);
         }

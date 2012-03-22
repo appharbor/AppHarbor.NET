@@ -29,6 +29,10 @@ namespace AppHarbor
 
         public static AuthInfo GetAuthInfo(string clientID, string clientSecret, string code)
         {
+            CheckArgumentNull("clientID", clientID);
+            CheckArgumentNull("clientSecret", clientSecret);
+            CheckArgumentNull("code", code);
+
             // make POST request to obtain the token
             var client = new RestClient(BaseUrl);
             var request = new RestRequest(Method.POST);
@@ -189,10 +193,10 @@ namespace AppHarbor
                 throw new ArgumentException("Response cannot be null.");
 
             if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
-                return new CreateResult<T>() { CreateStatus = CreateStatus.AlreadyExists };
+                return new CreateResult<T>() { Status = CreateStatus.AlreadyExists };
 
             if (response.StatusCode != System.Net.HttpStatusCode.Created)
-                return new CreateResult<T>() { CreateStatus = CreateStatus.Undefined };
+                return new CreateResult<T>() { Status = CreateStatus.Undefined };
 
             var locationHeader = response.Headers
                 .SingleOrDefault(p => string.Equals(p.Name, "Location", StringComparison.OrdinalIgnoreCase));
@@ -205,7 +209,7 @@ namespace AppHarbor
 
             return new CreateResult<T>()
             {
-                CreateStatus = Model.CreateStatus.Created,
+                Status = Model.CreateStatus.Created,
                 ID = id,
                 Location = location,
             };
@@ -229,6 +233,12 @@ namespace AppHarbor
             return (response.StatusCode == System.Net.HttpStatusCode.NoContent);
         }
 
+        private static void CheckArgumentNull(string argumentName, object value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(argumentName);
+        }
+
         #endregion
 
         #region Application
@@ -243,14 +253,29 @@ namespace AppHarbor
 
         public Application GetApplication(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
             return ExecuteGet<Application>(request);
         }
 
-        public CreateResult<string> CreateApplication(string applicationID, string name, string regionIdentifier)
+        /// <summary>
+        /// Creates a new application
+        /// </summary>
+        /// <param name="name">Name of the application.</param>
+        /// <param name="regionIdentifier">Region the application will be created at, will default to "amazon-web-services::us-east-1".</param>
+        /// <returns></returns>
+        public CreateResult<string> CreateApplication(string name, string regionIdentifier)
         {
+            CheckArgumentNull("name", name);
+
+            if (regionIdentifier == null)
+                regionIdentifier = "amazon-web-services::us-east-1";
+
+            CheckArgumentNull("regionIdentifier", regionIdentifier);
+
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.Resource = "applications";
@@ -265,6 +290,10 @@ namespace AppHarbor
 
         public bool EditApplication(string applicationID, Application application)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("application", application);
+            CheckArgumentNull("application.Name", application.Name);
+
             var request = new RestRequest(Method.PUT);
             request.RequestFormat = DataFormat.Json;
             request.Resource = "applications/{applicationID}";
@@ -278,8 +307,9 @@ namespace AppHarbor
 
         public bool DeleteApplication(string applicationID)
         {
-            var request = new RestRequest(Method.DELETE);
+            CheckArgumentNull("applicationID", applicationID);
 
+            var request = new RestRequest(Method.DELETE);
             request.Resource = "applications/{applicationID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
 
@@ -290,18 +320,22 @@ namespace AppHarbor
 
         #region Collaborator
 
-        public Collaborator GetCollaborator(string applicationID, long id)
+        public Collaborator GetCollaborator(string applicationID, long ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/collaborators/{id}";
+            request.Resource = "applications/{applicationID}/collaborators/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGetKeyed<Collaborator>(request);
         }
 
         public IList<Collaborator> GetCollaborators(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/collaborators";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
@@ -311,6 +345,12 @@ namespace AppHarbor
 
         public CreateResult<long> CreateCollaborator(string applicationID, string email, CollaboratorType collaboratorType)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("email", email);
+
+            if (collaboratorType == CollaboratorType.None)
+                throw new ArgumentException("collaboratorType needs to be set.");
+
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.Resource = "applications/{applicationID}/collaborators";
@@ -325,11 +365,18 @@ namespace AppHarbor
 
         public bool EditCollaborator(string applicationID, Collaborator collaborator)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("collaborator", collaborator);
+            CheckArgumentNull("collaborator.Role", collaborator.Role);
+
+            if (collaborator.Role == CollaboratorType.None)
+                throw new ArgumentException("collaborator.Role has to be set.");
+
             var request = new RestRequest(Method.PUT);
             request.RequestFormat = DataFormat.Json;
-            request.Resource = "applications/{applicationID}/collaborators/{id}";
+            request.Resource = "applications/{applicationID}/collaborators/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", collaborator.ID, ParameterType.UrlSegment);
+            request.AddParameter("ID", collaborator.ID, ParameterType.UrlSegment);
             request.AddBody(new
             {
                 role = Util.GetCollaboratorType(collaborator.Role),
@@ -337,13 +384,14 @@ namespace AppHarbor
             return ExecuteEdit(request);
         }
 
-        public bool DeleteCollaborator(string applicationID, long id)
+        public bool DeleteCollaborator(string applicationID, long ID)
         {
-            var request = new RestRequest(Method.DELETE);
+            CheckArgumentNull("applicationID", applicationID);
 
-            request.Resource = "applications/{applicationID}/collaborators/{id}";
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = "applications/{applicationID}/collaborators/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteDelete(request);
         }
@@ -352,18 +400,22 @@ namespace AppHarbor
 
         #region ConfigurationVariable
 
-        public ConfigurationVariable GetConfigurationVariable(string applicationID, long id)
+        public ConfigurationVariable GetConfigurationVariable(string applicationID, long ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/configurationvariables/{id}";
+            request.Resource = "applications/{applicationID}/configurationvariables/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGetKeyed<ConfigurationVariable>(request);
         }
 
         public IList<ConfigurationVariable> GetConfigurationVariables(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/configurationvariables";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
@@ -373,6 +425,10 @@ namespace AppHarbor
 
         public CreateResult<long> CreateConfigurationVariable(string applicationID, string key, string value)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("key", key);
+            CheckArgumentNull("value", value);
+
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.Resource = "applications/{applicationID}/configurationvariables";
@@ -387,11 +443,16 @@ namespace AppHarbor
 
         public bool EditConfigurationVariable(string applicationID, ConfigurationVariable configurationVariable)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("configurationVariable", configurationVariable);
+            CheckArgumentNull("configurationVariable.Key ", configurationVariable.Key);
+            CheckArgumentNull("configurationVariable.Value", configurationVariable.Value);
+
             var request = new RestRequest(Method.PUT);
             request.RequestFormat = DataFormat.Json;
-            request.Resource = "applications/{applicationID}/configurationvariables/{id}";
+            request.Resource = "applications/{applicationID}/configurationvariables/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", configurationVariable.ID, ParameterType.UrlSegment);
+            request.AddParameter("ID", configurationVariable.ID, ParameterType.UrlSegment);
             request.AddBody(new
             {
                 key = configurationVariable.Key,
@@ -400,13 +461,14 @@ namespace AppHarbor
             return ExecuteEdit(request);
         }
 
-        public bool DeleteConfigurationVariable(string applicationID, long id)
+        public bool DeleteConfigurationVariable(string applicationID, long ID)
         {
-            var request = new RestRequest(Method.DELETE);
+            CheckArgumentNull("applicationID", applicationID);
 
-            request.Resource = "applications/{applicationID}/configurationvariables/{id}";
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = "applications/{applicationID}/configurationvariables/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteDelete(request);
         }
@@ -415,18 +477,22 @@ namespace AppHarbor
 
         #region Hostname
 
-        public Hostname GetHostname(string applicationID, long id)
+        public Hostname GetHostname(string applicationID, long ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/hostnames/{id}";
+            request.Resource = "applications/{applicationID}/hostnames/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGetKeyed<Hostname>(request);
         }
 
         public IList<Hostname> GetHostnames(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/hostnames";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
@@ -436,6 +502,9 @@ namespace AppHarbor
 
         public CreateResult<long> CreateHostname(string applicationID, string hostName)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("hostName", hostName);
+
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.Resource = "applications/{applicationID}/hostnames";
@@ -447,13 +516,14 @@ namespace AppHarbor
             return ExecuteCreate(request);
         }
 
-        public bool DeleteHostname(string applicationID, long id)
+        public bool DeleteHostname(string applicationID, long ID)
         {
-            var request = new RestRequest(Method.DELETE);
+            CheckArgumentNull("applicationID", applicationID);
 
-            request.Resource = "applications/{applicationID}/hostnames/{id}";
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = "applications/{applicationID}/hostnames/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteDelete(request);
         }
@@ -462,18 +532,22 @@ namespace AppHarbor
 
         #region Servicehook
 
-        public ServiceHook GetServicehook(string applicationID, long id)
+        public ServiceHook GetServicehook(string applicationID, long ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/servicehooks/{id}";
+            request.Resource = "applications/{applicationID}/servicehooks/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGetKeyed<ServiceHook>(request);
         }
 
         public IList<ServiceHook> GetServicehooks(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/servicehooks";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
@@ -483,6 +557,9 @@ namespace AppHarbor
 
         public CreateResult<long> CreateServicehook(string applicationID, string url)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("url", url);
+
             var request = new RestRequest(Method.POST);
             request.RequestFormat = DataFormat.Json;
             request.Resource = "applications/{applicationID}/servicehooks";
@@ -494,13 +571,14 @@ namespace AppHarbor
             return ExecuteCreate(request);
         }
 
-        public bool DeleteServicehook(string applicationID, long id)
+        public bool DeleteServicehook(string applicationID, long ID)
         {
-            var request = new RestRequest(Method.DELETE);
+            CheckArgumentNull("applicationID", applicationID);
 
-            request.Resource = "applications/{applicationID}/servicehooks/{id}";
+            var request = new RestRequest(Method.DELETE);
+            request.Resource = "applications/{applicationID}/servicehooks/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteDelete(request);
         }
@@ -509,18 +587,22 @@ namespace AppHarbor
 
         #region Build
 
-        public Build GetBuild(string applicationID, long id)
+        public Build GetBuild(string applicationID, long ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/builds/{id}";
+            request.Resource = "applications/{applicationID}/builds/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGetKeyed<Build>(request);
         }
 
         public IList<Build> GetBuilds(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/builds";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
@@ -532,19 +614,24 @@ namespace AppHarbor
 
         #region Test
 
-        public Test GetTest(string applicationID, long buildID, string id)
+        public Test GetTest(string applicationID, long buildID, string ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+            CheckArgumentNull("ID", ID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/builds/{buildID}/tests/{id}";
+            request.Resource = "applications/{applicationID}/builds/{buildID}/tests/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
             request.AddParameter("buildID", buildID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGet<Test>(request);
         }
 
         public IList<Test> GetTests(string applicationID, long buildID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/builds/{buildID}/tests";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
@@ -557,18 +644,22 @@ namespace AppHarbor
 
         #region Error
 
-        public Error GetError(string applicationID, long id)
+        public Error GetError(string applicationID, long ID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
-            request.Resource = "applications/{applicationID}/errors/{id}";
+            request.Resource = "applications/{applicationID}/errors/{ID}";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-            request.AddParameter("id", id, ParameterType.UrlSegment);
+            request.AddParameter("ID", ID, ParameterType.UrlSegment);
 
             return ExecuteGetKeyed<Error>(request);
         }
 
         public IList<Error> GetErrors(string applicationID)
         {
+            CheckArgumentNull("applicationID", applicationID);
+
             var request = new RestRequest();
             request.Resource = "applications/{applicationID}/errors";
             request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
