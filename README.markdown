@@ -31,7 +31,8 @@ IList<Application> applications = api.GetApplications();
 
 foreach (var application in applications)
 {
-	Console.WriteLine(string.Format("Application name: {0}, Url: {1}", application.Name, application.Url));
+	Console.WriteLine(string.Format("Application name: {0}, Url: {1}", 
+		application.Name, application.Url));
 }
 ```
 
@@ -75,6 +76,8 @@ switch (result.Status)
 ### Todo
 
 * More unit tests
+* Add integration tests
+* Add XML Comments for public methods
 * Expand sample web application
 
   [1]: http://support.appharbor.com/kb/api/api-overview
