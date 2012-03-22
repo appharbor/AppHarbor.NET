@@ -1,14 +1,17 @@
 # AppHarbor.NET - A .NET client for the [AppHarbor API][1]
 
 ### License: Apache License 2.0
-### Updates for now via [@ntziolis][2]
+
+### Twitter
+*  News and updates for AppHarbor.NET: [@AppHarborNET][2]
+*  In addition you can also follow my personal account: [@ntziolis][3]
 
 ### Features
 
 * Full support for the AppHarbor API (2012.03.21)
 * Managed API Access (currently .NET 3.5, could be made .NET 2.0 compatible if requested)
 * Implements AppHarbor OAuth header: `Authorization: BEARER :access_token`
-* Sample web application with AppHarbor OAUth sample
+* Sample web application with AppHarbor OAuth sample
 * Unit tested
 
 ### Usage
@@ -81,4 +84,5 @@ switch (result.Status)
 * Expand sample web application
 
   [1]: http://support.appharbor.com/kb/api/api-overview
-  [2]: https://twitter.com/ntziolis
+  [2]: https://twitter.com/AppHarborNET
+  [3]: https://twitter.com/ntziolis 
