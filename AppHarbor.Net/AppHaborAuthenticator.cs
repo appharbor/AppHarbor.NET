@@ -21,11 +21,12 @@ using System.Text;
 
 namespace AppHarbor
 {
-    public class QUeryStringAppHaborAuthenticator : RestSharp.IAuthenticator
+    [Obsolete("Instead use HeaderAppHaborAuthenticator")]       
+    public class QueryStringAppHaborAuthenticator : RestSharp.IAuthenticator
     {
         private readonly string _AuthorizationQueryString;
 
-        public QUeryStringAppHaborAuthenticator(AuthInfo authInfo)
+        public QueryStringAppHaborAuthenticator(AuthInfo authInfo)
         {
             if (authInfo == null)
                 throw new ArgumentNullException("authInfo");
