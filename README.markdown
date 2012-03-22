@@ -13,19 +13,57 @@
 
 ### Usage
 
+#### Create Api instance
+
 ```csharp
 // create an Api instance with the token obtained from oAuth
 var api = new AppHarborApi(new AuthInfo()
 {
 	AccessToken = "token obtained via oAuth"
 });
+```
 
+#### Get list of AppHarbor applications
+
+```csharp
 // get a list of all applications
 IList<Application> applications = api.GetApplications();
 
 foreach (var application in applications)
 {
 	Console.WriteLine(string.Format("Application name: {0}, Url: {1}", application.Name, application.Url));
+}
+```
+
+#### Create new AppHarbor applications
+
+```csharp
+// creating always returns a CreateResult
+// which has a Status, ID, Location
+var result = api.CreateApplication("New Application Name", null);
+
+// based on the Status decide on what todo
+switch (result.Status)
+{
+	case CreateStatus.Created:
+		{
+			var newID = result.ID;
+			var newURL = result.Location;
+
+			// get actual application object via the api
+			var newApplication = api.GetApplication(newID);
+
+			// more code
+			break;
+		}
+	case CreateStatus.AlreadyExists:
+	case CreateStatus.Undefined:
+		{
+			// handle
+			break;
+		}
+	default:
+		break;
 }
 ```
 
