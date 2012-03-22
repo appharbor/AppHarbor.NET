@@ -10,7 +10,8 @@ namespace AppHarbor
     {
         public static string GetCollaboratorType(CollaboratorType collaboratorType)
         {
-            var name = Enum.GetName(typeof(CollaboratorType), collaboratorType);
+            var name = Enum.GetName(typeof(CollaboratorType), collaboratorType)
+                .ToLower();
             return name;
         }
     }
