@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="AppHarbor.NET : A .NET client for the AppHarbor API" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>AppHarbor.NET</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ntziolis/AppHarbor.NET">Fork Me on GitHub</a>
+
+          <h1 id="project_title">AppHarbor.NET</h1>
+          <h2 id="project_tagline">A .NET client for the AppHarbor API</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/ntziolis/AppHarbor.NET/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/ntziolis/AppHarbor.NET/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>License: Apache License 2.0</h3>
+
+<h3>Twitter</h3>
+
+<ul>
+<li> News and updates for AppHarbor.NET: <a href="https://twitter.com/AppHarborNET">@AppHarborNET</a>
+</li>
+<li> In addition you can also follow my personal account: <a href="https://twitter.com/ntziolis">@ntziolis</a>
+</li>
+</ul><h3>Features</h3>
+
+<ul>
+<li>Full support for the AppHarbor API (2012.03.21)</li>
+<li>Managed API Access (currently .NET 3.5, could be made .NET 2.0 compatible if requested)</li>
+<li>Implements AppHarbor OAuth header: <code>Authorization: BEARER :access_token</code>
+</li>
+<li>Sample web application with AppHarbor OAuth sample</li>
+<li>Unit tested</li>
+</ul><h3>Install via NuGet</h3>
+
+<pre lang="nuget"><code>PM&gt; Install-Package AppHarbor.NET
+</code></pre>
+
+<h3>Usage</h3>
+
+<h4>Create Api instance with token</h4>
+
+<div class="highlight">
+<pre><span class="c1">// create an Api instance with the token obtained from oAuth</span>
+<span class="kt">var</span> <span class="n">api</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AppHarborApi</span><span class="p">(</span><span class="k">new</span> <span class="n">AuthInfo</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">AccessToken</span> <span class="p">=</span> <span class="s">"token obtained via oAuth"</span>
+<span class="p">});</span>
+</pre>
+</div>
+
+
+<h4>Get list of AppHarbor applications</h4>
+
+<div class="highlight">
+<pre><span class="c1">// get a list of all applications</span>
+<span class="kt">var</span> <span class="n">applications</span> <span class="p">=</span> <span class="n">api</span><span class="p">.</span><span class="n">GetApplications</span><span class="p">();</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">application</span> <span class="k">in</span> <span class="n">applications</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">"Application name: {0}, Url: {1}"</span><span class="p">,</span> 
+        <span class="n">application</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="n">application</span><span class="p">.</span><span class="n">Url</span><span class="p">));</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h4>Create new AppHarbor applications</h4>
+
+<div class="highlight">
+<pre><span class="c1">// creating always returns a CreateResult</span>
+<span class="c1">// which has a Status, ID, Location</span>
+<span class="kt">var</span> <span class="n">createResult</span> <span class="p">=</span> <span class="n">api</span><span class="p">.</span><span class="n">CreateApplication</span><span class="p">(</span><span class="s">"New Application Name"</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+
+<span class="c1">// based on the Status decide on what todo</span>
+<span class="k">switch</span> <span class="p">(</span><span class="n">createResult</span><span class="p">.</span><span class="n">Status</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">case</span> <span class="n">CreateStatus</span><span class="p">.</span><span class="n">Created</span><span class="p">:</span>
+        <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">newID</span> <span class="p">=</span> <span class="n">createResult</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">newURL</span> <span class="p">=</span> <span class="n">createResult</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+
+            <span class="c1">// get actual application object via the api</span>
+            <span class="kt">var</span> <span class="n">newApplication</span> <span class="p">=</span> <span class="n">api</span><span class="p">.</span><span class="n">GetApplication</span><span class="p">(</span><span class="n">newID</span><span class="p">);</span>
+
+            <span class="c1">// more code</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="k">case</span> <span class="n">CreateStatus</span><span class="p">.</span><span class="n">AlreadyExists</span><span class="p">:</span>
+    <span class="k">case</span> <span class="n">CreateStatus</span><span class="p">.</span><span class="n">Undefined</span><span class="p">:</span>
+        <span class="p">{</span>
+            <span class="c1">// handle</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="k">default</span><span class="p">:</span>
+        <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+</div>
+
+
+<h3>Sample Web Application Project</h3>
+
+<ul>
+<li>Basic OAuth Access Token retrieval implementation</li>
+<li>more to come</li>
+</ul><h3>Todo</h3>
+
+<ul>
+<li>More unit tests</li>
+<li>Add integration tests</li>
+<li>Add XML Comments for public methods</li>
+<li>Expand sample web application</li>
+</ul><h3>Links</h3>
+
+<ul>
+<li><a href="http://support.appharbor.com/kb/api/api-overview">AppHarbor API documentation</a></li>
+<li><a href="https://github.com/restsharp/RestSharp">RestSharp on github</a></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">AppHarbor.NET maintained by <a href="https://github.com/ntziolis">ntziolis</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-30552326-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
