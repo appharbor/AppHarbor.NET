@@ -193,7 +193,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppHarbor.Net\AppHarbor.Net.csproj">
+    <ProjectReference Include="..\..\AppHarbor.Net\AppHarbor.Net.csproj">
       <Project>{6add606f-2e3c-4210-951f-f15e1e4acd08}</Project>
       <Name>AppHarbor.Net</Name>
     </ProjectReference>

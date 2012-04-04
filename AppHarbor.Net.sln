@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 11
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Net", "AppHarbor.Net\AppHarbor.Net.csproj", "{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Sample", "AppHarbor.Sample\AppHarbor.Sample.csproj", "{0C3887D5-069A-4212-9F22-EB8FDDD85D18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Sample", "Samples\AppHarbor.Sample\AppHarbor.Sample.csproj", "{0C3887D5-069A-4212-9F22-EB8FDDD85D18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69DA7F8C-73AB-4E17-9E58-EBCA647FD847}"
 	ProjectSection(SolutionItems) = preProject
