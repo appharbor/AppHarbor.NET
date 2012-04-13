@@ -135,6 +135,11 @@ namespace AppHarbor
         {
             var response = _Client.Execute<T>(request);
 
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return default(T);
+            }
+
             return response.Data;
         }
 
