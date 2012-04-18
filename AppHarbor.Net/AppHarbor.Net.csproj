@@ -34,12 +34,9 @@
     <DocumentationFile>bin\Release\AppHarbor.NET.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.0.8\lib\net35\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.102.7\lib\net35\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.103.0.0\lib\net35\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -53,7 +50,6 @@
     <Compile Include="AppHaborAuthenticator.cs" />
     <Compile Include="AppHarborApi.cs" />
     <Compile Include="AuthInfo.cs" />
-    <Compile Include="CustomJsonDeserializer.cs" />
     <Compile Include="Model\Application.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Model\Build.cs" />

@@ -82,7 +82,6 @@ namespace AppHarbor
 
         private RestClient _Client = null;
         private Uri _BaseUri = null;
-        private readonly CustomJsonDeserializer _JsonDeserializer = null;
 
         public AppHarborApi(AuthInfo authInfo)
             : this(authInfo, new RestClient(BaseUrl))
@@ -105,13 +104,6 @@ namespace AppHarbor
             _Client.Authenticator = new HeaderAppHaborAuthenticator(authInfo);
 
             _BaseUri = new Uri(BaseUrl);
-            _JsonDeserializer = new CustomJsonDeserializer();
-
-            // use the customized JsonDeseriilizer that can handle TimeSpan etc.
-            _Client.AddHandler("application/json", _JsonDeserializer);
-            _Client.AddHandler("text/json", _JsonDeserializer);
-            _Client.AddHandler("text/x-json", _JsonDeserializer);
-            _Client.AddHandler("text/javascript", _JsonDeserializer);
         }
 
         private static long ExtractLongID(string url)
