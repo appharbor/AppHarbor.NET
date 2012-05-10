@@ -144,7 +144,7 @@ namespace AppHarbor
             if (data == null)
                 return null;
 
-            data.ID = ExtractLongID(response.ResponseUri.LocalPath);
+            data.ID = ExtractID(response.ResponseUri.LocalPath);
 
             if (data is IUrl)
             {
@@ -165,7 +165,7 @@ namespace AppHarbor
 
             foreach (var item in data)
             {
-                item.ID = ExtractLongID(item.Url);
+                item.ID = ExtractID(item.Url);
             }
 
             return data;
