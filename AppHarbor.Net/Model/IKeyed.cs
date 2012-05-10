@@ -7,6 +7,6 @@ namespace AppHarbor.Model
 {
     public interface IKeyed
     {
-        long ID { get; set; }
+        string ID { get; set; }
     }
 }

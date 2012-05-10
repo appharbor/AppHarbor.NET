@@ -7,7 +7,7 @@ namespace AppHarbor.Model
 {
     public class Hostname : IUrl, IKeyed
     {
-        public long ID { get; set; }
+        public string ID { get; set; }
 
         public string Value { get; set; }
 

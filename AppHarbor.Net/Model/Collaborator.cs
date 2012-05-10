@@ -7,7 +7,7 @@ namespace AppHarbor.Model
 {
     public class Collaborator : IUrl, IKeyed
     {
-        public long ID { get; set; }
+        public string ID { get; set; }
 
         public UserClass User { get; set; }
 

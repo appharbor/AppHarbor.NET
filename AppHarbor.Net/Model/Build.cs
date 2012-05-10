@@ -7,7 +7,7 @@ namespace AppHarbor.Model
 {
     public class Build : IUrl, IKeyed
     {
-        public long ID { get; set; }
+        public string ID { get; set; }
 
         public string Status { get; set; }
 
