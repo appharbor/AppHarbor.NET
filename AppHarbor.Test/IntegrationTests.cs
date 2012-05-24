@@ -10,7 +10,7 @@ namespace AppHarbor.Test
     /// - A valid AppHarbor Access Token 
     /// - A valid collaborator email
     /// Afterwards remove the Ignore attribute from the class.
-    /// <summary>
+    /// </summary>
     //[Ignore]
     [TestClass]
     public class IntegrationTests
