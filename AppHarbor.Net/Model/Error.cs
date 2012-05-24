@@ -29,7 +29,7 @@ namespace AppHarbor.Model
 
             public string Type { get; set; }
 
-            public string Inner_Exception { get; set; }
+            public ExceptionClass Inner_Exception { get; set; }
         }
     }
 }
