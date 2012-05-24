@@ -14,7 +14,7 @@
         None = 0,
         Created = 1,
         AlreadyExists = 2,
-        Undefined = 3
+        Undefined = 3,
     }
 
     public class CreateResultLongID : CreateResult<long>
