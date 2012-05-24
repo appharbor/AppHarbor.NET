@@ -7,7 +7,7 @@ namespace AppHarbor.Model
 {
     public class ConfigurationVariable : IUrl, IKeyed
     {
-        public long ID { get; set; }
+        public string ID { get; set; }
 
         public string Key { get; set; }
 

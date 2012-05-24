@@ -7,7 +7,7 @@ namespace AppHarbor.Model
 {
     public class Error : IKeyed, IUrl
     {
-        public long ID { get; set; }
+        public string ID { get; set; }
 
         public string Commit_ID { get; set; }
 
