@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AppHarbor.Model
+﻿namespace AppHarbor.Model
 {
     public class Collaborator : IUrl, IKeyed
     {
