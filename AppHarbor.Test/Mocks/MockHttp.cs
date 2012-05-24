@@ -7,11 +7,6 @@ namespace AppHarbor.Test.Mocks
 {
     public class SampleDataMockHttp : MockHttp, IHttp
     {
-        public SampleDataMockHttp()
-            : base()
-        {
-        }
-
         HttpResponse IHttp.Delete()
         {
             var url = this.Url.LocalPath;
