@@ -11,7 +11,6 @@ namespace AppHarbor.Test
     /// - A valid collaborator email
     /// Afterwards remove the Ignore attribute from the class.
     /// </summary>
-    //[Ignore]
     [TestClass]
     public class IntegrationTests
     {
