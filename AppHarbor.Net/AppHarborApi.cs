@@ -109,7 +109,7 @@ namespace AppHarbor
         private static long ExtractLongID(string url)
         {
             if (url == null)
-                throw new ArgumentNullException("url");
+                return 0L;
 
             return Convert.ToInt64(ExtractID(url));
         }
@@ -117,11 +117,11 @@ namespace AppHarbor
         private static string ExtractID(string url)
         {
             if (url == null)
-                throw new ArgumentNullException("url");
+                return string.Empty;
 
             return url.Split('/').Last();
-        }
-
+        }         
+ 
         private T ExecuteGet<T>(RestRequest request)
             where T : new()
         {
