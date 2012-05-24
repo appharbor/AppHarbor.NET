@@ -51,6 +51,7 @@
     <Compile Include="AppHarborApi.cs" />
     <Compile Include="AppHarborApi.Error.cs" />
     <Compile Include="AppHarborApi.Hostname.cs" />
+    <Compile Include="AppHarborApi.Auth.cs" />
     <Compile Include="AppHarborApi.ServiceHooks.cs" />
     <Compile Include="AppHarborApi.Test.cs" />
     <Compile Include="AppHarborApi.User.cs" />
