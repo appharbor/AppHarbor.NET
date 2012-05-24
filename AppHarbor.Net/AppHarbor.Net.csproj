@@ -53,6 +53,7 @@
     <Compile Include="Model\CollaboratorType.cs" />
     <Compile Include="Model\ConfigurationVariable.cs" />
     <Compile Include="Model\CreateResult.cs" />
+    <Compile Include="Model\CreateStatus.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\Hostname.cs" />
     <Compile Include="Model\IKeyed.cs" />
