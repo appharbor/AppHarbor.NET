@@ -22,7 +22,7 @@ using RestSharp;
 
 namespace AppHarbor
 {
-	public class AppHarborApi
+	public partial class AppHarborApi
 	{
 		#region Public Static Methods
 
