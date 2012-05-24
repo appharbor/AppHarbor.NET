@@ -9,7 +9,7 @@ namespace AppHarbor.Test.Mocks
     {
         HttpResponse IHttp.Delete()
         {
-            var url = this.Url.LocalPath;
+            var url = Url.LocalPath;
             switch (url)
             {
                 case "/applications/:application":
@@ -29,76 +29,76 @@ namespace AppHarbor.Test.Mocks
 
         HttpResponse IHttp.Get()
         {
-            var url = this.Url.LocalPath;
+            var url = Url.LocalPath;
             switch (url)
             {
                 case "/applications":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplications.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplications.json"));
                     }
                 case "/applications/:application":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplication.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplication.json"));
                     }
                 case "/applications/:application/collaborators":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborators.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborators.json"));
                     }
                 case "/applications/:application/collaborators/5":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborator.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborator.json"));
                     }
                 case "/applications/:application/configurationvariables":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariables.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariables.json"));
                     }
                 case "/applications/:application/configurationvariables/5":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariable.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariable.json"));
                     }
                 case "/applications/:application/hostnames":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostnames.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostnames.json"));
                     }
                 case "/applications/:application/hostnames/5":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostname.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostname.json"));
                     }
                 case "/applications/:application/servicehooks":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHooks.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHooks.json"));
                     }
                 case "/applications/:application/servicehooks/5":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHook.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHook.json"));
                     }
                 case "/applications/:application/builds":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuilds.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuilds.json"));
                     }
                 case "/applications/:application/builds/5":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuild.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuild.json"));
                     }
                 case "/applications/:application/builds/5/tests":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTests.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTests.json"));
                     }
                 case "/applications/:application/builds/5/tests/3.1":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTest.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTest.json"));
                     }
                 case "/applications/:application/errors":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetErrors.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetErrors.json"));
                     }
                 case "/applications/:application/errors/5":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetError.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetError.json"));
                     }
                 case "/user":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetUser.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetUser.json"));
                     }
                 default:
                     {
@@ -109,7 +109,7 @@ namespace AppHarbor.Test.Mocks
 
         HttpResponse IHttp.Post()
         {
-            var url = this.Url.LocalPath;
+            var url = Url.LocalPath;
             switch (url)
             {
                 case "/applications":
@@ -141,7 +141,7 @@ namespace AppHarbor.Test.Mocks
 
         HttpResponse IHttp.Put()
         {
-            var url = this.Url.LocalPath;
+            var url = Url.LocalPath;
             switch (url)
             {
                 case "/applications/:application":
@@ -163,7 +163,7 @@ namespace AppHarbor.Test.Mocks
     {
         HttpResponse IHttp.Get()
         {
-            var url = this.Url.LocalPath;
+            var url = Url.LocalPath;
             switch (url)
             {
                 case "/applications":
@@ -175,7 +175,7 @@ namespace AppHarbor.Test.Mocks
                 case "/applications/:application/builds/5/tests":
                 case "/applications/:application/errors":
                     {
-                        return CreateGetResponse(this.Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\EmptyArray.json"));
+                        return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\EmptyArray.json"));
                     }
                 default:
                     {
@@ -189,7 +189,7 @@ namespace AppHarbor.Test.Mocks
     {
         HttpResponse IHttp.Post()
         {
-            var url = this.Url.LocalPath;
+            var url = Url.LocalPath;
             switch (url)
             {
                 case "/applications":
