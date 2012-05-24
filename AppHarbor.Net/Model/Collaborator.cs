@@ -1,27 +1,51 @@
 ﻿namespace AppHarbor.Model
 {
-    public class Collaborator : IUrl, IKeyed
-    {
-        public string ID { get; set; }
+	public class Collaborator : IUrl, IKeyed
+	{
+		public string ID
+		{
+			get;
+			set;
+		}
 
-        public UserClass User { get; set; }
+		public UserClass User
+		{
+			get;
+			set;
+		}
 
-        public CollaboratorType Role { get; set; }
+		public CollaboratorType Role
+		{
+			get;
+			set;
+		}
 
-        public string Url { get; set; }
+		public string Url
+		{
+			get;
+			set;
+		}
 
-        public class UserClass
-        {
-            public string ID { get; set; }
+		public class UserClass
+		{
+			public string ID
+			{
+				get;
+				set;
+			}
 
-            public string Name { get; set; }
-        }
-    }
+			public string Name
+			{
+				get;
+				set;
+			}
+		}
+	}
 
-    public enum CollaboratorType
-    {
-        None = 0,
-        Administrator = 1,
-        Collaborator = 2,
-    }
+	public enum CollaboratorType
+	{
+		None = 0,
+		Administrator = 1,
+		Collaborator = 2,
+	}
 }

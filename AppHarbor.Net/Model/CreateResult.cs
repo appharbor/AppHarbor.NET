@@ -1,19 +1,31 @@
 ﻿namespace AppHarbor.Model
 {
-    public class CreateResult<T>
-    {
-        public CreateStatus Status { get; set; }
+	public class CreateResult<T>
+	{
+		public CreateStatus Status
+		{
+			get;
+			set;
+		}
 
-        public T ID { get; set; }
+		public T ID
+		{
+			get;
+			set;
+		}
 
-        public string Location { get; set; }
-    }
+		public string Location
+		{
+			get;
+			set;
+		}
+	}
 
-    public enum CreateStatus
-    {
-        None = 0,
-        Created = 1,
-        AlreadyExists = 2,
-        Undefined = 3,
-    }
+	public enum CreateStatus
+	{
+		None = 0,
+		Created = 1,
+		AlreadyExists = 2,
+		Undefined = 3,
+	}
 }
