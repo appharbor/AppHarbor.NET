@@ -46,6 +46,7 @@
     <Compile Include="AppHaborAuthenticator.cs" />
     <Compile Include="AppHarborApi.cs" />
     <Compile Include="AppHarborApi.Error.cs" />
+    <Compile Include="AppHarborApi.Test.cs" />
     <Compile Include="AppHarborApi.User.cs" />
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Model\Application.cs" />
