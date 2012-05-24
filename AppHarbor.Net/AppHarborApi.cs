@@ -645,17 +645,5 @@ namespace AppHarbor
 		}
 
 		#endregion
-
-		#region User
-
-		public User GetUser()
-		{
-			var request = new RestRequest();
-			request.Resource = "user";
-
-			return ExecuteGet<User>(request);
-		}
-
-		#endregion
 	}
 }
