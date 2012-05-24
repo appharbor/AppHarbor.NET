@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace AppHarbor.Sample.Controllers
 {
@@ -24,18 +23,8 @@ namespace AppHarbor.Sample.Controllers
 
 		public ActionResult Auth(string code)
 		{
-			var clientID = Config.ClientID;
-			var clientSecret = Config.ClientSecret;
-
 			AuthInfo authInfo = null;
-			try
-			{
-				authInfo = AppHarborApi.GetAuthInfo(Config.ClientID, Config.ClientSecret, code);
-			}
-			catch (Exception)
-			{
-				throw;
-			}
+			authInfo = AppHarborApi.GetAuthInfo(Config.ClientID, Config.ClientSecret, code);
 
 			if (authInfo != null)
 			{
