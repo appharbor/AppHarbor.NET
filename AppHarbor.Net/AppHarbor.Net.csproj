@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AppHaborAuthenticator.cs" />
     <Compile Include="AppHarborApi.cs" />
+    <Compile Include="AppHarborApi.Error.cs" />
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Model\Application.cs" />
     <Compile Include="Config.cs" />
