@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHaborAuthenticator.cs" />
+    <Compile Include="AppHarborApi.Application.cs" />
     <Compile Include="AppHarborApi.Collaborator.cs" />
     <Compile Include="AppHarborApi.ConfigurationVariable.cs" />
     <Compile Include="AppHarborApi.Build.cs" />
