@@ -24,8 +24,6 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		#region Base
-
 		const string BaseUrl = "https://appharbor.com/";
 
 		private RestClient _Client = null;
@@ -191,7 +189,5 @@ namespace AppHarbor
 			if (value == null)
 				throw new ArgumentNullException(argumentName);
 		}
-
-		#endregion
 	}
 }
