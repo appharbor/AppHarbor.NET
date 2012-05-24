@@ -50,6 +50,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Model\Build.cs" />
     <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\CollaboratorType.cs" />
     <Compile Include="Model\ConfigurationVariable.cs" />
     <Compile Include="Model\CreateResult.cs" />
     <Compile Include="Model\Error.cs" />
