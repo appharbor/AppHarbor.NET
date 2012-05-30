@@ -1,6 +1,6 @@
 ﻿namespace AppHarbor.Model
 {
-	interface IUrl
+	public interface IUrl
 	{
 		string Url
 		{
