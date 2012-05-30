@@ -67,7 +67,7 @@ namespace AppHarbor
 		}
 
 		private T ExecuteGet<T>(RestRequest request)
-				where T : new()
+			where T : new()
 		{
 			var response = _client.Execute<T>(request);
 
@@ -80,13 +80,15 @@ namespace AppHarbor
 		}
 
 		private T ExecuteGetKeyed<T>(RestRequest request)
-				where T : class, IKeyed, new()
+			where T : class, IKeyed, new()
 		{
 			var response = _client.Execute<T>(request);
 
 			var data = response.Data;
 			if (data == null)
+			{
 				return null;
+			}
 
 			data.Id = ExtractId(response.ResponseUri.LocalPath);
 
@@ -99,7 +101,7 @@ namespace AppHarbor
 		}
 
 		private List<T> ExecuteGetListKeyed<T>(RestRequest request)
-				where T : IKeyed, IUrl
+			where T : IKeyed, IUrl
 		{
 			var response = _client.Execute<List<T>>(request);
 
@@ -121,7 +123,6 @@ namespace AppHarbor
 		{
 			return ExecuteCreate(request, ExtractId);
 		}
-
 
 		private CreateResult<string> ExecuteCreateApplication(RestRequest request)
 		{
@@ -154,7 +155,7 @@ namespace AppHarbor
 			}
 
 			var locationHeader = response.Headers
-					.SingleOrDefault(p => string.Equals(p.Name, "Location", StringComparison.OrdinalIgnoreCase));
+				.SingleOrDefault(p => string.Equals(p.Name, "Location", StringComparison.OrdinalIgnoreCase));
 
 			if (locationHeader == null)
 			{
