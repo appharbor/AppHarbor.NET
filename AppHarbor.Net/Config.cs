@@ -11,6 +11,7 @@ namespace AppHarbor
 				return ConfigurationManager.AppSettings["ClientId"];
 			}
 		}
+
 		public static string ClientSecret
 		{
 			get
@@ -18,6 +19,7 @@ namespace AppHarbor
 				return ConfigurationManager.AppSettings["ClientSecret"];
 			}
 		}
+
 		public static string ClientCallbackUrl
 		{
 			get
@@ -25,6 +27,7 @@ namespace AppHarbor
 				return ConfigurationManager.AppSettings["ClientCallbackUrl"];
 			}
 		}
+
 		public static string ClientUrl
 		{
 			get
