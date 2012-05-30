@@ -52,14 +52,6 @@ namespace AppHarbor
 			_BaseUri = new Uri(BaseUrl);
 		}
 
-		private static long ExtractLongID(string url)
-		{
-			if (url == null)
-				throw new ArgumentNullException("url");
-
-			return Convert.ToInt64(ExtractID(url));
-		}
-
 		private static string ExtractId(string url)
 		{
 			if (url == null)
