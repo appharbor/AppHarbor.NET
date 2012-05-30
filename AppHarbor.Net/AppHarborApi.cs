@@ -26,7 +26,7 @@ namespace AppHarbor
 	{
 		const string BaseUrl = "https://appharbor.com/";
 
-		private RestClient _Client = null;
+		private readonly RestClient _client;
 		private Uri _BaseUri = null;
 
 		public AppHarborApi(AuthInfo authInfo)
@@ -46,8 +46,8 @@ namespace AppHarbor
 			if (restClient == null)
 				throw new ArgumentNullException("restClient");
 
-			_Client = restClient;
-			_Client.Authenticator = new AppHarborHeaderAuthenticator(authInfo);
+			_client = restClient;
+			_client.Authenticator = new AppHarborHeaderAuthenticator(authInfo);
 
 			_BaseUri = new Uri(BaseUrl);
 		}
@@ -63,7 +63,7 @@ namespace AppHarbor
 		private T ExecuteGet<T>(RestRequest request)
 				where T : new()
 		{
-			var response = _Client.Execute<T>(request);
+			var response = _client.Execute<T>(request);
 
 			if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
 			{
@@ -76,7 +76,7 @@ namespace AppHarbor
 		private T ExecuteGetKeyed<T>(RestRequest request)
 				where T : class, IKeyed, new()
 		{
-			var response = _Client.Execute<T>(request);
+			var response = _client.Execute<T>(request);
 
 			var data = response.Data;
 			if (data == null)
@@ -95,7 +95,7 @@ namespace AppHarbor
 		private List<T> ExecuteGetListKeyed<T>(RestRequest request)
 				where T : IKeyed, IUrl
 		{
-			var response = _Client.Execute<List<T>>(request);
+			var response = _client.Execute<List<T>>(request);
 
 			var data = response.Data;
 			if (data == null)
@@ -122,7 +122,7 @@ namespace AppHarbor
 
 		private CreateResult<T> ExecuteCreate<T>(RestRequest request, Func<string, T> extractId)
 		{
-			var response = _Client.Execute(request);
+			var response = _client.Execute(request);
 
 			if (response == null)
 				throw new ArgumentException("Response cannot be null.");
@@ -158,7 +158,7 @@ namespace AppHarbor
 
 		private bool ExecuteEdit(RestRequest request)
 		{
-			var response = _Client.Execute(request);
+			var response = _client.Execute(request);
 			if (response == null)
 				return false;
 
@@ -167,7 +167,7 @@ namespace AppHarbor
 
 		private bool ExecuteDelete(RestRequest request)
 		{
-			var response = _Client.Execute(request);
+			var response = _client.Execute(request);
 			if (response == null)
 				return false;
 
