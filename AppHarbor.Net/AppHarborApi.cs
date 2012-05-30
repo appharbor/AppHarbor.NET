@@ -27,7 +27,7 @@ namespace AppHarbor
 		const string BaseUrl = "https://appharbor.com/";
 
 		private readonly RestClient _client;
-		private Uri _BaseUri = null;
+		private readonly Uri _baseUri;
 
 		public AppHarborApi(AuthInfo authInfo)
 			: this(authInfo, new RestClient(BaseUrl))
@@ -49,7 +49,7 @@ namespace AppHarbor
 			_client = restClient;
 			_client.Authenticator = new AppHarborHeaderAuthenticator(authInfo);
 
-			_BaseUri = new Uri(BaseUrl);
+			_baseUri = new Uri(BaseUrl);
 		}
 
 		private static string ExtractId(string url)
@@ -86,7 +86,7 @@ namespace AppHarbor
 
 			if (data is IUrl)
 			{
-				((IUrl)data).Url = new Uri(_BaseUri, response.ResponseUri.LocalPath).OriginalString;
+				((IUrl)data).Url = new Uri(_baseUri, response.ResponseUri.LocalPath).OriginalString;
 			}
 
 			return data;
