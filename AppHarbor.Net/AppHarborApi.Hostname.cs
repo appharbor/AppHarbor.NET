@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Hostname GetHostname(string applicationID, long ID)
+		public Hostname GetHostname(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 
@@ -29,7 +29,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<Hostname>(request);
 		}
 
-		public CreateResult<long> CreateHostname(string applicationID, string hostName)
+		public CreateResult<string> CreateHostname(string applicationID, string hostName)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 			CheckArgumentNull("hostName", hostName);
@@ -45,7 +45,7 @@ namespace AppHarbor
 			return ExecuteCreate(request);
 		}
 
-		public bool DeleteHostname(string applicationID, long ID)
+		public bool DeleteHostname(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 

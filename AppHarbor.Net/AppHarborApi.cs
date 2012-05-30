@@ -117,15 +117,15 @@ namespace AppHarbor
 			return data;
 		}
 
-		private CreateResult<long> ExecuteCreate(RestRequest request)
+		private CreateResult<string> ExecuteCreate(RestRequest request)
 		{
-			return ExecuteCreate<long>(request, ExtractLongID);
+			return ExecuteCreate(request, ExtractID);
 		}
 
 
 		private CreateResult<string> ExecuteCreateApplication(RestRequest request)
 		{
-			return ExecuteCreate<string>(request, ExtractID);
+			return ExecuteCreate(request, ExtractID);
 		}
 
 		private CreateResult<T> ExecuteCreate<T>(RestRequest request, Func<string, T> extractID)

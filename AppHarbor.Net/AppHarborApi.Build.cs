@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Build GetBuild(string applicationID, long ID)
+		public Build GetBuild(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 

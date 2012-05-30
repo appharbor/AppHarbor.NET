@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public ConfigurationVariable GetConfigurationVariable(string applicationID, long ID)
+		public ConfigurationVariable GetConfigurationVariable(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 
@@ -29,7 +29,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<ConfigurationVariable>(request);
 		}
 
-		public CreateResult<long> CreateConfigurationVariable(string applicationID, string key, string value)
+		public CreateResult<string> CreateConfigurationVariable(string applicationID, string key, string value)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 			CheckArgumentNull("key", key);
@@ -67,7 +67,7 @@ namespace AppHarbor
 			return ExecuteEdit(request);
 		}
 
-		public bool DeleteConfigurationVariable(string applicationID, long ID)
+		public bool DeleteConfigurationVariable(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 

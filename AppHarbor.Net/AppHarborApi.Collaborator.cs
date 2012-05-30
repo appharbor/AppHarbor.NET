@@ -7,7 +7,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Collaborator GetCollaborator(string applicationID, long ID)
+		public Collaborator GetCollaborator(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 
@@ -30,7 +30,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<Collaborator>(request);
 		}
 
-		public CreateResult<long> CreateCollaborator(string applicationID, string email, CollaboratorType collaboratorType)
+		public CreateResult<string> CreateCollaborator(string applicationID, string email, CollaboratorType collaboratorType)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 			CheckArgumentNull("email", email);
@@ -71,7 +71,7 @@ namespace AppHarbor
 			return ExecuteEdit(request);
 		}
 
-		public bool DeleteCollaborator(string applicationID, long ID)
+		public bool DeleteCollaborator(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 

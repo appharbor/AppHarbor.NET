@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Error GetError(string applicationID, long ID)
+		public Error GetError(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 

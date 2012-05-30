@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Test GetTest(string applicationID, long buildID, string ID)
+		public Test GetTest(string applicationID, string buildID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 			CheckArgumentNull("ID", ID);
@@ -20,7 +20,7 @@ namespace AppHarbor
 			return ExecuteGet<Test>(request);
 		}
 
-		public IList<Test> GetTests(string applicationID, long buildID)
+		public IList<Test> GetTests(string applicationID, string buildID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 

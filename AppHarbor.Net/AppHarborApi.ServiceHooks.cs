@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public ServiceHook GetServicehook(string applicationID, long ID)
+		public ServiceHook GetServicehook(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 
@@ -29,7 +29,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<ServiceHook>(request);
 		}
 
-		public CreateResult<long> CreateServicehook(string applicationID, string url)
+		public CreateResult<string> CreateServicehook(string applicationID, string url)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 			CheckArgumentNull("url", url);
@@ -45,7 +45,7 @@ namespace AppHarbor
 			return ExecuteCreate(request);
 		}
 
-		public bool DeleteServicehook(string applicationID, long ID)
+		public bool DeleteServicehook(string applicationID, string ID)
 		{
 			CheckArgumentNull("applicationID", applicationID);
 
