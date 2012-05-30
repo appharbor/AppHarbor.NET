@@ -24,7 +24,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		const string BaseUrl = "https://appharbor.com/";
+		private const string BaseUrl = "https://appharbor.com/";
 
 		private readonly RestClient _client;
 		private readonly Uri _baseUri;
