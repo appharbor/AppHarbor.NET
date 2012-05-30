@@ -6,28 +6,28 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Test GetTest(string applicationID, string buildID, string ID)
+		public Test GetTest(string applicationId, string buildId, string Id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
-			CheckArgumentNull("ID", ID);
+			CheckArgumentNull("applicationId", applicationId);
+			CheckArgumentNull("Id", Id);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/builds/{buildID}/tests/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("buildID", buildID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/builds/{buildId}/tests/{Id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("buildId", buildId, ParameterType.UrlSegment);
+			request.AddParameter("Id", Id, ParameterType.UrlSegment);
 
 			return ExecuteGet<Test>(request);
 		}
 
-		public IList<Test> GetTests(string applicationID, string buildID)
+		public IList<Test> GetTests(string applicationId, string buildId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/builds/{buildID}/tests";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("buildID", buildID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/builds/{buildId}/tests";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("buildId", buildId, ParameterType.UrlSegment);
 
 			return ExecuteGet<List<Test>>(request);
 		}

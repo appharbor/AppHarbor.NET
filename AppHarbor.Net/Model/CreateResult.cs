@@ -8,7 +8,7 @@
 			set;
 		}
 
-		public T ID
+		public T Id
 		{
 			get;
 			set;

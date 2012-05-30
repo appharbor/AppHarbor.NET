@@ -2,7 +2,7 @@
 {
 	public class Hostname : IUrl, IKeyed
 	{
-		public string ID
+		public string Id
 		{
 			get;
 			set;

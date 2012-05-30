@@ -5,7 +5,7 @@ namespace AppHarbor.Model
 {
 	public class Test
 	{
-		public string ID
+		public string Id
 		{
 			get;
 			set;

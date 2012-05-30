@@ -4,7 +4,7 @@ namespace AppHarbor.Model
 {
 	public class Build : IUrl, IKeyed
 	{
-		public string ID
+		public string Id
 		{
 			get;
 			set;
@@ -54,7 +54,7 @@ namespace AppHarbor.Model
 
 		public class CommitClass
 		{
-			public string ID
+			public string Id
 			{
 				get;
 				set;

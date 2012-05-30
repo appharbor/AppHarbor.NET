@@ -2,7 +2,7 @@
 {
 	public class ConfigurationVariable : IUrl, IKeyed
 	{
-		public string ID
+		public string Id
 		{
 			get;
 			set;

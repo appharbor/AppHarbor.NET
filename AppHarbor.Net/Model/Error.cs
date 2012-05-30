@@ -4,13 +4,13 @@ namespace AppHarbor.Model
 {
 	public class Error : IKeyed, IUrl
 	{
-		public string ID
+		public string Id
 		{
 			get;
 			set;
 		}
 
-		public string Commit_ID
+		public string Commit_Id
 		{
 			get;
 			set;

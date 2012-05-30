@@ -7,32 +7,32 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Collaborator GetCollaborator(string applicationID, string ID)
+		public Collaborator GetCollaborator(string applicationId, string id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/collaborators/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/collaborators/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", id, ParameterType.UrlSegment);
 
 			return ExecuteGetKeyed<Collaborator>(request);
 		}
 
-		public IList<Collaborator> GetCollaborators(string applicationID)
+		public IList<Collaborator> GetCollaborators(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/collaborators";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/collaborators";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<Collaborator>(request);
 		}
 
-		public CreateResult<string> CreateCollaborator(string applicationID, string email, CollaboratorType collaboratorType)
+		public CreateResult<string> CreateCollaborator(string applicationId, string email, CollaboratorType collaboratorType)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("email", email);
 
 			if (collaboratorType == CollaboratorType.None)
@@ -40,8 +40,8 @@ namespace AppHarbor
 
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}/collaborators";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/collaborators";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				collaboratorEmail = email,
@@ -50,9 +50,9 @@ namespace AppHarbor
 			return ExecuteCreate(request);
 		}
 
-		public bool EditCollaborator(string applicationID, Collaborator collaborator)
+		public bool EditCollaborator(string applicationId, Collaborator collaborator)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("collaborator", collaborator);
 			CheckArgumentNull("collaborator.Role", collaborator.Role);
 
@@ -61,9 +61,9 @@ namespace AppHarbor
 
 			var request = new RestRequest(Method.PUT);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}/collaborators/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", collaborator.ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/collaborators/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", collaborator.Id, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				role = Util.GetCollaboratorType(collaborator.Role),
@@ -71,14 +71,14 @@ namespace AppHarbor
 			return ExecuteEdit(request);
 		}
 
-		public bool DeleteCollaborator(string applicationID, string ID)
+		public bool DeleteCollaborator(string applicationId, string id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest(Method.DELETE);
-			request.Resource = "applications/{applicationID}/collaborators/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/collaborators/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", id, ParameterType.UrlSegment);
 
 			return ExecuteDelete(request);
 		}

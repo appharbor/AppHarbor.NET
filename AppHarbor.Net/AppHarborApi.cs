@@ -60,7 +60,7 @@ namespace AppHarbor
 			return Convert.ToInt64(ExtractID(url));
 		}
 
-		private static string ExtractID(string url)
+		private static string ExtractId(string url)
 		{
 			if (url == null)
 				throw new ArgumentNullException("url");
@@ -90,7 +90,7 @@ namespace AppHarbor
 			if (data == null)
 				return null;
 
-			data.ID = ExtractID(response.ResponseUri.LocalPath);
+			data.Id = ExtractId(response.ResponseUri.LocalPath);
 
 			if (data is IUrl)
 			{
@@ -111,7 +111,7 @@ namespace AppHarbor
 
 			foreach (var item in data)
 			{
-				item.ID = ExtractID(item.Url);
+				item.Id = ExtractId(item.Url);
 			}
 
 			return data;
@@ -119,16 +119,16 @@ namespace AppHarbor
 
 		private CreateResult<string> ExecuteCreate(RestRequest request)
 		{
-			return ExecuteCreate(request, ExtractID);
+			return ExecuteCreate(request, ExtractId);
 		}
 
 
 		private CreateResult<string> ExecuteCreateApplication(RestRequest request)
 		{
-			return ExecuteCreate(request, ExtractID);
+			return ExecuteCreate(request, ExtractId);
 		}
 
-		private CreateResult<T> ExecuteCreate<T>(RestRequest request, Func<string, T> extractID)
+		private CreateResult<T> ExecuteCreate<T>(RestRequest request, Func<string, T> extractId)
 		{
 			var response = _Client.Execute(request);
 
@@ -154,12 +154,12 @@ namespace AppHarbor
 				throw new ArgumentException("Location header was not set.");
 
 			var location = (string)locationHeader.Value;
-			var id = extractID(location);
+			var id = extractId(location);
 
 			return new CreateResult<T>()
 			{
 				Status = Model.CreateStatus.Created,
-				ID = id,
+				Id = id,
 				Location = location,
 			};
 		}

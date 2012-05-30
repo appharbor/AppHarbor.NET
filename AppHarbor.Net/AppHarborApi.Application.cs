@@ -14,13 +14,13 @@ namespace AppHarbor
 			return ExecuteGet<List<Application>>(request);
 		}
 
-		public Application GetApplication(string applicationID)
+		public Application GetApplication(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			return ExecuteGet<Application>(request);
 		}
 
@@ -51,16 +51,16 @@ namespace AppHarbor
 			return ExecuteCreateApplication(request);
 		}
 
-		public bool EditApplication(string applicationID, Application application)
+		public bool EditApplication(string applicationId, Application application)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("application", application);
 			CheckArgumentNull("application.Name", application.Name);
 
 			var request = new RestRequest(Method.PUT);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				name = application.Name,
@@ -68,13 +68,13 @@ namespace AppHarbor
 			return ExecuteEdit(request);
 		}
 
-		public bool DeleteApplication(string applicationID)
+		public bool DeleteApplication(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest(Method.DELETE);
-			request.Resource = "applications/{applicationID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteDelete(request);
 		}

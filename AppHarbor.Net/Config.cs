@@ -4,11 +4,11 @@ namespace AppHarbor
 {
 	public class Config
 	{
-		public static string ClientID
+		public static string ClientId
 		{
 			get
 			{
-				return ConfigurationManager.AppSettings["ClientID"];
+				return ConfigurationManager.AppSettings["ClientId"];
 			}
 		}
 		public static string ClientSecret

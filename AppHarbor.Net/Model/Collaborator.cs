@@ -2,7 +2,7 @@
 {
 	public class Collaborator : IUrl, IKeyed
 	{
-		public string ID
+		public string Id
 		{
 			get;
 			set;
@@ -28,7 +28,7 @@
 
 		public class UserClass
 		{
-			public string ID
+			public string Id
 			{
 				get;
 				set;

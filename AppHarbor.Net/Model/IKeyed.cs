@@ -2,7 +2,7 @@
 {
 	public interface IKeyed
 	{
-		string ID
+		string Id
 		{
 			get;
 			set;

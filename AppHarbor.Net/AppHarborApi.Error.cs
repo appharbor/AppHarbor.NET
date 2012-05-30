@@ -6,25 +6,25 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Error GetError(string applicationID, string ID)
+		public Error GetError(string applicationId, string id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/errors/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/errors/{Id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("Id", id, ParameterType.UrlSegment);
 
 			return ExecuteGetKeyed<Error>(request);
 		}
 
-		public IList<Error> GetErrors(string applicationID)
+		public IList<Error> GetErrors(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/errors";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/errors";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<Error>(request);
 		}

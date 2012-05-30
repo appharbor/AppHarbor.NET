@@ -6,25 +6,25 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Build GetBuild(string applicationID, string ID)
+		public Build GetBuild(string applicationId, string id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/builds/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/builds/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", id, ParameterType.UrlSegment);
 
 			return ExecuteGetKeyed<Build>(request);
 		}
 
-		public IList<Build> GetBuilds(string applicationID)
+		public IList<Build> GetBuilds(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/builds";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/builds";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<Build>(request);
 		}

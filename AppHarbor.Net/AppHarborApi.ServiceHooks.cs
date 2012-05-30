@@ -6,38 +6,38 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public ServiceHook GetServicehook(string applicationID, string ID)
+		public ServiceHook GetServicehook(string applicationId, string Id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/servicehooks/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/servicehooks/{Id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("Id", Id, ParameterType.UrlSegment);
 
 			return ExecuteGetKeyed<ServiceHook>(request);
 		}
 
-		public IList<ServiceHook> GetServicehooks(string applicationID)
+		public IList<ServiceHook> GetServicehooks(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/servicehooks";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/servicehooks";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<ServiceHook>(request);
 		}
 
-		public CreateResult<string> CreateServicehook(string applicationID, string url)
+		public CreateResult<string> CreateServicehook(string applicationId, string url)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("url", url);
 
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}/servicehooks";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/servicehooks";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				url = url,
@@ -45,14 +45,14 @@ namespace AppHarbor
 			return ExecuteCreate(request);
 		}
 
-		public bool DeleteServicehook(string applicationID, string ID)
+		public bool DeleteServicehook(string applicationId, string Id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest(Method.DELETE);
-			request.Resource = "applications/{applicationID}/servicehooks/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/servicehooks/{Id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("Id", Id, ParameterType.UrlSegment);
 
 			return ExecuteDelete(request);
 		}

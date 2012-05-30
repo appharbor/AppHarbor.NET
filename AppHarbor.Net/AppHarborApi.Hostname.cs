@@ -6,38 +6,38 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public Hostname GetHostname(string applicationID, string ID)
+		public Hostname GetHostname(string applicationId, string Id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/hostnames/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/hostnames/{Id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("Id", Id, ParameterType.UrlSegment);
 
 			return ExecuteGetKeyed<Hostname>(request);
 		}
 
-		public IList<Hostname> GetHostnames(string applicationID)
+		public IList<Hostname> GetHostnames(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/hostnames";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/hostnames";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<Hostname>(request);
 		}
 
-		public CreateResult<string> CreateHostname(string applicationID, string hostName)
+		public CreateResult<string> CreateHostname(string applicationId, string hostName)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("hostName", hostName);
 
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}/hostnames";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/hostnames";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				value = hostName,
@@ -45,14 +45,14 @@ namespace AppHarbor
 			return ExecuteCreate(request);
 		}
 
-		public bool DeleteHostname(string applicationID, string ID)
+		public bool DeleteHostname(string applicationId, string Id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest(Method.DELETE);
-			request.Resource = "applications/{applicationID}/hostnames/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/hostnames/{Id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("Id", Id, ParameterType.UrlSegment);
 
 			return ExecuteDelete(request);
 		}

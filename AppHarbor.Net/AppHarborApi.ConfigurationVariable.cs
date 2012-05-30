@@ -6,39 +6,39 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public ConfigurationVariable GetConfigurationVariable(string applicationID, string ID)
+		public ConfigurationVariable GetConfigurationVariable(string applicationId, string id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/configurationvariables/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/configurationvariables/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", id, ParameterType.UrlSegment);
 
 			return ExecuteGetKeyed<ConfigurationVariable>(request);
 		}
 
-		public IList<ConfigurationVariable> GetConfigurationVariables(string applicationID)
+		public IList<ConfigurationVariable> GetConfigurationVariables(string applicationId)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationID}/configurationvariables";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/configurationvariables";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<ConfigurationVariable>(request);
 		}
 
-		public CreateResult<string> CreateConfigurationVariable(string applicationID, string key, string value)
+		public CreateResult<string> CreateConfigurationVariable(string applicationId, string key, string value)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("key", key);
 			CheckArgumentNull("value", value);
 
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}/configurationvariables";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/configurationvariables";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				key = key,
@@ -47,18 +47,18 @@ namespace AppHarbor
 			return ExecuteCreate(request);
 		}
 
-		public bool EditConfigurationVariable(string applicationID, ConfigurationVariable configurationVariable)
+		public bool EditConfigurationVariable(string applicationId, ConfigurationVariable configurationVariable)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("configurationVariable", configurationVariable);
 			CheckArgumentNull("configurationVariable.Key ", configurationVariable.Key);
 			CheckArgumentNull("configurationVariable.Value", configurationVariable.Value);
 
 			var request = new RestRequest(Method.PUT);
 			request.RequestFormat = DataFormat.Json;
-			request.Resource = "applications/{applicationID}/configurationvariables/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", configurationVariable.ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/configurationvariables/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", configurationVariable.Id, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
 				key = configurationVariable.Key,
@@ -67,14 +67,14 @@ namespace AppHarbor
 			return ExecuteEdit(request);
 		}
 
-		public bool DeleteConfigurationVariable(string applicationID, string ID)
+		public bool DeleteConfigurationVariable(string applicationId, string id)
 		{
-			CheckArgumentNull("applicationID", applicationID);
+			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest(Method.DELETE);
-			request.Resource = "applications/{applicationID}/configurationvariables/{ID}";
-			request.AddParameter("applicationID", applicationID, ParameterType.UrlSegment);
-			request.AddParameter("ID", ID, ParameterType.UrlSegment);
+			request.Resource = "applications/{applicationId}/configurationvariables/{id}";
+			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
+			request.AddParameter("id", id, ParameterType.UrlSegment);
 
 			return ExecuteDelete(request);
 		}

@@ -6,9 +6,9 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public static AuthInfo GetAuthInfo(string clientID, string clientSecret, string code)
+		public static AuthInfo GetAuthInfo(string clientId, string clientSecret, string code)
 		{
-			CheckArgumentNull("clientID", clientID);
+			CheckArgumentNull("clientId", clientId);
 			CheckArgumentNull("clientSecret", clientSecret);
 			CheckArgumentNull("code", code);
 
@@ -16,7 +16,7 @@ namespace AppHarbor
 			var client = new RestClient(BaseUrl);
 			var request = new RestRequest(Method.POST);
 			request.Resource = "tokens";
-			request.AddParameter("client_id", clientID);
+			request.AddParameter("client_id", clientId);
 			request.AddParameter("client_secret", clientSecret);
 			request.AddParameter("code", code);
 
