@@ -36,7 +36,9 @@ namespace AppHarbor
 			CheckArgumentNull("email", email);
 
 			if (collaboratorType == CollaboratorType.None)
+			{
 				throw new ArgumentException("collaboratorType needs to be set.");
+			}
 
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
@@ -57,7 +59,9 @@ namespace AppHarbor
 			CheckArgumentNull("collaborator.Role", collaborator.Role);
 
 			if (collaborator.Role == CollaboratorType.None)
+			{
 				throw new ArgumentException("collaborator.Role has to be set.");
+			}
 
 			var request = new RestRequest(Method.PUT);
 			request.RequestFormat = DataFormat.Json;

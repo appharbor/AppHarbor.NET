@@ -35,7 +35,9 @@ namespace AppHarbor
 			CheckArgumentNull("name", name);
 
 			if (regionIdentifier == null)
+			{
 				regionIdentifier = "amazon-web-services::us-east-1";
+			}
 
 			CheckArgumentNull("regionIdentifier", regionIdentifier);
 

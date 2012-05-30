@@ -22,7 +22,9 @@ namespace AppHarbor
 
 			var response = client.Execute(request);
 			if (response.StatusCode != System.Net.HttpStatusCode.OK)
+			{
 				return null;
+			}
 
 			// parse the returned value
 			var values = response.Content.Split('&')

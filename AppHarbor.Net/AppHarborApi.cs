@@ -41,10 +41,14 @@ namespace AppHarbor
 		internal AppHarborApi(AuthInfo authInfo, RestClient restClient)
 		{
 			if (authInfo == null)
+			{
 				throw new ArgumentNullException("authInfo");
+			}
 
 			if (restClient == null)
+			{
 				throw new ArgumentNullException("restClient");
+			}
 
 			_client = restClient;
 			_client.Authenticator = new AppHarborHeaderAuthenticator(authInfo);
@@ -55,7 +59,9 @@ namespace AppHarbor
 		private static string ExtractId(string url)
 		{
 			if (url == null)
+			{
 				throw new ArgumentNullException("url");
+			}
 
 			return url.Split('/').Last();
 		}
@@ -99,7 +105,9 @@ namespace AppHarbor
 
 			var data = response.Data;
 			if (data == null)
+			{
 				return null;
+			}
 
 			foreach (var item in data)
 			{
@@ -125,25 +133,33 @@ namespace AppHarbor
 			var response = _client.Execute(request);
 
 			if (response == null)
+			{
 				throw new ArgumentException("Response cannot be null.");
+			}
 
 			if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+			{
 				return new CreateResult<T>()
 				{
 					Status = CreateStatus.AlreadyExists
 				};
+			}
 
 			if (response.StatusCode != System.Net.HttpStatusCode.Created)
+			{
 				return new CreateResult<T>()
 				{
 					Status = CreateStatus.Undefined
 				};
+			}
 
 			var locationHeader = response.Headers
 					.SingleOrDefault(p => string.Equals(p.Name, "Location", StringComparison.OrdinalIgnoreCase));
 
 			if (locationHeader == null)
+			{
 				throw new ArgumentException("Location header was not set.");
+			}
 
 			var location = (string)locationHeader.Value;
 			var id = extractId(location);
@@ -160,7 +176,9 @@ namespace AppHarbor
 		{
 			var response = _client.Execute(request);
 			if (response == null)
+			{
 				return false;
+			}
 
 			return (response.StatusCode == System.Net.HttpStatusCode.OK);
 		}
@@ -169,7 +187,9 @@ namespace AppHarbor
 		{
 			var response = _client.Execute(request);
 			if (response == null)
+			{
 				return false;
+			}
 
 			// System.Net.HttpStatusCode.NotFound is returned if there is nothing to delete
 
@@ -179,7 +199,9 @@ namespace AppHarbor
 		private static void CheckArgumentNull(string argumentName, object value)
 		{
 			if (value == null)
+			{
 				throw new ArgumentNullException(argumentName);
+			}
 		}
 	}
 }
