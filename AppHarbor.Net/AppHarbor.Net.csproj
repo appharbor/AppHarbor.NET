@@ -44,17 +44,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHarborHeaderAuthenticator.cs" />
-    <Compile Include="AppHarborApi.Application.cs" />
-    <Compile Include="AppHarborApi.Collaborator.cs" />
-    <Compile Include="AppHarborApi.ConfigurationVariable.cs" />
-    <Compile Include="AppHarborApi.Build.cs" />
     <Compile Include="AppHarborApi.cs" />
-    <Compile Include="AppHarborApi.Error.cs" />
-    <Compile Include="AppHarborApi.Hostname.cs" />
-    <Compile Include="AppHarborApi.Auth.cs" />
-    <Compile Include="AppHarborApi.ServiceHooks.cs" />
-    <Compile Include="AppHarborApi.Test.cs" />
-    <Compile Include="AppHarborApi.User.cs" />
+    <Compile Include="AppHarborApi.Application.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.Collaborator.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.ConfigurationVariable.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.Build.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.Error.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.Hostname.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.Auth.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.ServiceHooks.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.Test.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborApi.User.cs">
+      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Model\Application.cs" />
     <Compile Include="Config.cs" />
