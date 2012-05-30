@@ -43,7 +43,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppHaborAuthenticator.cs" />
+    <Compile Include="AppHarborHeaderAuthenticator.cs" />
     <Compile Include="AppHarborApi.Application.cs" />
     <Compile Include="AppHarborApi.Collaborator.cs" />
     <Compile Include="AppHarborApi.ConfigurationVariable.cs" />

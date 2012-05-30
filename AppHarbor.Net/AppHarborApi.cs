@@ -47,7 +47,7 @@ namespace AppHarbor
 				throw new ArgumentNullException("restClient");
 
 			_Client = restClient;
-			_Client.Authenticator = new HeaderAppHaborAuthenticator(authInfo);
+			_Client.Authenticator = new AppHarborHeaderAuthenticator(authInfo);
 
 			_BaseUri = new Uri(BaseUrl);
 		}
