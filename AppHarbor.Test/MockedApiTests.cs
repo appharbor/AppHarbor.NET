@@ -140,9 +140,9 @@ namespace AppHarbor.Test
 		public void Edit_Existing_Application()
 		{
 			var edited = Api.EditApplication(ApplicationID, new Model.Application()
-					{
-						Name = "SomeName"
-					});
+			{
+				Name = "SomeName"
+			});
 			Assert.IsTrue(edited);
 		}
 
@@ -150,9 +150,9 @@ namespace AppHarbor.Test
 		public void Edit_Non_Existing_Application()
 		{
 			var edited = Api.EditApplication(":notexistsapplication", new Model.Application()
-					{
-						Name = "SomeName"
-					});
+			{
+				Name = "SomeName"
+			});
 			Assert.IsFalse(edited);
 		}
 
@@ -160,10 +160,10 @@ namespace AppHarbor.Test
 		public void Edit_Existing_Collaborator()
 		{
 			var edited = Api.EditCollaborator(ApplicationID, new Model.Collaborator()
-					{
-						Id = 5.ToString(),
-						Role = Model.CollaboratorType.Collaborator,
-					});
+			{
+				Id = 5.ToString(),
+				Role = Model.CollaboratorType.Collaborator,
+			});
 			Assert.IsTrue(edited);
 		}
 

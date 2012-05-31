@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AppHarbor.Test
 {
-
 	/// <summary>
 	/// To run these tests you need to specify:
 	/// - A valid AppHarbor Access Token 
@@ -36,14 +35,16 @@ namespace AppHarbor.Test
 		public static void TestInit(TestContext context)
 		{
 			if (string.IsNullOrWhiteSpace(AccessToken))
+			{
 				Assert.Inconclusive("Please specify a valid AccessToken");
+			}
 
 			// zzzintegration + first 20 chracters of newly created guid
 			// this should result in a fairly unique applicationid
 			ApplicationID = "zzzintegration" + Guid.NewGuid()
-					.ToString("N")
-					.ToLower()
-					.Substring(0, 20);
+				.ToString("N")
+				.ToLower()
+				.Substring(0, 20);
 
 			Api = new AppHarborApi(new AuthInfo()
 			{
@@ -55,7 +56,9 @@ namespace AppHarbor.Test
 		{
 			var application = Api.GetApplication(ApplicationID);
 			if (application != null)
+			{
 				return;
+			}
 
 			Api.DeleteApplication(ApplicationID);
 			var result = Api.CreateApplication(ApplicationID, null);
@@ -101,7 +104,9 @@ namespace AppHarbor.Test
 		public void Create_Get_Edit_Delete_Collaborator()
 		{
 			if (string.IsNullOrWhiteSpace(CollaboratorEmail))
+			{
 				Assert.Inconclusive("Please specify a valid CollaboratorEmail, if you don't have one just uncomment the Ignore attribue");
+			}
 
 			EnsureApplication(ApplicationID);
 
@@ -199,7 +204,7 @@ namespace AppHarbor.Test
 			// remove all applications that start with: zzzintegration
 			var applications = Api.GetApplications();
 			foreach (var item in applications
-					.Where(i => i.Slug != null && i.Slug.StartsWith("zzzintegration")))
+				.Where(i => i.Slug != null && i.Slug.StartsWith("zzzintegration")))
 			{
 				Api.DeleteApplication(item.Slug);
 			}
