@@ -62,7 +62,7 @@ namespace AppHarbor.Test
 			var createResult = Api.CreateCollaborator(ApplicationID, "some@mail.com", Model.CollaboratorType.Collaborator);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
-			Assert.AreEqual(5, createResult.Id);
+			Assert.AreEqual("5", createResult.Id);
 			Assert.AreEqual("https://appharbor.com/applications/:application/collaborators/5", createResult.Location);
 		}
 
@@ -72,7 +72,7 @@ namespace AppHarbor.Test
 			var createResult = ExistingDataDataApi.CreateCollaborator(ApplicationID, "some@mail.com", Model.CollaboratorType.Collaborator);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
-			Assert.AreEqual(0, createResult.Id);
+			Assert.IsNull(createResult.Id);
 			Assert.AreEqual(null, createResult.Location);
 		}
 
@@ -82,7 +82,7 @@ namespace AppHarbor.Test
 			var createResult = Api.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
-			Assert.AreEqual(5, createResult.Id);
+			Assert.AreEqual("5", createResult.Id);
 			Assert.AreEqual("https://appharbor.com/applications/:application/configurationvariables/5", createResult.Location);
 		}
 
@@ -92,7 +92,7 @@ namespace AppHarbor.Test
 			var createResult = ExistingDataDataApi.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
-			Assert.AreEqual(0, createResult.Id);
+			Assert.IsNull(createResult.Id);
 			Assert.AreEqual(null, createResult.Location);
 		}
 
@@ -102,7 +102,7 @@ namespace AppHarbor.Test
 			var createResult = Api.CreateHostname(ApplicationID, "somehostname.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
-			Assert.AreEqual(5, createResult.Id);
+			Assert.AreEqual("5", createResult.Id);
 			Assert.AreEqual("https://appharbor.com/applications/:application/hostnames/5", createResult.Location);
 		}
 
@@ -112,7 +112,7 @@ namespace AppHarbor.Test
 			var createResult = ExistingDataDataApi.CreateHostname(ApplicationID, "somehostname.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
-			Assert.AreEqual(0, createResult.Id);
+			Assert.IsNull(createResult.Id);
 			Assert.AreEqual(null, createResult.Location);
 		}
 
@@ -122,7 +122,7 @@ namespace AppHarbor.Test
 			var createResult = Api.CreateServicehook(ApplicationID, "http://someurl.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, createResult.Status);
-			Assert.AreEqual(5, createResult.Id);
+			Assert.AreEqual("5", createResult.Id);
 			Assert.AreEqual("https://appharbor.com/applications/:application/servicehooks/5", createResult.Location);
 		}
 
@@ -132,7 +132,7 @@ namespace AppHarbor.Test
 			var createResult = ExistingDataDataApi.CreateServicehook(ApplicationID, "http://someurl.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(AppHarbor.Model.CreateStatus.AlreadyExists, createResult.Status);
-			Assert.AreEqual(0, createResult.Id);
+			Assert.IsNull(createResult.Id);
 			Assert.AreEqual(null, createResult.Location);
 		}
 
@@ -316,7 +316,7 @@ namespace AppHarbor.Test
 			Assert.IsTrue(items.Count == 1);
 
 			var item = items.Single();
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Role, Model.CollaboratorType.Collaborator);
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/collaborators/5");
 
@@ -338,7 +338,7 @@ namespace AppHarbor.Test
 		public void Get_Existing_Collaborator()
 		{
 			var item = Api.GetCollaborator(ApplicationID, "5");
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Role, Model.CollaboratorType.Collaborator);
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/collaborators/5");
 
@@ -363,7 +363,7 @@ namespace AppHarbor.Test
 			Assert.IsTrue(items.Count == 1);
 
 			var item = items.Single();
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Key, "foo");
 			Assert.AreEqual(item.Value, "bar");
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/configurationvariables/5");
@@ -382,7 +382,7 @@ namespace AppHarbor.Test
 		public void Get_Existing_ConfigurationVariable()
 		{
 			var item = Api.GetConfigurationVariable(ApplicationID, "5");
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Key, "foo");
 			Assert.AreEqual(item.Value, "bar");
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/configurationvariables/5");
@@ -404,7 +404,7 @@ namespace AppHarbor.Test
 			Assert.IsTrue(items.Count == 1);
 
 			var item = items.Single();
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Value, "example.org");
 			Assert.AreEqual(item.Canonical, false);
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/hostnames/5");
@@ -423,7 +423,7 @@ namespace AppHarbor.Test
 		public void Get_Existing_Hostname()
 		{
 			var item = Api.GetHostname(ApplicationID, "5");
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Value, "example.org");
 			Assert.AreEqual(item.Canonical, false);
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/hostnames/5");
@@ -445,7 +445,7 @@ namespace AppHarbor.Test
 			Assert.IsTrue(items.Count == 1);
 
 			var item = items.Single();
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Value, "http://www.example.org");
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/servicehooks/5");
 		}
@@ -463,7 +463,7 @@ namespace AppHarbor.Test
 		public void Get_Existing_Servicehook()
 		{
 			var item = Api.GetServicehook(ApplicationID, "5");
-			Assert.AreEqual(item.Id, 5);
+			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Value, "http://www.example.org");
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/servicehooks/5");
 		}
@@ -484,7 +484,7 @@ namespace AppHarbor.Test
 			Assert.IsTrue(items.Count == 1);
 
 			var item = items.Single();
-			Assert.AreEqual(5, item.Id);
+			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("Succeeded", item.Status);
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 36, 30), item.Created);
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 37, 30), item.Deployed);
@@ -510,7 +510,7 @@ namespace AppHarbor.Test
 		public void Get_Existing_Build()
 		{
 			var item = Api.GetBuild(ApplicationID, "5");
-			Assert.AreEqual(5, item.Id);
+			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("Succeeded", item.Status);
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 36, 30), item.Created);
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 37, 30), item.Deployed);
@@ -635,7 +635,7 @@ namespace AppHarbor.Test
 			Assert.IsTrue(items.Count == 1);
 
 			var item = items.Single();
-			Assert.AreEqual(5, item.Id);
+			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("foo", item.Commit_Id);
 			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 11), item.Date);
 			Assert.AreEqual("/", item.Request_Path);
@@ -653,7 +653,7 @@ namespace AppHarbor.Test
 		public void Get_Existing_Error()
 		{
 			var item = Api.GetError(ApplicationID, "5");
-			Assert.AreEqual(5, item.Id);
+			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("foo", item.Commit_Id);
 			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 42), item.Date);
 			Assert.AreEqual("/", item.Request_Path);
