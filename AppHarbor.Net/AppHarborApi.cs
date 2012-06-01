@@ -40,15 +40,8 @@ namespace AppHarbor
 		/// <param name="restClient">Rest client instance that is to be used.</param>
 		internal AppHarborApi(AuthInfo authInfo, RestClient restClient)
 		{
-			if (authInfo == null)
-			{
-				throw new ArgumentNullException("authInfo");
-			}
-
-			if (restClient == null)
-			{
-				throw new ArgumentNullException("restClient");
-			}
+			CheckArgumentNull("authInfo", authInfo);
+			CheckArgumentNull("restClient", restClient);
 
 			_client = restClient;
 			_client.Authenticator = new AppHarborHeaderAuthenticator(authInfo);
@@ -58,10 +51,7 @@ namespace AppHarbor
 
 		private static string ExtractId(string url)
 		{
-			if (url == null)
-			{
-				throw new ArgumentNullException("url");
-			}
+			CheckArgumentNull("url", url);
 
 			return url.Split('/').Last();
 		}
