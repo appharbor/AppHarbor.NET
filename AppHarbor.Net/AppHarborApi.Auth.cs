@@ -41,7 +41,7 @@ namespace AppHarbor
 			// if format is: access_token=:accesstoken&token_type=:tokentype
 			if (values.Length == 2 && values.All(i => i.Length == 2))
 			{
-				var dict = values.ToDictionary(i => i[0], i => i[1]);
+				var dict = values.ToDictionary(x => x[0], x => x[1]);
 				var accessToken = dict["access_token"];
 				var tokenType = dict["token_type"];
 
