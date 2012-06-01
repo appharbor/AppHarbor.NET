@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Text;
 using RestSharp;
 
@@ -18,11 +19,11 @@ namespace AppHarbor.Test.Mocks
 				case "/applications/:application/hostnames/5":
 				case "/applications/:application/servicehooks/5":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.NoContent, null);
+					return CreateHttpResponse(HttpStatusCode.NoContent, null);
 				}
 				default:
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+					return CreateHttpResponse(HttpStatusCode.NotFound, null);
 				}
 			}
 		}
@@ -34,75 +35,75 @@ namespace AppHarbor.Test.Mocks
 			{
 				case "/applications":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplications.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplications.json"));
 				}
 				case "/applications/:application":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplication.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplication.json"));
 				}
 				case "/applications/:application/collaborators":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborators.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborators.json"));
 				}
 				case "/applications/:application/collaborators/5":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborator.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborator.json"));
 				}
 				case "/applications/:application/configurationvariables":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariables.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariables.json"));
 				}
 				case "/applications/:application/configurationvariables/5":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariable.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariable.json"));
 				}
 				case "/applications/:application/hostnames":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostnames.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostnames.json"));
 				}
 				case "/applications/:application/hostnames/5":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostname.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostname.json"));
 				}
 				case "/applications/:application/servicehooks":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHooks.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHooks.json"));
 				}
 				case "/applications/:application/servicehooks/5":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHook.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHook.json"));
 				}
 				case "/applications/:application/builds":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuilds.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuilds.json"));
 				}
 				case "/applications/:application/builds/5":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuild.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuild.json"));
 				}
 				case "/applications/:application/builds/5/tests":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTests.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTests.json"));
 				}
 				case "/applications/:application/builds/5/tests/3.1":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTest.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTest.json"));
 				}
 				case "/applications/:application/errors":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetErrors.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetErrors.json"));
 				}
 				case "/applications/:application/errors/5":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetError.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetError.json"));
 				}
 				case "/user":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetUser.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetUser.json"));
 				}
 				default:
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+					return CreateHttpResponse(HttpStatusCode.NotFound, null);
 				}
 			}
 		}
@@ -114,27 +115,27 @@ namespace AppHarbor.Test.Mocks
 			{
 				case "/applications":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.Created, "https://appharbor.com/applications/:application");
+					return CreateHttpResponse(HttpStatusCode.Created, "https://appharbor.com/applications/:application");
 				}
 				case "/applications/:application/collaborators":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.Created, "https://appharbor.com/applications/:application/collaborators/5");
+					return CreateHttpResponse(HttpStatusCode.Created, "https://appharbor.com/applications/:application/collaborators/5");
 				}
 				case "/applications/:application/configurationvariables":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.Created, "https://appharbor.com/applications/:application/configurationvariables/5");
+					return CreateHttpResponse(HttpStatusCode.Created, "https://appharbor.com/applications/:application/configurationvariables/5");
 				}
 				case "/applications/:application/hostnames":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.Created, "https://appharbor.com/applications/:application/hostnames/5");
+					return CreateHttpResponse(HttpStatusCode.Created, "https://appharbor.com/applications/:application/hostnames/5");
 				}
 				case "/applications/:application/servicehooks":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.Created, "https://appharbor.com/applications/:application/servicehooks/5");
+					return CreateHttpResponse(HttpStatusCode.Created, "https://appharbor.com/applications/:application/servicehooks/5");
 				}
 				default:
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.BadRequest, null);
+					return CreateHttpResponse(HttpStatusCode.BadRequest, null);
 				}
 			}
 		}
@@ -148,11 +149,11 @@ namespace AppHarbor.Test.Mocks
 				case "/applications/:application/collaborators/5":
 				case "/applications/:application/configurationvariables/5":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.OK, null);
+					return CreateHttpResponse(HttpStatusCode.OK, null);
 				}
 				default:
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+					return CreateHttpResponse(HttpStatusCode.NotFound, null);
 				}
 			}
 		}
@@ -174,11 +175,11 @@ namespace AppHarbor.Test.Mocks
 				case "/applications/:application/builds/5/tests":
 				case "/applications/:application/errors":
 				{
-					return CreateGetResponse(Url, System.Net.HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\EmptyArray.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\EmptyArray.json"));
 				}
 				default:
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+					return CreateHttpResponse(HttpStatusCode.NotFound, null);
 				}
 			}
 		}
@@ -197,11 +198,11 @@ namespace AppHarbor.Test.Mocks
 				case "/applications/:application/hostnames":
 				case "/applications/:application/servicehooks":
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.Conflict, null);
+					return CreateHttpResponse(HttpStatusCode.Conflict, null);
 				}
 				default:
 				{
-					return CreateHttpResponse(System.Net.HttpStatusCode.BadRequest, null);
+					return CreateHttpResponse(HttpStatusCode.BadRequest, null);
 				}
 			}
 		}
@@ -222,7 +223,7 @@ namespace AppHarbor.Test.Mocks
 			private set;
 		}
 
-		protected HttpResponse CreateHttpResponse(System.Net.HttpStatusCode statusCode, string location)
+		protected HttpResponse CreateHttpResponse(HttpStatusCode statusCode, string location)
 		{
 			var encoding = Encoding.UTF8;
 			var response = new HttpResponse
@@ -246,7 +247,7 @@ namespace AppHarbor.Test.Mocks
 			return response;
 		}
 
-		protected HttpResponse CreateGetResponse(Uri url, System.Net.HttpStatusCode statusCode, string fileName)
+		protected HttpResponse CreateGetResponse(Uri url, HttpStatusCode statusCode, string fileName)
 		{
 			var encoding = Encoding.UTF8;
 			var content = File.ReadAllText(fileName, encoding);
@@ -265,22 +266,22 @@ namespace AppHarbor.Test.Mocks
 
 		HttpResponse IHttp.Delete()
 		{
-			return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+			return CreateHttpResponse(HttpStatusCode.NotFound, null);
 		}
 
 		HttpResponse IHttp.Get()
 		{
-			return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+			return CreateHttpResponse(HttpStatusCode.NotFound, null);
 		}
 
 		HttpResponse IHttp.Post()
 		{
-			return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+			return CreateHttpResponse(HttpStatusCode.NotFound, null);
 		}
 
 		HttpResponse IHttp.Put()
 		{
-			return CreateHttpResponse(System.Net.HttpStatusCode.NotFound, null);
+			return CreateHttpResponse(HttpStatusCode.NotFound, null);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using RestSharp;
 
 namespace AppHarbor
@@ -21,7 +22,7 @@ namespace AppHarbor
 			request.AddParameter("code", code);
 
 			var response = client.Execute(request);
-			if (response.StatusCode != System.Net.HttpStatusCode.OK)
+			if (response.StatusCode != HttpStatusCode.OK)
 			{
 				return null;
 			}
