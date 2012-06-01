@@ -39,8 +39,6 @@ namespace AppHarbor
 				regionIdentifier = "amazon-web-services::us-east-1";
 			}
 
-			CheckArgumentNull("regionIdentifier", regionIdentifier);
-
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
 			request.Resource = "applications";
