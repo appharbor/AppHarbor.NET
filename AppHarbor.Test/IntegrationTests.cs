@@ -17,7 +17,7 @@ namespace AppHarbor.Test
 		/// <summary>
 		/// This will be dynamically set to a unique name
 		/// </summary>
-		private static string ApplicationID;
+		private static string ApplicationId;
 
 		/// <summary>
 		/// Needs to be a valid Access Token
@@ -42,7 +42,7 @@ namespace AppHarbor.Test
 
 			// zzzintegration + first 20 chracters of newly created guid
 			// this should result in a fairly unique applicationid
-			ApplicationID = "zzzintegration" + Guid.NewGuid()
+			ApplicationId = "zzzintegration" + Guid.NewGuid()
 				.ToString("N")
 				.ToLower()
 				.Substring(0, 20);
@@ -55,14 +55,14 @@ namespace AppHarbor.Test
 
 		private void EnsureApplication()
 		{
-			var application = Api.GetApplication(ApplicationID);
+			var application = Api.GetApplication(ApplicationId);
 			if (application != null)
 			{
 				return;
 			}
 
-			Api.DeleteApplication(ApplicationID);
-			var result = Api.CreateApplication(ApplicationID, null);
+			Api.DeleteApplication(ApplicationId);
+			var result = Api.CreateApplication(ApplicationId, null);
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
@@ -72,7 +72,7 @@ namespace AppHarbor.Test
 		[Priority(10)]
 		public void Create_Get_Edit_Delete_Application()
 		{
-			var result = Api.CreateApplication(ApplicationID, null);
+			var result = Api.CreateApplication(ApplicationId, null);
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
@@ -93,7 +93,7 @@ namespace AppHarbor.Test
 			Assert.AreEqual(result.Id + "u", application.Name);
 			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentitfier);
 
-			var deleted = Api.DeleteApplication(ApplicationID);
+			var deleted = Api.DeleteApplication(ApplicationId);
 			Assert.IsTrue(deleted);
 
 			application = Api.GetApplication(result.Id);
@@ -111,26 +111,26 @@ namespace AppHarbor.Test
 
 			EnsureApplication();
 
-			var result = Api.CreateCollaborator(ApplicationID, CollaboratorEmail, Model.CollaboratorType.Collaborator);
+			var result = Api.CreateCollaborator(ApplicationId, CollaboratorEmail, Model.CollaboratorType.Collaborator);
 			Assert.IsNotNull(result);
 			Assert.AreNotEqual(0, result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-			var item = Api.GetCollaborator(ApplicationID, result.Id);
+			var item = Api.GetCollaborator(ApplicationId, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
 			Assert.AreEqual(CollaboratorType.Collaborator, item.Role);
 
 			item.Role = CollaboratorType.Administrator;
-			var updated = Api.EditCollaborator(ApplicationID, item);
+			var updated = Api.EditCollaborator(ApplicationId, item);
 			Assert.IsTrue(updated);
 
-			item = Api.GetCollaborator(ApplicationID, result.Id);
+			item = Api.GetCollaborator(ApplicationId, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
 			Assert.AreEqual(CollaboratorType.Administrator, item.Role);
 
-			Api.DeleteCollaborator(ApplicationID, result.Id);
+			Api.DeleteCollaborator(ApplicationId, result.Id);
 		}
 
 		[TestMethod]
@@ -138,12 +138,12 @@ namespace AppHarbor.Test
 		{
 			EnsureApplication();
 
-			var result = Api.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
+			var result = Api.CreateConfigurationVariable(ApplicationId, "somekey", "somevalue");
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-			var item = Api.GetConfigurationVariable(ApplicationID, result.Id);
+			var item = Api.GetConfigurationVariable(ApplicationId, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
 			Assert.AreEqual("somekey", item.Key);
@@ -151,16 +151,16 @@ namespace AppHarbor.Test
 
 			item.Key = "somekeyu";
 			item.Value = "somevalueu";
-			var updated = Api.EditConfigurationVariable(ApplicationID, item);
+			var updated = Api.EditConfigurationVariable(ApplicationId, item);
 			Assert.IsTrue(updated);
 
-			item = Api.GetConfigurationVariable(ApplicationID, result.Id);
+			item = Api.GetConfigurationVariable(ApplicationId, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
 			Assert.AreEqual("somekeyu", item.Key);
 			Assert.AreEqual("somevalueu", item.Value);
 
-			Api.DeleteConfigurationVariable(ApplicationID, result.Id);
+			Api.DeleteConfigurationVariable(ApplicationId, result.Id);
 		}
 
 		[TestMethod]
@@ -168,17 +168,17 @@ namespace AppHarbor.Test
 		{
 			EnsureApplication();
 
-			var result = Api.CreateHostname(ApplicationID, "some345345n4534host.com");
+			var result = Api.CreateHostname(ApplicationId, "some345345n4534host.com");
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-			var item = Api.GetHostname(ApplicationID, result.Id);
+			var item = Api.GetHostname(ApplicationId, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
 			Assert.AreEqual("some345345n4534host.com", item.Value);
 
-			Api.DeleteHostname(ApplicationID, result.Id);
+			Api.DeleteHostname(ApplicationId, result.Id);
 		}
 
 		[TestMethod]
@@ -186,17 +186,17 @@ namespace AppHarbor.Test
 		{
 			EnsureApplication();
 
-			var result = Api.CreateServicehook(ApplicationID, "http://somehost.com");
+			var result = Api.CreateServicehook(ApplicationId, "http://somehost.com");
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-			var item = Api.GetServicehook(ApplicationID, result.Id);
+			var item = Api.GetServicehook(ApplicationId, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
 			Assert.AreEqual("http://somehost.com", item.Value);
 
-			Api.DeleteServicehook(ApplicationID, result.Id);
+			Api.DeleteServicehook(ApplicationId, result.Id);
 		}
 
 		[ClassCleanup]
