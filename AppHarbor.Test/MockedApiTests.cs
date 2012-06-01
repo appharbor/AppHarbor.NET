@@ -182,7 +182,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Existing_ConfigurationVariable()
 		{
-			var edited = Api.EditConfigurationVariable(ApplicationID, new Model.ConfigurationVariable()
+			var edited = Api.EditConfigurationVariable(ApplicationID, new ConfigurationVariable
 			{
 				Id = "5",
 				Key = "somekey",
@@ -194,7 +194,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Non_Existing_ConfigurationVariable()
 		{
-			var edited = Api.EditConfigurationVariable(ApplicationID, new Model.ConfigurationVariable()
+			var edited = Api.EditConfigurationVariable(ApplicationID, new ConfigurationVariable
 			{
 				Id = "6",
 				Key = "somekey",
