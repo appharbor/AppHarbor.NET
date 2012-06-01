@@ -183,8 +183,6 @@ namespace AppHarbor
 				return false;
 			}
 
-			// System.Net.HttpStatusCode.NotFound is returned if there is nothing to delete
-
 			return (response.StatusCode == HttpStatusCode.NoContent);
 		}
 

@@ -4,7 +4,6 @@
 	{
 		public Application()
 		{
-			// default
 			RegionIdentitfier = "amazon-web-services::us-east-1";
 		}
 
