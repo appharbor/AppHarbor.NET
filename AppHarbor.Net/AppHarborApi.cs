@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using AppHarbor.Model;
 using RestSharp;
 
@@ -61,7 +62,7 @@ namespace AppHarbor
 		{
 			var response = _client.Execute<T>(request);
 
-			if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+			if (response.StatusCode == HttpStatusCode.NotFound)
 			{
 				return default(T);
 			}
@@ -128,7 +129,7 @@ namespace AppHarbor
 				throw new ArgumentException("Response cannot be null.");
 			}
 
-			if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
+			if (response.StatusCode == HttpStatusCode.Conflict)
 			{
 				return new CreateResult<T>
 				{
@@ -136,7 +137,7 @@ namespace AppHarbor
 				};
 			}
 
-			if (response.StatusCode != System.Net.HttpStatusCode.Created)
+			if (response.StatusCode != HttpStatusCode.Created)
 			{
 				return new CreateResult<T>
 				{
@@ -157,7 +158,7 @@ namespace AppHarbor
 
 			return new CreateResult<T>
 			{
-				Status = Model.CreateStatus.Created,
+				Status = CreateStatus.Created,
 				Id = id,
 				Location = location,
 			};
@@ -171,7 +172,7 @@ namespace AppHarbor
 				return false;
 			}
 
-			return (response.StatusCode == System.Net.HttpStatusCode.OK);
+			return (response.StatusCode == HttpStatusCode.OK);
 		}
 
 		private bool ExecuteDelete(RestRequest request)
@@ -184,7 +185,7 @@ namespace AppHarbor
 
 			// System.Net.HttpStatusCode.NotFound is returned if there is nothing to delete
 
-			return (response.StatusCode == System.Net.HttpStatusCode.NoContent);
+			return (response.StatusCode == HttpStatusCode.NoContent);
 		}
 
 		private static void CheckArgumentNull(string argumentName, object value)
