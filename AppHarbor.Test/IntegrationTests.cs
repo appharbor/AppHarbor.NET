@@ -17,18 +17,18 @@ namespace AppHarbor.Test
 		/// <summary>
 		/// This will be dynamically set to a unique name
 		/// </summary>
-		private static string ApplicationID = null;
+		private static string ApplicationID;
 
 		/// <summary>
 		/// Needs to be a valid Access Token
 		/// </summary>
-		private static string AccessToken = null;
+		private static string AccessToken;
 
 		/// <summary>
 		/// Needs to be an Email address that is registered at AppHarbor 
 		/// but not the email address of the current account holder
 		/// </summary>
-		private static string CollaboratorEmail = null;
+		private static string CollaboratorEmail;
 
 		private static AppHarborApi Api;
 
