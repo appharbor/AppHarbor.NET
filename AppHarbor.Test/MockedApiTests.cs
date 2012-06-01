@@ -17,7 +17,7 @@ namespace AppHarbor.Test
 		[ClassInitialize]
 		public static void InitTest(TestContext context)
 		{
-			var authInfo = new AuthInfo()
+			var authInfo = new AuthInfo
 			{
 				AccessToken = "unittest"
 			};

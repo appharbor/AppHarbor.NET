@@ -45,7 +45,7 @@ namespace AppHarbor
 				var accessToken = dict["access_token"];
 				var tokenType = dict["token_type"];
 
-				return new AuthInfo()
+				return new AuthInfo
 				{
 					AccessToken = accessToken,
 					TokenType = tokenType,

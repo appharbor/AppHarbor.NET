@@ -225,7 +225,7 @@ namespace AppHarbor.Test.Mocks
 		protected HttpResponse CreateHttpResponse(System.Net.HttpStatusCode statusCode, string location)
 		{
 			var encoding = Encoding.UTF8;
-			var response = new HttpResponse()
+			var response = new HttpResponse
 			{
 				StatusCode = statusCode,
 				ContentEncoding = "UTF8",
@@ -236,7 +236,7 @@ namespace AppHarbor.Test.Mocks
 
 			if (location != null)
 			{
-				response.Headers.Add(new HttpHeader()
+				response.Headers.Add(new HttpHeader
 				{
 					Name = "Location",
 					Value = location
@@ -250,7 +250,7 @@ namespace AppHarbor.Test.Mocks
 		{
 			var encoding = Encoding.UTF8;
 			var content = File.ReadAllText(fileName, encoding);
-			var response = new HttpResponse()
+			var response = new HttpResponse
 			{
 				ResponseUri = url,
 				ContentEncoding = "UTF8",

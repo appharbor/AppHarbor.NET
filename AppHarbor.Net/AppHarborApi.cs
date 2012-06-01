@@ -140,7 +140,7 @@ namespace AppHarbor
 
 			if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
 			{
-				return new CreateResult<T>()
+				return new CreateResult<T>
 				{
 					Status = CreateStatus.AlreadyExists
 				};
@@ -148,7 +148,7 @@ namespace AppHarbor
 
 			if (response.StatusCode != System.Net.HttpStatusCode.Created)
 			{
-				return new CreateResult<T>()
+				return new CreateResult<T>
 				{
 					Status = CreateStatus.Undefined
 				};
@@ -165,7 +165,7 @@ namespace AppHarbor
 			var location = (string)locationHeader.Value;
 			var id = extractId(location);
 
-			return new CreateResult<T>()
+			return new CreateResult<T>
 			{
 				Status = Model.CreateStatus.Created,
 				Id = id,
