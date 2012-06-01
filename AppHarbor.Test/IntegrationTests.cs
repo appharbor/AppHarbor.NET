@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AppHarbor.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AppHarbor.Test
@@ -64,7 +65,7 @@ namespace AppHarbor.Test
 			var result = Api.CreateApplication(ApplicationID, null);
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
-			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 		}
 
 		[TestMethod]
@@ -74,7 +75,7 @@ namespace AppHarbor.Test
 			var result = Api.CreateApplication(ApplicationID, null);
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
-			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
 			var application = Api.GetApplication(result.Id);
 			Assert.IsNotNull(application);
@@ -113,21 +114,21 @@ namespace AppHarbor.Test
 			var result = Api.CreateCollaborator(ApplicationID, CollaboratorEmail, Model.CollaboratorType.Collaborator);
 			Assert.IsNotNull(result);
 			Assert.AreNotEqual(0, result.Id);
-			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
 			var item = Api.GetCollaborator(ApplicationID, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
-			Assert.AreEqual(Model.CollaboratorType.Collaborator, item.Role);
+			Assert.AreEqual(CollaboratorType.Collaborator, item.Role);
 
-			item.Role = Model.CollaboratorType.Administrator;
+			item.Role = CollaboratorType.Administrator;
 			var updated = Api.EditCollaborator(ApplicationID, item);
 			Assert.IsTrue(updated);
 
 			item = Api.GetCollaborator(ApplicationID, result.Id);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(result.Id, item.Id);
-			Assert.AreEqual(Model.CollaboratorType.Administrator, item.Role);
+			Assert.AreEqual(CollaboratorType.Administrator, item.Role);
 
 			Api.DeleteCollaborator(ApplicationID, result.Id);
 		}
@@ -140,7 +141,7 @@ namespace AppHarbor.Test
 			var result = Api.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
-			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
 			var item = Api.GetConfigurationVariable(ApplicationID, result.Id);
 			Assert.IsNotNull(item);
@@ -170,7 +171,7 @@ namespace AppHarbor.Test
 			var result = Api.CreateHostname(ApplicationID, "some345345n4534host.com");
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
-			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
 			var item = Api.GetHostname(ApplicationID, result.Id);
 			Assert.IsNotNull(item);
@@ -188,7 +189,7 @@ namespace AppHarbor.Test
 			var result = Api.CreateServicehook(ApplicationID, "http://somehost.com");
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
-			Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
 			var item = Api.GetServicehook(ApplicationID, result.Id);
 			Assert.IsNotNull(item);
