@@ -210,7 +210,7 @@ namespace AppHarbor.Test.Mocks
 
 	public abstract class MockHttp : Http, IHttp
 	{
-		public const string BaseURL = "http://unit.test/";
+		public const string BaseUrl = "http://unit.test/";
 
 		protected MockHttp()
 		{

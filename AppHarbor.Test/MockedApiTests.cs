@@ -22,15 +22,15 @@ namespace AppHarbor.Test
 				AccessToken = "unittest"
 			};
 
-			var client = new RestSharp.RestClient(MockHttp.BaseURL);
+			var client = new RestSharp.RestClient(MockHttp.BaseUrl);
 			client.HttpFactory = new RestSharp.SimpleFactory<SampleDataMockHttp>();
 			Api = new AppHarborApi(authInfo, client);
 
-			var clientEmptyListData = new RestSharp.RestClient(MockHttp.BaseURL);
+			var clientEmptyListData = new RestSharp.RestClient(MockHttp.BaseUrl);
 			clientEmptyListData.HttpFactory = new RestSharp.SimpleFactory<EmptyListDataMockHttp>();
 			EmptyListDataApi = new AppHarborApi(authInfo, clientEmptyListData);
 
-			var clientExistingData = new RestSharp.RestClient(MockHttp.BaseURL);
+			var clientExistingData = new RestSharp.RestClient(MockHttp.BaseUrl);
 			clientExistingData.HttpFactory = new RestSharp.SimpleFactory<ExistingDataMockHttp>();
 			ExistingDataDataApi = new AppHarborApi(authInfo, clientExistingData);
 
