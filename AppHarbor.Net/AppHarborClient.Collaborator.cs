@@ -5,7 +5,7 @@ using RestSharp;
 
 namespace AppHarbor
 {
-	public partial class AppHarborApi
+	public partial class AppHarborClient
 	{
 		public Collaborator GetCollaborator(string applicationId, string id)
 		{

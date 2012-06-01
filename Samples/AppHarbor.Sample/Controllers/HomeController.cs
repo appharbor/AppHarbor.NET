@@ -24,7 +24,7 @@ namespace AppHarbor.Sample.Controllers
 		public ActionResult Auth(string code)
 		{
 			AuthInfo authInfo = null;
-			authInfo = AppHarborApi.GetAuthInfo(Config.ClientId, Config.ClientSecret, code);
+			authInfo = AppHarborClient.GetAuthInfo(Config.ClientId, Config.ClientSecret, code);
 
 			if (authInfo != null)
 			{

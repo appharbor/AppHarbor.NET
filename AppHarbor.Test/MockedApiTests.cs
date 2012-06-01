@@ -9,9 +9,9 @@ namespace AppHarbor.Test
 	[TestClass]
 	public class MockedApiTests
 	{
-		private static AppHarborApi Api;
-		private static AppHarborApi EmptyListDataApi;
-		private static AppHarborApi ExistingDataDataApi;
+		private static AppHarborClient Api;
+		private static AppHarborClient EmptyListDataApi;
+		private static AppHarborClient ExistingDataDataApi;
 		private static string ApplicationID;
 
 		[ClassInitialize]
@@ -24,15 +24,15 @@ namespace AppHarbor.Test
 
 			var client = new RestSharp.RestClient(MockHttp.BaseUrl);
 			client.HttpFactory = new RestSharp.SimpleFactory<SampleDataMockHttp>();
-			Api = new AppHarborApi(authInfo, client);
+			Api = new AppHarborClient(authInfo, client);
 
 			var clientEmptyListData = new RestSharp.RestClient(MockHttp.BaseUrl);
 			clientEmptyListData.HttpFactory = new RestSharp.SimpleFactory<EmptyListDataMockHttp>();
-			EmptyListDataApi = new AppHarborApi(authInfo, clientEmptyListData);
+			EmptyListDataApi = new AppHarborClient(authInfo, clientEmptyListData);
 
 			var clientExistingData = new RestSharp.RestClient(MockHttp.BaseUrl);
 			clientExistingData.HttpFactory = new RestSharp.SimpleFactory<ExistingDataMockHttp>();
-			ExistingDataDataApi = new AppHarborApi(authInfo, clientExistingData);
+			ExistingDataDataApi = new AppHarborClient(authInfo, clientExistingData);
 
 			ApplicationID = ":application";
 		}

@@ -30,7 +30,7 @@ namespace AppHarbor.Test
 		/// </summary>
 		private static string CollaboratorEmail;
 
-		private static AppHarborApi Api;
+		private static AppHarborClient Api;
 
 		[ClassInitialize]
 		public static void TestInit(TestContext context)
@@ -47,7 +47,7 @@ namespace AppHarbor.Test
 				.ToLower()
 				.Substring(0, 20);
 
-			Api = new AppHarborApi(new AuthInfo
+			Api = new AppHarborClient(new AuthInfo
 			{
 				AccessToken = AccessToken,
 			});

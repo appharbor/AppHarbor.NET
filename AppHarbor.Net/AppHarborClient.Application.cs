@@ -4,7 +4,7 @@ using RestSharp;
 
 namespace AppHarbor
 {
-	public partial class AppHarborApi
+	public partial class AppHarborClient
 	{
 		public IEnumerable<Application> GetApplications()
 		{

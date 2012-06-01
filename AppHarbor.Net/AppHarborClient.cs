@@ -23,14 +23,14 @@ using RestSharp;
 
 namespace AppHarbor
 {
-	public partial class AppHarborApi
+	public partial class AppHarborClient
 	{
 		private const string BaseUrl = "https://appharbor.com/";
 
 		private readonly RestClient _client;
 		private readonly Uri _baseUri;
 
-		public AppHarborApi(AuthInfo authInfo)
+		public AppHarborClient(AuthInfo authInfo)
 			: this(authInfo, new RestClient(BaseUrl))
 		{
 		}
@@ -39,7 +39,7 @@ namespace AppHarbor
 		/// Internal to hide RestClient dependency
 		/// </summary>
 		/// <param name="restClient">Rest client instance that is to be used.</param>
-		internal AppHarborApi(AuthInfo authInfo, RestClient restClient)
+		internal AppHarborClient(AuthInfo authInfo, RestClient restClient)
 		{
 			CheckArgumentNull("authInfo", authInfo);
 			CheckArgumentNull("restClient", restClient);

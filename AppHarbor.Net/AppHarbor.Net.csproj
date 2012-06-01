@@ -45,36 +45,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHarborHeaderAuthenticator.cs" />
-    <Compile Include="AppHarborApi.cs" />
-    <Compile Include="AppHarborApi.Application.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.cs" />
+    <Compile Include="AppHarborClient.Application.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.Collaborator.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.Collaborator.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.ConfigurationVariable.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.ConfigurationVariable.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.Build.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.Build.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.Error.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.Error.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.Hostname.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.Hostname.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.Auth.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.Auth.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.ServiceHooks.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.ServiceHooks.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.Test.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.Test.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppHarborApi.User.cs">
-      <DependentUpon>AppHarborApi.cs</DependentUpon>
+    <Compile Include="AppHarborClient.User.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
     </Compile>
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Model\Application.cs" />
