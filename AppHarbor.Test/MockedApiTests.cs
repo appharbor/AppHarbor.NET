@@ -162,7 +162,7 @@ namespace AppHarbor.Test
 		{
 			var edited = Api.EditCollaborator(ApplicationID, new Collaborator
 			{
-				Id = 5.ToString(),
+				Id = "5",
 				Role = CollaboratorType.Collaborator,
 			});
 			Assert.IsTrue(edited);
@@ -173,7 +173,7 @@ namespace AppHarbor.Test
 		{
 			var edited = Api.EditCollaborator(ApplicationID, new Collaborator
 			{
-				Id = 6.ToString(),
+				Id = "6",
 				Role = CollaboratorType.Collaborator,
 			});
 			Assert.IsFalse(edited);
@@ -184,7 +184,7 @@ namespace AppHarbor.Test
 		{
 			var edited = Api.EditConfigurationVariable(ApplicationID, new Model.ConfigurationVariable()
 			{
-				Id = 5.ToString(),
+				Id = "5",
 				Key = "somekey",
 				Value = "somevalue",
 			});
@@ -196,7 +196,7 @@ namespace AppHarbor.Test
 		{
 			var edited = Api.EditConfigurationVariable(ApplicationID, new Model.ConfigurationVariable()
 			{
-				Id = 6.ToString(),
+				Id = "6",
 				Key = "somekey",
 				Value = "somevalue",
 			});
