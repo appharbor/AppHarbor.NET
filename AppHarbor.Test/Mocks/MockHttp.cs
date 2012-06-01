@@ -211,8 +211,7 @@ namespace AppHarbor.Test.Mocks
 	{
 		public const string BaseURL = "http://unit.test/";
 
-		public MockHttp()
-			: base()
+		protected MockHttp()
 		{
 			BaseLocation = Util.GetCurrentBasePath();
 		}
