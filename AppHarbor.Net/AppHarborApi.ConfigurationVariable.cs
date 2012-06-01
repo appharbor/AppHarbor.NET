@@ -18,7 +18,7 @@ namespace AppHarbor
 			return ExecuteGetKeyed<ConfigurationVariable>(request);
 		}
 
-		public IList<ConfigurationVariable> GetConfigurationVariables(string applicationId)
+		public IEnumerable<ConfigurationVariable> GetConfigurationVariables(string applicationId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 

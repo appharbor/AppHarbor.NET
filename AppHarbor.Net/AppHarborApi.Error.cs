@@ -18,7 +18,7 @@ namespace AppHarbor
 			return ExecuteGetKeyed<Error>(request);
 		}
 
-		public IList<Error> GetErrors(string applicationId)
+		public IEnumerable<Error> GetErrors(string applicationId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 

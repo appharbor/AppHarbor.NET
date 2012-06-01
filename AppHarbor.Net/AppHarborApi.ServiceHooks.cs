@@ -18,7 +18,7 @@ namespace AppHarbor
 			return ExecuteGetKeyed<ServiceHook>(request);
 		}
 
-		public IList<ServiceHook> GetServicehooks(string applicationId)
+		public IEnumerable<ServiceHook> GetServicehooks(string applicationId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 

@@ -18,7 +18,7 @@ namespace AppHarbor
 			return ExecuteGetKeyed<Hostname>(request);
 		}
 
-		public IList<Hostname> GetHostnames(string applicationId)
+		public IEnumerable<Hostname> GetHostnames(string applicationId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 

@@ -20,7 +20,7 @@ namespace AppHarbor
 			return ExecuteGet<Test>(request);
 		}
 
-		public IList<Test> GetTests(string applicationId, string buildId)
+		public IEnumerable<Test> GetTests(string applicationId, string buildId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 

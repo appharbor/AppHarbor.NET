@@ -6,7 +6,7 @@ namespace AppHarbor
 {
 	public partial class AppHarborApi
 	{
-		public IList<Application> GetApplications()
+		public IEnumerable<Application> GetApplications()
 		{
 			var request = new RestRequest();
 			request.Resource = "applications";

@@ -278,7 +278,7 @@ namespace AppHarbor.Test
 		{
 			var items = Api.GetApplications();
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application");
@@ -289,7 +289,7 @@ namespace AppHarbor.Test
 		{
 			var items = EmptyListDataApi.GetApplications();
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -314,7 +314,7 @@ namespace AppHarbor.Test
 			var items = Api.GetCollaborators(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual(item.Id, "5");
@@ -332,7 +332,7 @@ namespace AppHarbor.Test
 			var items = EmptyListDataApi.GetCollaborators(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -361,7 +361,7 @@ namespace AppHarbor.Test
 			var items = Api.GetConfigurationVariables(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual(item.Id, "5");
@@ -376,7 +376,7 @@ namespace AppHarbor.Test
 			var items = EmptyListDataApi.GetConfigurationVariables(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -402,7 +402,7 @@ namespace AppHarbor.Test
 			var items = Api.GetHostnames(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual(item.Id, "5");
@@ -417,7 +417,7 @@ namespace AppHarbor.Test
 			var items = EmptyListDataApi.GetHostnames(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -443,7 +443,7 @@ namespace AppHarbor.Test
 			var items = Api.GetServicehooks(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual(item.Id, "5");
@@ -457,7 +457,7 @@ namespace AppHarbor.Test
 			var items = EmptyListDataApi.GetServicehooks(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -482,7 +482,7 @@ namespace AppHarbor.Test
 			var items = Api.GetBuilds(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual("5", item.Id);
@@ -504,7 +504,7 @@ namespace AppHarbor.Test
 			var items = EmptyListDataApi.GetBuilds(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -537,7 +537,7 @@ namespace AppHarbor.Test
 			var items = Api.GetTests(ApplicationID, "5");
 
 			Assert.IsNotNull(items);
-			Assert.AreEqual(2, items.Count);
+			Assert.AreEqual(2, items.Count());
 
 			var first = items.First();
 			Assert.AreEqual("1", first.Id);
@@ -596,7 +596,7 @@ namespace AppHarbor.Test
 			var items = EmptyListDataApi.GetTests(ApplicationID, "5");
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 0);
+			Assert.IsTrue(!items.Any());
 		}
 
 		[TestMethod]
@@ -633,7 +633,7 @@ namespace AppHarbor.Test
 			var items = Api.GetErrors(ApplicationID);
 
 			Assert.IsNotNull(items);
-			Assert.IsTrue(items.Count == 1);
+			Assert.IsTrue(items.Count() == 1);
 
 			var item = items.Single();
 			Assert.AreEqual("5", item.Id);

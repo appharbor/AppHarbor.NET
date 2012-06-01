@@ -18,7 +18,7 @@ namespace AppHarbor
 			return ExecuteGetKeyed<Build>(request);
 		}
 
-		public IList<Build> GetBuilds(string applicationId)
+		public IEnumerable<Build> GetBuilds(string applicationId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 

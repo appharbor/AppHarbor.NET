@@ -19,7 +19,7 @@ namespace AppHarbor
 			return ExecuteGetKeyed<Collaborator>(request);
 		}
 
-		public IList<Collaborator> GetCollaborators(string applicationId)
+		public IEnumerable<Collaborator> GetCollaborators(string applicationId)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 
