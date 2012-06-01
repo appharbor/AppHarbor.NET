@@ -53,7 +53,7 @@ namespace AppHarbor.Test
 			});
 		}
 
-		private void EnsureApplication(string name)
+		private void EnsureApplication()
 		{
 			var application = Api.GetApplication(ApplicationID);
 			if (application != null)
@@ -109,7 +109,7 @@ namespace AppHarbor.Test
 				Assert.Inconclusive("Please specify a valid CollaboratorEmail, if you don't have one just uncomment the Ignore attribue");
 			}
 
-			EnsureApplication(ApplicationID);
+			EnsureApplication();
 
 			var result = Api.CreateCollaborator(ApplicationID, CollaboratorEmail, Model.CollaboratorType.Collaborator);
 			Assert.IsNotNull(result);
@@ -136,7 +136,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Get_Edit_Delete_ConfigurationVariable()
 		{
-			EnsureApplication(ApplicationID);
+			EnsureApplication();
 
 			var result = Api.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
 			Assert.IsNotNull(result);
@@ -166,7 +166,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Get_Delete_Hostname()
 		{
-			EnsureApplication(ApplicationID);
+			EnsureApplication();
 
 			var result = Api.CreateHostname(ApplicationID, "some345345n4534host.com");
 			Assert.IsNotNull(result);
@@ -184,7 +184,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Get_Delete_Servicehook()
 		{
-			EnsureApplication(ApplicationID);
+			EnsureApplication();
 
 			var result = Api.CreateServicehook(ApplicationID, "http://somehost.com");
 			Assert.IsNotNull(result);
