@@ -28,16 +28,12 @@ namespace AppHarbor
 		/// Creates a new AppHarbor application
 		/// </summary>
 		/// <param name="name">Name of the application.</param>
-		/// <param name="regionIdentifier">Region the application will be created in. If null, it will default to "amazon-web-services::us-east-1".</param>
+		/// <param name="regionIdentifier">Region the application will be created in. The default is "amazon-web-services::us-east-1". May not be null.</param>
 		/// <returns>Returns a create result. The Status of the CreateResult indicates whether the creation was successfull or not.</returns>
-		public CreateResult<string> CreateApplication(string name, string regionIdentifier)
+		public CreateResult<string> CreateApplication(string name, string regionIdentifier = "amazon-web-services::us-east-1")
 		{
 			CheckArgumentNull("name", name);
-
-			if (regionIdentifier == null)
-			{
-				regionIdentifier = "amazon-web-services::us-east-1";
-			}
+			CheckArgumentNull("regionIdentifier", regionIdentifier);
 
 			var request = new RestRequest(Method.POST);
 			request.RequestFormat = DataFormat.Json;
