@@ -29,7 +29,7 @@ namespace AppHarbor
 
 			// parse the returned value
 			var values = response.Content.Split('&')
-				.Select(i => i.Split('='))
+				.Select(i => i.Split(new[] { '=' }, count: 2))
 				.ToArray();
 
 			// if format is: error=unauthorized_client
