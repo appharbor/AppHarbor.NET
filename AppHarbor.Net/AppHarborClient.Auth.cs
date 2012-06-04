@@ -29,7 +29,7 @@ namespace AppHarbor
 
 			// parse the returned value
 			var values = response.Content.Split('&')
-				.Select(i => i.Split(new[] { '=' }, count: 2))
+				.Select(x => x.Split(new[] { '=' }, count: 2))
 				.ToArray();
 
 			// if format is: error=unauthorized_client
@@ -40,7 +40,7 @@ namespace AppHarbor
 			}
 
 			// if format is: access_token=:accesstoken&token_type=:tokentype
-			if (values.Length == 2 && values.All(i => i.Length == 2))
+			if (values.Length == 2 && values.All(x => x.Length == 2))
 			{
 				var dict = values.ToDictionary(x => x[0], x => x[1]);
 				var accessToken = dict["access_token"];
