@@ -2,11 +2,6 @@
 {
 	public class Application : IUrl
 	{
-		public Application()
-		{
-			RegionIdentifier = "amazon-web-services::us-east-1";
-		}
-
 		public string Name
 		{
 			get;

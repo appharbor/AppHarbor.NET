@@ -40,7 +40,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Non_Existing_Application()
 		{
-			var createResult = Api.CreateApplication(ApplicationID, null);
+			var createResult = Api.CreateApplication(ApplicationID);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual(ApplicationID, createResult.Id);
@@ -50,7 +50,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Try_Create_Existing_Application()
 		{
-			var createResult = ExistingDataDataApi.CreateApplication(ApplicationID, null);
+			var createResult = ExistingDataDataApi.CreateApplication(ApplicationID);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.AlreadyExists, createResult.Status);
 			Assert.AreEqual(null, createResult.Id);
