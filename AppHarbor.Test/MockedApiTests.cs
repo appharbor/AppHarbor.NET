@@ -26,10 +26,7 @@ namespace AppHarbor.Test
 		[ClassInitialize]
 		public static void InitTest(TestContext context)
 		{
-			var authInfo = new AuthInfo
-			{
-				AccessToken = "unittest"
-			};
+			var authInfo = new AuthInfo("unittest");
 
 			var client = new RestSharp.RestClient(MockHttp.BaseUrl);
 			client.HttpFactory = new RestSharp.SimpleFactory<SampleDataMockHttp>();

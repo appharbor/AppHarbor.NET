@@ -2,10 +2,16 @@
 {
 	public class AuthInfo
 	{
+		public AuthInfo(string accessToken, string tokenType = null)
+		{
+			AccessToken = accessToken;
+			TokenType = tokenType;
+		}
+
 		public string AccessToken
 		{
 			get;
-			set;
+			private set;
 		}
 
 		/// <summary>
@@ -14,7 +20,7 @@
 		public string TokenType
 		{
 			get;
-			set;
+			private set;
 		}
 	}
 }

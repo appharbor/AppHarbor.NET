@@ -44,11 +44,7 @@ namespace AppHarbor
 			{
 				var authInfoElements = values.ToDictionary(x => x[0], x => x[1]);
 
-				return new AuthInfo
-				{
-					AccessToken = authInfoElements["access_token"],
-					TokenType = authInfoElements["token_type"],
-				};
+				return new AuthInfo(authInfoElements["access_token"], authInfoElements["token_type"]);
 			}
 
 			return null;

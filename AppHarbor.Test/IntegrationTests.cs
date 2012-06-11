@@ -47,10 +47,7 @@ namespace AppHarbor.Test
 				.ToLower()
 				.Substring(0, 20);
 
-			Api = new AppHarborClient(new AuthInfo
-			{
-				AccessToken = AccessToken,
-			});
+			Api = new AppHarborClient(new AuthInfo(AccessToken));
 		}
 
 		private void EnsureApplication()
