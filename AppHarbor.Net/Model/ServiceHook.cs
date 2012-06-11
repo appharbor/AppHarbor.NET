@@ -1,4 +1,6 @@
-﻿namespace AppHarbor.Model
+﻿using System;
+
+namespace AppHarbor.Model
 {
 	public class ServiceHook : IUrl, IKeyed
 	{
@@ -14,7 +16,7 @@
 			set;
 		}
 
-		public string Url
+		public Uri Url
 		{
 			get;
 			set;

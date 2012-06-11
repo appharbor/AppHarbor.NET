@@ -1,8 +1,10 @@
-﻿namespace AppHarbor.Model
+﻿using System;
+
+namespace AppHarbor.Model
 {
 	public interface IUrl
 	{
-		string Url
+		Uri Url
 		{
 			get;
 			set;

@@ -46,7 +46,7 @@ namespace AppHarbor.Model
 			set;
 		}
 
-		public string Url
+		public Uri Url
 		{
 			get;
 			set;

@@ -491,7 +491,7 @@ namespace AppHarbor.Test
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 37, 30), item.Deployed);
 			Assert.AreEqual("https://appharbor.com/applications/:application/builds/:build/download", item.DownloadUrl);
 			Assert.AreEqual("https://appharbor.com/applications/:application/builds/:build/tests", item.TestsUrl);
-			Assert.AreEqual("https://appharbor.com/applications/:application/builds/5", item.Url);
+			Assert.AreEqual("https://appharbor.com/applications/:application/builds/5", item.Url.AbsoluteUri);
 
 			Assert.IsNotNull(item.Commit);
 			Assert.AreEqual("9f0fcea24cbb441c3ed848af3ccc5061d69cc7db", item.Commit.Id);
@@ -517,7 +517,7 @@ namespace AppHarbor.Test
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 37, 30), item.Deployed);
 			Assert.AreEqual("https://appharbor.com/applications/:application/builds/:build/download", item.DownloadUrl);
 			Assert.AreEqual("https://appharbor.com/applications/:application/builds/:build/tests", item.TestsUrl);
-			Assert.AreEqual("https://appharbor.com/applications/:application/builds/5", item.Url);
+			Assert.AreEqual("https://appharbor.com/applications/:application/builds/5", item.Url.AbsoluteUri);
 
 			Assert.IsNotNull(item.Commit);
 			Assert.AreEqual("9f0fcea24cbb441c3ed848af3ccc5061d69cc7db", item.Commit.Id);
@@ -641,7 +641,7 @@ namespace AppHarbor.Test
 			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 11), item.Date);
 			Assert.AreEqual("/", item.Request_Path);
 			Assert.AreEqual("An unhandled exception has occurred.", item.Message);
-			Assert.AreEqual("https://appharbor.com/applications/:application/errors/5", item.Url);
+			Assert.AreEqual("https://appharbor.com/applications/:application/errors/5", item.Url.AbsoluteUri);
 
 			Assert.IsNotNull(item.Exception);
 			Assert.AreEqual("at FooController.Show(Bar bar)", item.Exception.Stack_Trace);
@@ -659,7 +659,7 @@ namespace AppHarbor.Test
 			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 42), item.Date);
 			Assert.AreEqual("/", item.Request_Path);
 			Assert.AreEqual("An unhandled exception has occurred.", item.Message);
-			Assert.AreEqual("https://appharbor.com/applications/:application/errors/5", item.Url);
+			Assert.AreEqual("https://appharbor.com/applications/:application/errors/5", item.Url.AbsoluteUri);
 
 			Assert.IsNotNull(item.Exception);
 			Assert.AreEqual("at FooController.Show(Bar bar)", item.Exception.Stack_Trace);

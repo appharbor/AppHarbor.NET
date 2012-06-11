@@ -50,11 +50,11 @@ namespace AppHarbor
 			_baseUri = new Uri(BaseUrl);
 		}
 
-		private static string ExtractId(string url)
+		private static string ExtractId(Uri url)
 		{
 			CheckArgumentNull("url", url);
 
-			return url.Split('/').Last();
+			return url.LocalPath.Split('/').Last();
 		}
 
 		private T ExecuteGet<T>(RestRequest request)
@@ -81,11 +81,11 @@ namespace AppHarbor
 				return null;
 			}
 
-			data.Id = ExtractId(response.ResponseUri.LocalPath);
+			data.Id = ExtractId(response.ResponseUri);
 
 			if (data is IUrl)
 			{
-				((IUrl)data).Url = new Uri(_baseUri, response.ResponseUri.LocalPath).OriginalString;
+				((IUrl)data).Url = new Uri(_baseUri, response.ResponseUri.LocalPath);
 			}
 
 			return data;
@@ -148,14 +148,14 @@ namespace AppHarbor
 				throw new ArgumentException("Location header was not set.");
 			}
 
-			var location = (string)locationHeader.Value;
+			var location = new Uri((string)locationHeader.Value);
 			var id = ExtractId(location);
 
 			return new CreateResult
 			{
 				Status = CreateStatus.Created,
 				Id = id,
-				Location = new Uri(location),
+				Location = location,
 			};
 		}
 
