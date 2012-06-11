@@ -3,6 +3,7 @@ using System.Linq;
 using AppHarbor.Model;
 using AppHarbor.Test.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RestSharp;
 
 namespace AppHarbor.Test
 {
@@ -14,6 +15,14 @@ namespace AppHarbor.Test
 		private static AppHarborClient ExistingDataDataApi;
 		private static string ApplicationID;
 
+		private class MockedAppHarborClient : AppHarborClient
+		{
+			public MockedAppHarborClient(AuthInfo authInfo, RestClient restClient)
+				: base(authInfo, restClient)
+			{
+			}
+		}
+
 		[ClassInitialize]
 		public static void InitTest(TestContext context)
 		{
@@ -24,15 +33,15 @@ namespace AppHarbor.Test
 
 			var client = new RestSharp.RestClient(MockHttp.BaseUrl);
 			client.HttpFactory = new RestSharp.SimpleFactory<SampleDataMockHttp>();
-			Api = new AppHarborClient(authInfo, client);
+			Api = new MockedAppHarborClient(authInfo, client);
 
 			var clientEmptyListData = new RestSharp.RestClient(MockHttp.BaseUrl);
 			clientEmptyListData.HttpFactory = new RestSharp.SimpleFactory<EmptyListDataMockHttp>();
-			EmptyListDataApi = new AppHarborClient(authInfo, clientEmptyListData);
+			EmptyListDataApi = new MockedAppHarborClient(authInfo, clientEmptyListData);
 
 			var clientExistingData = new RestSharp.RestClient(MockHttp.BaseUrl);
 			clientExistingData.HttpFactory = new RestSharp.SimpleFactory<ExistingDataMockHttp>();
-			ExistingDataDataApi = new AppHarborClient(authInfo, clientExistingData);
+			ExistingDataDataApi = new MockedAppHarborClient(authInfo, clientExistingData);
 
 			ApplicationID = ":application";
 		}

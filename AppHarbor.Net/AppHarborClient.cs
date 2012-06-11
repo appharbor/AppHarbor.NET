@@ -35,11 +35,7 @@ namespace AppHarbor
 		{
 		}
 
-		/// <summary>
-		/// Internal to hide RestClient dependency
-		/// </summary>
-		/// <param name="restClient">Rest client instance that is to be used.</param>
-		internal AppHarborClient(AuthInfo authInfo, RestClient restClient)
+		protected AppHarborClient(AuthInfo authInfo, RestClient restClient)
 		{
 			CheckArgumentNull("authInfo", authInfo);
 			CheckArgumentNull("restClient", restClient);
