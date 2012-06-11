@@ -4,7 +4,7 @@
 	{
 		public Application()
 		{
-			RegionIdentitfier = "amazon-web-services::us-east-1";
+			RegionIdentifier = "amazon-web-services::us-east-1";
 		}
 
 		public string Name
@@ -19,7 +19,7 @@
 			set;
 		}
 
-		public string RegionIdentitfier
+		public string RegionIdentifier
 		{
 			get;
 			set;

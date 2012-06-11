@@ -81,7 +81,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(application);
 			Assert.AreEqual(result.Id, application.Slug);
 			Assert.AreEqual(result.Id, application.Name);
-			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentitfier);
+			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentifier);
 
 			application.Name = result.Id + "u";
 			var updated = Api.EditApplication(result.Id, application);
@@ -91,7 +91,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(application);
 			Assert.AreEqual(result.Id, application.Slug);
 			Assert.AreEqual(result.Id + "u", application.Name);
-			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentitfier);
+			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentifier);
 
 			var deleted = Api.DeleteApplication(ApplicationId);
 			Assert.IsTrue(deleted);
