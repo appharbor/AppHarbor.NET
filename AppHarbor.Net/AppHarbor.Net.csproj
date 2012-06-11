@@ -88,6 +88,7 @@
     <Compile Include="Model\CreateResult.cs" />
     <Compile Include="Model\CreateStatus.cs" />
     <Compile Include="Model\Error.cs" />
+    <Compile Include="Model\Exception.cs" />
     <Compile Include="Model\Hostname.cs" />
     <Compile Include="Model\IKeyed.cs" />
     <Compile Include="Model\IUrl.cs" />

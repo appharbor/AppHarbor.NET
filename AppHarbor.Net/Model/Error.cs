@@ -34,7 +34,7 @@ namespace AppHarbor.Model
 			set;
 		}
 
-		public ExceptionClass Exception
+		public Exception Exception
 		{
 			get;
 			set;
@@ -44,33 +44,6 @@ namespace AppHarbor.Model
 		{
 			get;
 			set;
-		}
-
-		public class ExceptionClass
-		{
-			public string Stack_Trace
-			{
-				get;
-				set;
-			}
-
-			public string Message
-			{
-				get;
-				set;
-			}
-
-			public string Type
-			{
-				get;
-				set;
-			}
-
-			public ExceptionClass Inner_Exception
-			{
-				get;
-				set;
-			}
 		}
 	}
 }
