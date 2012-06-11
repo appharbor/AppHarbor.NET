@@ -1,209 +1,211 @@
 ﻿using System;
 using System.Linq;
+using AppHarbor.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AppHarbor.Test
 {
+	/// <summary>
+	/// To run these tests you need to specify:
+	/// - A valid AppHarbor Access Token 
+	/// - A valid collaborator email
+	/// Afterwards remove the Ignore attribute from the class.
+	/// </summary>
+	[TestClass]
+	public class IntegrationTests
+	{
+		/// <summary>
+		/// This will be dynamically set to a unique name
+		/// </summary>
+		private static string ApplicationId;
 
-    /// <summary>
-    /// To run these tests you need to specify:
-    /// - A valid AppHarbor Access Token 
-    /// - A valid collaborator email
-    /// Afterwards remove the Ignore attribute from the class.
-    /// <summary>
-    //[Ignore]
-    [TestClass]
-    public class IntegrationTests
-    {
-        /// <summary>
-        /// This will be dynamically set to a unique name
-        /// </summary>
-        private static string ApplicationID = null;
+		/// <summary>
+		/// Needs to be a valid Access Token
+		/// </summary>
+		private static string AccessToken;
 
-        /// <summary>
-        /// Needs to be a valid Access Token
-        /// </summary>
-        private static string AccessToken = null;
+		/// <summary>
+		/// Needs to be an Email address that is registered at AppHarbor 
+		/// but not the email address of the current account holder
+		/// </summary>
+		private static string CollaboratorEmail;
 
-        /// <summary>
-        /// Needs to be an Email address that is registered at AppHarbor 
-        /// but not the email address of the current account holder
-        /// </summary>
-        private static string CollaboratorEmail = null;
+		private static AppHarborClient Api;
 
-        private static AppHarborApi Api;
+		[ClassInitialize]
+		public static void TestInit(TestContext context)
+		{
+			if (string.IsNullOrWhiteSpace(AccessToken))
+			{
+				Assert.Inconclusive("Please specify a valid AccessToken");
+			}
 
-        [ClassInitialize]
-        public static void TestInit(TestContext context)
-        {
-            if (string.IsNullOrWhiteSpace(AccessToken))
-                Assert.Inconclusive("Please specify a valid AccessToken");
+			// zzzintegration + first 20 chracters of newly created guid
+			// this should result in a fairly unique applicationid
+			ApplicationId = "zzzintegration" + Guid.NewGuid()
+				.ToString("N")
+				.ToLower()
+				.Substring(0, 20);
 
-            // zzzintegration + first 20 chracters of newly created guid
-            // this should result in a fairly unique applicationid
-            ApplicationID = "zzzintegration" + Guid.NewGuid()
-                .ToString("N")
-                .ToLower()
-                .Substring(0, 20);
-            
-            Api = new AppHarborApi(new AuthInfo()
-            {
-                AccessToken = AccessToken,
-            });
-        }
+			Api = new AppHarborClient(new AuthInfo(AccessToken));
+		}
 
-        private void EnsureApplication(string name)
-        {
-            var application = Api.GetApplication(ApplicationID);
-            if (application != null)
-                return;
+		private void EnsureApplication()
+		{
+			var application = Api.GetApplication(ApplicationId);
+			if (application != null)
+			{
+				return;
+			}
 
-            Api.DeleteApplication(ApplicationID);
-            var result = Api.CreateApplication(ApplicationID, null);
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.ID);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
-        }
-        
-        [TestMethod]
-        [Priority(10)]
-        public void Create_Get_Edit_Delete_Application()
-        {
-            var result = Api.CreateApplication(ApplicationID, null);
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.ID);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			Api.DeleteApplication(ApplicationId);
+			var result = Api.CreateApplication(ApplicationId, null);
+			Assert.IsNotNull(result);
+			Assert.IsNotNull(result.Id);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
+		}
 
-            var application = Api.GetApplication(result.ID);
-            Assert.IsNotNull(application);
-            Assert.AreEqual(result.ID, application.Slug);
-            Assert.AreEqual(result.ID, application.Name);
-            Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentitfier);
+		[TestMethod]
+		[Priority(10)]
+		public void Create_Get_Edit_Delete_Application()
+		{
+			var result = Api.CreateApplication(ApplicationId, null);
+			Assert.IsNotNull(result);
+			Assert.IsNotNull(result.Id);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-            application.Name = result.ID + "u";
-            var updated = Api.EditApplication(result.ID, application);
-            Assert.IsTrue(updated);
+			var application = Api.GetApplication(result.Id);
+			Assert.IsNotNull(application);
+			Assert.AreEqual(result.Id, application.Slug);
+			Assert.AreEqual(result.Id, application.Name);
+			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentifier);
 
-            application = Api.GetApplication(result.ID);
-            Assert.IsNotNull(application);
-            Assert.AreEqual(result.ID, application.Slug);
-            Assert.AreEqual(result.ID + "u", application.Name);
-            Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentitfier);
+			application.Name = result.Id + "u";
+			var updated = Api.EditApplication(result.Id, application);
+			Assert.IsTrue(updated);
 
-            var deleted = Api.DeleteApplication(ApplicationID);
-            Assert.IsTrue(deleted);
+			application = Api.GetApplication(result.Id);
+			Assert.IsNotNull(application);
+			Assert.AreEqual(result.Id, application.Slug);
+			Assert.AreEqual(result.Id + "u", application.Name);
+			Assert.AreEqual("amazon-web-services::us-east-1", application.RegionIdentifier);
 
-            application = Api.GetApplication(result.ID);
-            Assert.IsNull(application);
-        }
+			var deleted = Api.DeleteApplication(ApplicationId);
+			Assert.IsTrue(deleted);
 
-        //[Ignore]
-        [TestMethod]
-        public void Create_Get_Edit_Delete_Collaborator()
-        {
-            if (string.IsNullOrWhiteSpace(CollaboratorEmail))
-                Assert.Inconclusive("Please specify a valid CollaboratorEmail, if you don't have one just uncomment the Ignore attribue");
+			application = Api.GetApplication(result.Id);
+			Assert.IsNull(application);
+		}
 
-            EnsureApplication(ApplicationID);
+		//[Ignore]
+		[TestMethod]
+		public void Create_Get_Edit_Delete_Collaborator()
+		{
+			if (string.IsNullOrWhiteSpace(CollaboratorEmail))
+			{
+				Assert.Inconclusive("Please specify a valid CollaboratorEmail, if you don't have one just uncomment the Ignore attribue");
+			}
 
-            var result = Api.CreateCollaborator(ApplicationID, CollaboratorEmail, Model.CollaboratorType.Collaborator);
-            Assert.IsNotNull(result);
-            Assert.AreNotEqual(0, result.ID);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+			EnsureApplication();
 
-            var item = Api.GetCollaborator(ApplicationID, result.ID);
-            Assert.IsNotNull(item);
-            Assert.AreEqual(result.ID, item.ID);
-            Assert.AreEqual(Model.CollaboratorType.Collaborator, item.Role);
+			var result = Api.CreateCollaborator(ApplicationId, CollaboratorEmail, Model.CollaboratorType.Collaborator);
+			Assert.IsNotNull(result);
+			Assert.AreNotEqual(0, result.Id);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-            item.Role = Model.CollaboratorType.Administrator;
-            var updated = Api.EditCollaborator(ApplicationID, item);
-            Assert.IsTrue(updated);
+			var item = Api.GetCollaborator(ApplicationId, result.Id);
+			Assert.IsNotNull(item);
+			Assert.AreEqual(result.Id, item.Id);
+			Assert.AreEqual(CollaboratorType.Collaborator, item.Role);
 
-            item = Api.GetCollaborator(ApplicationID, result.ID);
-            Assert.IsNotNull(item);
-            Assert.AreEqual(result.ID, item.ID);
-            Assert.AreEqual(Model.CollaboratorType.Administrator, item.Role);
+			item.Role = CollaboratorType.Administrator;
+			var updated = Api.EditCollaborator(ApplicationId, item);
+			Assert.IsTrue(updated);
 
-            Api.DeleteCollaborator(ApplicationID, result.ID);
-        }
+			item = Api.GetCollaborator(ApplicationId, result.Id);
+			Assert.IsNotNull(item);
+			Assert.AreEqual(result.Id, item.Id);
+			Assert.AreEqual(CollaboratorType.Administrator, item.Role);
 
-        [TestMethod]
-        public void Create_Get_Edit_Delete_ConfigurationVariable()
-        {
-            EnsureApplication(ApplicationID);
+			Api.DeleteCollaborator(ApplicationId, result.Id);
+		}
 
-            var result = Api.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.ID);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+		[TestMethod]
+		public void Create_Get_Edit_Delete_ConfigurationVariable()
+		{
+			EnsureApplication();
 
-            var item = Api.GetConfigurationVariable(ApplicationID, result.ID);
-            Assert.IsNotNull(item);
-            Assert.AreEqual(result.ID, item.ID);
-            Assert.AreEqual("somekey", item.Key);
-            Assert.AreEqual("somevalue", item.Value);
+			var result = Api.CreateConfigurationVariable(ApplicationId, "somekey", "somevalue");
+			Assert.IsNotNull(result);
+			Assert.IsNotNull(result.Id);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-            item.Key = "somekeyu";
-            item.Value = "somevalueu";
-            var updated = Api.EditConfigurationVariable(ApplicationID, item);
-            Assert.IsTrue(updated);
+			var item = Api.GetConfigurationVariable(ApplicationId, result.Id);
+			Assert.IsNotNull(item);
+			Assert.AreEqual(result.Id, item.Id);
+			Assert.AreEqual("somekey", item.Key);
+			Assert.AreEqual("somevalue", item.Value);
 
-            item = Api.GetConfigurationVariable(ApplicationID, result.ID);
-            Assert.IsNotNull(item);
-            Assert.AreEqual(result.ID, item.ID);
-            Assert.AreEqual("somekeyu", item.Key);
-            Assert.AreEqual("somevalueu", item.Value);
+			item.Key = "somekeyu";
+			item.Value = "somevalueu";
+			var updated = Api.EditConfigurationVariable(ApplicationId, item);
+			Assert.IsTrue(updated);
 
-            Api.DeleteConfigurationVariable(ApplicationID, result.ID);
-        }
+			item = Api.GetConfigurationVariable(ApplicationId, result.Id);
+			Assert.IsNotNull(item);
+			Assert.AreEqual(result.Id, item.Id);
+			Assert.AreEqual("somekeyu", item.Key);
+			Assert.AreEqual("somevalueu", item.Value);
 
-        [TestMethod]
-        public void Create_Get_Delete_Hostname()
-        {
-            EnsureApplication(ApplicationID);
+			Api.DeleteConfigurationVariable(ApplicationId, result.Id);
+		}
 
-            var result = Api.CreateHostname(ApplicationID, "some345345n4534host.com");
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.ID);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+		[TestMethod]
+		public void Create_Get_Delete_Hostname()
+		{
+			EnsureApplication();
 
-            var item = Api.GetHostname(ApplicationID, result.ID);
-            Assert.IsNotNull(item);
-            Assert.AreEqual(result.ID, item.ID);
-            Assert.AreEqual("some345345n4534host.com", item.Value);
+			var result = Api.CreateHostname(ApplicationId, "some345345n4534host.com");
+			Assert.IsNotNull(result);
+			Assert.IsNotNull(result.Id);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-            Api.DeleteHostname(ApplicationID, result.ID);
-        }
+			var item = Api.GetHostname(ApplicationId, result.Id);
+			Assert.IsNotNull(item);
+			Assert.AreEqual(result.Id, item.Id);
+			Assert.AreEqual("some345345n4534host.com", item.Value);
 
-        [TestMethod]
-        public void Create_Get_Delete_Servicehook()
-        {
-            EnsureApplication(ApplicationID);
+			Api.DeleteHostname(ApplicationId, result.Id);
+		}
 
-            var result = Api.CreateServicehook(ApplicationID, "http://somehost.com");
-            Assert.IsNotNull(result);
-            Assert.IsNotNull(result.ID);
-            Assert.AreEqual(AppHarbor.Model.CreateStatus.Created, result.Status);
+		[TestMethod]
+		public void Create_Get_Delete_Servicehook()
+		{
+			EnsureApplication();
 
-            var item = Api.GetServicehook(ApplicationID, result.ID);
-            Assert.IsNotNull(item);
-            Assert.AreEqual(result.ID, item.ID);
-            Assert.AreEqual("http://somehost.com", item.Value);
+			var result = Api.CreateServicehook(ApplicationId, "http://somehost.com");
+			Assert.IsNotNull(result);
+			Assert.IsNotNull(result.Id);
+			Assert.AreEqual(CreateStatus.Created, result.Status);
 
-            Api.DeleteServicehook(ApplicationID, result.ID);
-        }
+			var item = Api.GetServicehook(ApplicationId, result.Id);
+			Assert.IsNotNull(item);
+			Assert.AreEqual(result.Id, item.Id);
+			Assert.AreEqual("http://somehost.com", item.Value);
 
-        [ClassCleanup]
-        public static void TestCleanupAttribute()
-        {
-            // remove all applications that start with: zzzintegration
-            var applications = Api.GetApplications();
-            foreach (var item in applications
-                .Where(i => i.Slug != null && i.Slug.StartsWith("zzzintegration")))
-            {                
-                Api.DeleteApplication(item.Slug);
-            }
-        }
-    }
+			Api.DeleteServicehook(ApplicationId, result.Id);
+		}
+
+		[ClassCleanup]
+		public static void TestCleanupAttribute()
+		{
+			// remove all applications that start with: zzzintegration
+			var applications = Api.GetApplications();
+			foreach (var item in applications
+				.Where(i => i.Slug != null && i.Slug.StartsWith("zzzintegration")))
+			{
+				Api.DeleteApplication(item.Slug);
+			}
+		}
+	}
 }
