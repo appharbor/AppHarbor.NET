@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AppHarbor.Model
+﻿namespace AppHarbor.Model
 {
-    public interface IKeyed
-    {
-        string ID { get; set; }
-    }
+	public interface IKeyed
+	{
+		string Id
+		{
+			get;
+			set;
+		}
+	}
 }

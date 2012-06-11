@@ -32,31 +32,61 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\AppHarbor.NET.xml</DocumentationFile>
+    <NoWarn>CS1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RestSharp, Version=103.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.103.0.0\lib\net35\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.103.1\lib\net35\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppHaborAuthenticator.cs" />
-    <Compile Include="AppHarborApi.cs" />
+    <Compile Include="AppHarborHeaderAuthenticator.cs" />
+    <Compile Include="AppHarborClient.cs" />
+    <Compile Include="AppHarborClient.Application.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.Collaborator.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.ConfigurationVariable.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.Build.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.Error.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.Hostname.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.Auth.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.ServiceHooks.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.Test.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppHarborClient.User.cs">
+      <DependentUpon>AppHarborClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Model\Application.cs" />
-    <Compile Include="Config.cs" />
     <Compile Include="Model\Build.cs" />
     <Compile Include="Model\Collaborator.cs" />
+    <Compile Include="Model\CollaboratorType.cs" />
+    <Compile Include="Model\CollaboratorUser.cs" />
+    <Compile Include="Model\Commit.cs" />
     <Compile Include="Model\ConfigurationVariable.cs" />
     <Compile Include="Model\CreateResult.cs" />
+    <Compile Include="Model\CreateStatus.cs" />
     <Compile Include="Model\Error.cs" />
+    <Compile Include="Model\Exception.cs" />
     <Compile Include="Model\Hostname.cs" />
     <Compile Include="Model\IKeyed.cs" />
     <Compile Include="Model\IUrl.cs" />
@@ -64,7 +94,6 @@
     <Compile Include="Model\Test.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
