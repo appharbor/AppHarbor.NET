@@ -1,6 +1,6 @@
 ﻿namespace AppHarbor.Model
 {
-	public class CreateResult<T>
+	public class CreateResult
 	{
 		public CreateStatus Status
 		{
@@ -8,7 +8,7 @@
 			set;
 		}
 
-		public T Id
+		public string Id
 		{
 			get;
 			set;

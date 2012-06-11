@@ -29,7 +29,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<ServiceHook>(request);
 		}
 
-		public CreateResult<string> CreateServicehook(string applicationId, string url)
+		public CreateResult CreateServicehook(string applicationId, string url)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("url", url);

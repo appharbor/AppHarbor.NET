@@ -29,7 +29,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<Hostname>(request);
 		}
 
-		public CreateResult<string> CreateHostname(string applicationId, string hostName)
+		public CreateResult CreateHostname(string applicationId, string hostName)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("hostName", hostName);

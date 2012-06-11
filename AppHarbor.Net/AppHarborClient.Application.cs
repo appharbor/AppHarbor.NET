@@ -30,7 +30,7 @@ namespace AppHarbor
 		/// <param name="name">Name of the application.</param>
 		/// <param name="regionIdentifier">Region the application will be created in. The default is "amazon-web-services::us-east-1". May not be null.</param>
 		/// <returns>Returns a create result. The Status of the CreateResult indicates whether the creation was successfull or not.</returns>
-		public CreateResult<string> CreateApplication(string name, string regionIdentifier = "amazon-web-services::us-east-1")
+		public CreateResult CreateApplication(string name, string regionIdentifier = "amazon-web-services::us-east-1")
 		{
 			CheckArgumentNull("name", name);
 			CheckArgumentNull("regionIdentifier", regionIdentifier);

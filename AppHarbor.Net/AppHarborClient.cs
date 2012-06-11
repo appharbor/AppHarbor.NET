@@ -110,17 +110,12 @@ namespace AppHarbor
 			return data;
 		}
 
-		private CreateResult<string> ExecuteCreate(RestRequest request)
+		private CreateResult ExecuteCreateApplication(RestRequest request)
 		{
-			return ExecuteCreate(request, ExtractId);
+			return ExecuteCreate(request);
 		}
 
-		private CreateResult<string> ExecuteCreateApplication(RestRequest request)
-		{
-			return ExecuteCreate(request, ExtractId);
-		}
-
-		private CreateResult<T> ExecuteCreate<T>(RestRequest request, Func<string, T> extractId)
+		private CreateResult ExecuteCreate(RestRequest request)
 		{
 			var response = _client.Execute(request);
 
@@ -131,7 +126,7 @@ namespace AppHarbor
 
 			if (response.StatusCode == HttpStatusCode.Conflict)
 			{
-				return new CreateResult<T>
+				return new CreateResult
 				{
 					Status = CreateStatus.AlreadyExists
 				};
@@ -139,7 +134,7 @@ namespace AppHarbor
 
 			if (response.StatusCode != HttpStatusCode.Created)
 			{
-				return new CreateResult<T>
+				return new CreateResult
 				{
 					Status = CreateStatus.Undefined
 				};
@@ -154,9 +149,9 @@ namespace AppHarbor
 			}
 
 			var location = (string)locationHeader.Value;
-			var id = extractId(location);
+			var id = ExtractId(location);
 
-			return new CreateResult<T>
+			return new CreateResult
 			{
 				Status = CreateStatus.Created,
 				Id = id,

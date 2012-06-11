@@ -29,7 +29,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<ConfigurationVariable>(request);
 		}
 
-		public CreateResult<string> CreateConfigurationVariable(string applicationId, string key, string value)
+		public CreateResult CreateConfigurationVariable(string applicationId, string key, string value)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("key", key);

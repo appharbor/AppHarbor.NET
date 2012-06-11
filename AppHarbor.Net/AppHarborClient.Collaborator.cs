@@ -30,7 +30,7 @@ namespace AppHarbor
 			return ExecuteGetListKeyed<Collaborator>(request);
 		}
 
-		public CreateResult<string> CreateCollaborator(string applicationId, string email, CollaboratorType collaboratorType)
+		public CreateResult CreateCollaborator(string applicationId, string email, CollaboratorType collaboratorType)
 		{
 			CheckArgumentNull("applicationId", applicationId);
 			CheckArgumentNull("email", email);
