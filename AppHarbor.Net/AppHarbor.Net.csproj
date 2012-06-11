@@ -40,7 +40,6 @@
       <HintPath>..\packages\RestSharp.103.1\lib\net35\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +77,6 @@
     </Compile>
     <Compile Include="AuthInfo.cs" />
     <Compile Include="Model\Application.cs" />
-    <Compile Include="Config.cs" />
     <Compile Include="Model\Build.cs" />
     <Compile Include="Model\Collaborator.cs" />
     <Compile Include="Model\CollaboratorType.cs" />

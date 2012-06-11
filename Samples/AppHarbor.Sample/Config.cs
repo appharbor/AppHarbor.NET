@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace AppHarbor
+namespace AppHarbor.Sample
 {
 	public class Config
 	{
