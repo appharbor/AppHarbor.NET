@@ -28,7 +28,7 @@ namespace AppHarbor.Model
 			set;
 		}
 
-		public CommitClass Commit
+		public Commit Commit
 		{
 			get;
 			set;
@@ -50,21 +50,6 @@ namespace AppHarbor.Model
 		{
 			get;
 			set;
-		}
-
-		public class CommitClass
-		{
-			public string Id
-			{
-				get;
-				set;
-			}
-
-			public string Message
-			{
-				get;
-				set;
-			}
 		}
 	}
 }
