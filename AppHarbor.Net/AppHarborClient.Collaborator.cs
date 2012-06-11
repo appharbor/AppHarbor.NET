@@ -47,7 +47,7 @@ namespace AppHarbor
 			request.AddBody(new
 			{
 				collaboratorEmail = email,
-				role = Util.GetCollaboratorType(collaboratorType),
+				role = GetCollaboratorType(collaboratorType),
 			});
 			return ExecuteCreate(request);
 		}
@@ -70,7 +70,7 @@ namespace AppHarbor
 			request.AddParameter("id", collaborator.Id, ParameterType.UrlSegment);
 			request.AddBody(new
 			{
-				role = Util.GetCollaboratorType(collaborator.Role),
+				role = GetCollaboratorType(collaborator.Role),
 			});
 			return ExecuteEdit(request);
 		}
@@ -85,6 +85,13 @@ namespace AppHarbor
 			request.AddParameter("id", id, ParameterType.UrlSegment);
 
 			return ExecuteDelete(request);
+		}
+
+		public static string GetCollaboratorType(CollaboratorType collaboratorType)
+		{
+			var name = Enum.GetName(typeof(CollaboratorType), collaboratorType)
+				.ToLower();
+			return name;
 		}
 	}
 }
