@@ -30,11 +30,6 @@ namespace AppHarbor
 				throw new ArgumentNullException("authInfo");
 			}
 
-			if (authInfo.AccessToken == null)
-			{
-				throw new ArgumentNullException("authInfo.AccessToken");
-			}
-
 			_authorizationHeaderValue = string.Format("BEARER {0}", authInfo.AccessToken);
 		}
 
