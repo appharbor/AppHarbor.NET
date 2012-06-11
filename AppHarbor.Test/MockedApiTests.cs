@@ -44,7 +44,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual(ApplicationID, createResult.Id);
-			Assert.AreEqual("https://appharbor.com/applications/:application", createResult.Location);
+			Assert.AreEqual("https://appharbor.com/applications/:application", createResult.Location.AbsoluteUri);
 		}
 
 		[TestMethod]
@@ -64,7 +64,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
-			Assert.AreEqual("https://appharbor.com/applications/:application/collaborators/5", createResult.Location);
+			Assert.AreEqual("https://appharbor.com/applications/:application/collaborators/5", createResult.Location.AbsoluteUri);
 		}
 
 		[TestMethod]
@@ -84,7 +84,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
-			Assert.AreEqual("https://appharbor.com/applications/:application/configurationvariables/5", createResult.Location);
+			Assert.AreEqual("https://appharbor.com/applications/:application/configurationvariables/5", createResult.Location.AbsoluteUri);
 		}
 
 		[TestMethod]
@@ -104,7 +104,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
-			Assert.AreEqual("https://appharbor.com/applications/:application/hostnames/5", createResult.Location);
+			Assert.AreEqual("https://appharbor.com/applications/:application/hostnames/5", createResult.Location.AbsoluteUri);
 		}
 
 		[TestMethod]
@@ -124,7 +124,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
-			Assert.AreEqual("https://appharbor.com/applications/:application/servicehooks/5", createResult.Location);
+			Assert.AreEqual("https://appharbor.com/applications/:application/servicehooks/5", createResult.Location.AbsoluteUri);
 		}
 
 		[TestMethod]

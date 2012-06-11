@@ -1,4 +1,6 @@
-﻿namespace AppHarbor.Model
+﻿using System;
+
+namespace AppHarbor.Model
 {
 	public class CreateResult
 	{
@@ -14,7 +16,7 @@
 			set;
 		}
 
-		public string Location
+		public Uri Location
 		{
 			get;
 			set;

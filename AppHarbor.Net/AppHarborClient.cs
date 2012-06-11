@@ -155,7 +155,7 @@ namespace AppHarbor
 			{
 				Status = CreateStatus.Created,
 				Id = id,
-				Location = location,
+				Location = new Uri(location),
 			};
 		}
 
