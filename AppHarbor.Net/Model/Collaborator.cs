@@ -8,7 +8,7 @@
 			set;
 		}
 
-		public UserClass User
+		public CollaboratorUser User
 		{
 			get;
 			set;
@@ -24,21 +24,6 @@
 		{
 			get;
 			set;
-		}
-
-		public class UserClass
-		{
-			public string Id
-			{
-				get;
-				set;
-			}
-
-			public string Name
-			{
-				get;
-				set;
-			}
 		}
 	}
 }
