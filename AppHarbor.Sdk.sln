@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 11
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Net", "AppHarbor.Net\AppHarbor.Net.csproj", "{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}"
-EndProject
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Sample", "Samples\AppHarbor.Sample\AppHarbor.Sample.csproj", "{0C3887D5-069A-4212-9F22-EB8FDDD85D18}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69DA7F8C-73AB-4E17-9E58-EBCA647FD847}"
@@ -12,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69DA7F
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Test", "AppHarbor.Test\AppHarbor.Test.csproj", "{AB19886F-C798-447A-A9CD-BEC6B3A3EBD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Sdk", "AppHarbor.Sdk\AppHarbor.Sdk.csproj", "{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +23,14 @@ Global
 		{0C3887D5-069A-4212-9F22-EB8FDDD85D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C3887D5-069A-4212-9F22-EB8FDDD85D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C3887D5-069A-4212-9F22-EB8FDDD85D18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB19886F-C798-447A-A9CD-BEC6B3A3EBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB19886F-C798-447A-A9CD-BEC6B3A3EBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB19886F-C798-447A-A9CD-BEC6B3A3EBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB19886F-C798-447A-A9CD-BEC6B3A3EBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
