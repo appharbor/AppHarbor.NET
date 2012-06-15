@@ -60,12 +60,6 @@
     <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppHarbor.Net\AppHarbor.Net.csproj">
-      <Project>{6add606f-2e3c-4210-951f-f15e1e4acd08}</Project>
-      <Name>AppHarbor.Net</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Data\EmptyArray.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -121,6 +115,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppHarbor.Sdk\AppHarbor.Sdk.csproj">
+      <Project>{6ADD606F-2E3C-4210-951F-F15E1E4ACD08}</Project>
+      <Name>AppHarbor.Sdk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
