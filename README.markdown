@@ -1,18 +1,22 @@
-# AppHarbor.NET - A .NET client for the [AppHarbor API][1]
+# AppHarbor SDK - A .NET client for the [AppHarbor API][1]
 
 ### License: Apache License 2.0
 
 ### Twitter
-*  News and updates for AppHarbor.NET: [@AppHarborNET][2]
-*  In addition you can also follow my personal account: [@ntziolis][3]
+*  News and updates for AppHarbor SDK: [@appharbor][2]
 
 ### Features
 
-* Full support for the AppHarbor API (2012.03.21)
-* Managed API Access (currently .NET 3.5, could be made .NET 2.0 compatible if requested)
+* Full support for the AppHarbor API
+* Managed API Access (currently .NET 3.5, send a pull request if you want .NET 2.0 support)
 * Implements AppHarbor OAuth header: `Authorization: BEARER :access_token`
 * Sample web application with AppHarbor OAuth sample
 * Unit tested
+
+### Current uses
+
+* [AppHarbor command-line interface](https://github.com/appharbor/appharbor-cli)
+* [AppHarbify](https://github.com/csainty/Apphbify/)
 
 ### Usage
 
@@ -39,7 +43,7 @@ foreach (var application in applications)
 }
 ```
 
-#### Create new AppHarbor applications
+#### Create new AppHarbor application
 
 ```csharp
 // creating always returns a CreateResult
@@ -71,10 +75,9 @@ switch (createResult.Status)
 }
 ```
 
-### Sample Web Application Project
+### Sample web application project
 
 * Basic OAuth Access Token retrieval implementation
-* more to come
 
 ### Todo
 
@@ -84,5 +87,4 @@ switch (createResult.Status)
 * Expand sample web application
 
   [1]: http://support.appharbor.com/kb/api/api-overview
-  [2]: https://twitter.com/AppHarborNET
-  [3]: https://twitter.com/ntziolis 
+  [2]: https://twitter.com/appharbor
