@@ -23,11 +23,8 @@
 #### Create Api instance
 
 ```csharp
-// create an Api instance with the token obtained from oAuth
-var api = new AppHarborApi(new AuthInfo()
-{
-	AccessToken = "token obtained via oAuth"
-});
+// create an Api Client instance with the token obtained from oAuth
+var appHarborClient = new AppHarborClient(new AuthInfo("token obtained via oAuth"));
 ```
 
 #### Get list of AppHarbor applications
