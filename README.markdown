@@ -20,21 +20,18 @@
 
 ### Usage
 
-#### Create Api instance
+#### Create Api Client instance
 
 ```csharp
-// create an Api instance with the token obtained from oAuth
-var api = new AppHarborApi(new AuthInfo()
-{
-	AccessToken = "token obtained via oAuth"
-});
+// create an Api Client instance with the token obtained from oAuth
+var appHarborClient = new AppHarborClient(new AuthInfo("token obtained via oAuth"));
 ```
 
 #### Get list of AppHarbor applications
 
 ```csharp
 // get a list of all applications
-var applications = api.GetApplications();
+var applications = appHarborClient.GetApplications();
 
 foreach (var application in applications)
 {
@@ -48,7 +45,7 @@ foreach (var application in applications)
 ```csharp
 // creating always returns a CreateResult
 // which has a Status, ID, Location
-var createResult = api.CreateApplication("New Application Name", null);
+var createResult = appHarborClient.CreateApplication("New Application Name", null);
 
 // based on the Status decide on what todo
 switch (createResult.Status)
@@ -58,8 +55,8 @@ switch (createResult.Status)
 			var newID = createResult.ID;
 			var newURL = createResult.Location;
 
-			// get actual application object via the api
-			var newApplication = api.GetApplication(newID);
+			// get actual application object via the api client
+			var newApplication = appHarborClient.GetApplication(newID);
 
 			// more code
 			break;
