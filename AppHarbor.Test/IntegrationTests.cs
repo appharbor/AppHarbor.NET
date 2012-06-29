@@ -59,7 +59,7 @@ namespace AppHarbor.Test
 			}
 
 			Api.DeleteApplication(ApplicationSlug);
-			var result = Api.CreateApplication(ApplicationSlug);
+			var result = Api.CreateApplication(ApplicationSlug, null);
 			Assert.IsNotNull(result);
 			Assert.IsNotNull(result.Id);
 			Assert.AreEqual(CreateStatus.Created, result.Status);
