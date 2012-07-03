@@ -13,7 +13,7 @@ namespace AppHarbor.Test
 		private static AppHarborClient Api;
 		private static AppHarborClient EmptyListDataApi;
 		private static AppHarborClient ExistingDataDataApi;
-		private static string ApplicationID;
+		private static string ApplicationSlug;
 
 		private class MockedAppHarborClient : AppHarborClient
 		{
@@ -40,23 +40,23 @@ namespace AppHarbor.Test
 			clientExistingData.HttpFactory = new RestSharp.SimpleFactory<ExistingDataMockHttp>();
 			ExistingDataDataApi = new MockedAppHarborClient(authInfo, clientExistingData);
 
-			ApplicationID = ":application";
+			ApplicationSlug = ":application";
 		}
 
 		[TestMethod]
 		public void Create_Non_Existing_Application()
 		{
-			var createResult = Api.CreateApplication(ApplicationID);
+			var createResult = Api.CreateApplication(ApplicationSlug);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
-			Assert.AreEqual(ApplicationID, createResult.Id);
+			Assert.AreEqual(ApplicationSlug, createResult.Id);
 			Assert.AreEqual("https://appharbor.com/applications/:application", createResult.Location.AbsoluteUri);
 		}
 
 		[TestMethod]
 		public void Try_Create_Existing_Application()
 		{
-			var createResult = ExistingDataDataApi.CreateApplication(ApplicationID);
+			var createResult = ExistingDataDataApi.CreateApplication(ApplicationSlug);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.AlreadyExists, createResult.Status);
 			Assert.AreEqual(null, createResult.Id);
@@ -66,7 +66,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Non_Existing_Collaborator()
 		{
-			var createResult = Api.CreateCollaborator(ApplicationID, "some@mail.com", CollaboratorType.Collaborator);
+			var createResult = Api.CreateCollaborator(ApplicationSlug, "some@mail.com", CollaboratorType.Collaborator);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
@@ -76,7 +76,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Try_Create_Existing_Collaborator()
 		{
-			var createResult = ExistingDataDataApi.CreateCollaborator(ApplicationID, "some@mail.com", CollaboratorType.Collaborator);
+			var createResult = ExistingDataDataApi.CreateCollaborator(ApplicationSlug, "some@mail.com", CollaboratorType.Collaborator);
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.AlreadyExists, createResult.Status);
 			Assert.IsNull(createResult.Id);
@@ -86,7 +86,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Non_Existing_ConfigurationVariable()
 		{
-			var createResult = Api.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
+			var createResult = Api.CreateConfigurationVariable(ApplicationSlug, "somekey", "somevalue");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
@@ -96,7 +96,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Try_Create_Existing_ConfigurationVariable()
 		{
-			var createResult = ExistingDataDataApi.CreateConfigurationVariable(ApplicationID, "somekey", "somevalue");
+			var createResult = ExistingDataDataApi.CreateConfigurationVariable(ApplicationSlug, "somekey", "somevalue");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.AlreadyExists, createResult.Status);
 			Assert.IsNull(createResult.Id);
@@ -106,7 +106,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Non_Existing_Hostname()
 		{
-			var createResult = Api.CreateHostname(ApplicationID, "somehostname.com");
+			var createResult = Api.CreateHostname(ApplicationSlug, "somehostname.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
@@ -116,7 +116,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Try_Create_Existing_Hostname()
 		{
-			var createResult = ExistingDataDataApi.CreateHostname(ApplicationID, "somehostname.com");
+			var createResult = ExistingDataDataApi.CreateHostname(ApplicationSlug, "somehostname.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.AlreadyExists, createResult.Status);
 			Assert.IsNull(createResult.Id);
@@ -126,7 +126,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Create_Non_Existing_ServiceHook()
 		{
-			var createResult = Api.CreateServicehook(ApplicationID, "http://someurl.com");
+			var createResult = Api.CreateServicehook(ApplicationSlug, "http://someurl.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.Created, createResult.Status);
 			Assert.AreEqual("5", createResult.Id);
@@ -136,7 +136,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Try_Create_Existing_ServiceHook()
 		{
-			var createResult = ExistingDataDataApi.CreateServicehook(ApplicationID, "http://someurl.com");
+			var createResult = ExistingDataDataApi.CreateServicehook(ApplicationSlug, "http://someurl.com");
 			Assert.IsNotNull(createResult);
 			Assert.AreEqual(CreateStatus.AlreadyExists, createResult.Status);
 			Assert.IsNull(createResult.Id);
@@ -146,7 +146,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Existing_Application()
 		{
-			var edited = Api.EditApplication(ApplicationID, new Application
+			var edited = Api.EditApplication(ApplicationSlug, new Application
 			{
 				Name = "SomeName"
 			});
@@ -166,7 +166,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Existing_Collaborator()
 		{
-			var edited = Api.EditCollaborator(ApplicationID, new Collaborator
+			var edited = Api.EditCollaborator(ApplicationSlug, new Collaborator
 			{
 				Id = "5",
 				Role = CollaboratorType.Collaborator,
@@ -177,7 +177,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Non_Existing_Collaborator()
 		{
-			var edited = Api.EditCollaborator(ApplicationID, new Collaborator
+			var edited = Api.EditCollaborator(ApplicationSlug, new Collaborator
 			{
 				Id = "6",
 				Role = CollaboratorType.Collaborator,
@@ -188,7 +188,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Existing_ConfigurationVariable()
 		{
-			var edited = Api.EditConfigurationVariable(ApplicationID, new ConfigurationVariable
+			var edited = Api.EditConfigurationVariable(ApplicationSlug, new ConfigurationVariable
 			{
 				Id = "5",
 				Key = "somekey",
@@ -200,7 +200,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Edit_Non_Existing_ConfigurationVariable()
 		{
-			var edited = Api.EditConfigurationVariable(ApplicationID, new ConfigurationVariable
+			var edited = Api.EditConfigurationVariable(ApplicationSlug, new ConfigurationVariable
 			{
 				Id = "6",
 				Key = "somekey",
@@ -212,7 +212,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Delete_Existing_Application()
 		{
-			var deleted = Api.DeleteApplication(ApplicationID);
+			var deleted = Api.DeleteApplication(ApplicationSlug);
 			Assert.IsTrue(deleted);
 		}
 
@@ -226,56 +226,56 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Delete_Existing_Collaborator()
 		{
-			var deleted = Api.DeleteCollaborator(ApplicationID, "5");
+			var deleted = Api.DeleteCollaborator(ApplicationSlug, "5");
 			Assert.IsTrue(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Non_Existing_Collaborator()
 		{
-			var deleted = Api.DeleteCollaborator(ApplicationID, "6");
+			var deleted = Api.DeleteCollaborator(ApplicationSlug, "6");
 			Assert.IsFalse(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Existing_ConfigurationVariable()
 		{
-			var deleted = Api.DeleteConfigurationVariable(ApplicationID, "5");
+			var deleted = Api.DeleteConfigurationVariable(ApplicationSlug, "5");
 			Assert.IsTrue(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Non_Existing_ConfigurationVariable()
 		{
-			var deleted = Api.DeleteConfigurationVariable(ApplicationID, "6");
+			var deleted = Api.DeleteConfigurationVariable(ApplicationSlug, "6");
 			Assert.IsFalse(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Existing_Hostname()
 		{
-			var deleted = Api.DeleteHostname(ApplicationID, "5");
+			var deleted = Api.DeleteHostname(ApplicationSlug, "5");
 			Assert.IsTrue(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Non_Existing_Hostname()
 		{
-			var deleted = Api.DeleteHostname(ApplicationID, "6");
+			var deleted = Api.DeleteHostname(ApplicationSlug, "6");
 			Assert.IsFalse(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Existing_Servicehook()
 		{
-			var deleted = Api.DeleteServicehook(ApplicationID, "5");
+			var deleted = Api.DeleteServicehook(ApplicationSlug, "5");
 			Assert.IsTrue(deleted);
 		}
 
 		[TestMethod]
 		public void Delete_Non_Existing_Servicehook()
 		{
-			var deleted = Api.DeleteServicehook(ApplicationID, "6");
+			var deleted = Api.DeleteServicehook(ApplicationSlug, "6");
 			Assert.IsFalse(deleted);
 		}
 
@@ -301,7 +301,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Application()
 		{
-			var item = Api.GetApplication(ApplicationID);
+			var item = Api.GetApplication(ApplicationSlug);
 			Assert.IsNotNull(item);
 			Assert.AreEqual(item.Name, "Hello World");
 			Assert.AreEqual(item.Slug, "helloworld");
@@ -317,7 +317,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Non_Empty_Collaborator_List()
 		{
-			var items = Api.GetCollaborators(ApplicationID);
+			var items = Api.GetCollaborators(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(items.Count() == 1);
@@ -335,7 +335,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Empty_Collaborator_List()
 		{
-			var items = EmptyListDataApi.GetCollaborators(ApplicationID);
+			var items = EmptyListDataApi.GetCollaborators(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(!items.Any());
@@ -344,7 +344,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Collaborator()
 		{
-			var item = Api.GetCollaborator(ApplicationID, "5");
+			var item = Api.GetCollaborator(ApplicationSlug, "5");
 			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Role, CollaboratorType.Collaborator);
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/collaborators/5");
@@ -357,14 +357,14 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_Collaborator()
 		{
-			var item = Api.GetCollaborator(ApplicationID, "6");
+			var item = Api.GetCollaborator(ApplicationSlug, "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Non_Empty_ConfigurationVariable_List()
 		{
-			var items = Api.GetConfigurationVariables(ApplicationID);
+			var items = Api.GetConfigurationVariables(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(items.Count() == 1);
@@ -379,7 +379,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Empty_ConfigurationVariable_List()
 		{
-			var items = EmptyListDataApi.GetConfigurationVariables(ApplicationID);
+			var items = EmptyListDataApi.GetConfigurationVariables(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(!items.Any());
@@ -388,7 +388,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_ConfigurationVariable()
 		{
-			var item = Api.GetConfigurationVariable(ApplicationID, "5");
+			var item = Api.GetConfigurationVariable(ApplicationSlug, "5");
 			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Key, "foo");
 			Assert.AreEqual(item.Value, "bar");
@@ -398,14 +398,14 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_ConfigurationVariable()
 		{
-			var item = Api.GetConfigurationVariable(ApplicationID, "6");
+			var item = Api.GetConfigurationVariable(ApplicationSlug, "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Non_Empty_Hostname_List()
 		{
-			var items = Api.GetHostnames(ApplicationID);
+			var items = Api.GetHostnames(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(items.Count() == 1);
@@ -420,7 +420,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Empty_Hostname_List()
 		{
-			var items = EmptyListDataApi.GetHostnames(ApplicationID);
+			var items = EmptyListDataApi.GetHostnames(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(!items.Any());
@@ -429,7 +429,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Hostname()
 		{
-			var item = Api.GetHostname(ApplicationID, "5");
+			var item = Api.GetHostname(ApplicationSlug, "5");
 			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Value, "example.org");
 			Assert.AreEqual(item.Canonical, false);
@@ -439,14 +439,14 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_Hostname()
 		{
-			var item = Api.GetHostname(ApplicationID, "6");
+			var item = Api.GetHostname(ApplicationSlug, "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Non_Empty_Servicehook_List()
 		{
-			var items = Api.GetServicehooks(ApplicationID);
+			var items = Api.GetServicehooks(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(items.Count() == 1);
@@ -460,7 +460,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Empty_Servicehook_List()
 		{
-			var items = EmptyListDataApi.GetServicehooks(ApplicationID);
+			var items = EmptyListDataApi.GetServicehooks(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(!items.Any());
@@ -469,7 +469,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Servicehook()
 		{
-			var item = Api.GetServicehook(ApplicationID, "5");
+			var item = Api.GetServicehook(ApplicationSlug, "5");
 			Assert.AreEqual(item.Id, "5");
 			Assert.AreEqual(item.Value, "http://www.example.org");
 			Assert.AreEqual(item.Url, "https://appharbor.com/applications/:application/servicehooks/5");
@@ -478,14 +478,14 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_Servicehook()
 		{
-			var item = Api.GetServicehook(ApplicationID, "6");
+			var item = Api.GetServicehook(ApplicationSlug, "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Non_Empty_Build_List()
 		{
-			var items = Api.GetBuilds(ApplicationID);
+			var items = Api.GetBuilds(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(items.Count() == 1);
@@ -507,7 +507,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Empty_Build_List()
 		{
-			var items = EmptyListDataApi.GetBuilds(ApplicationID);
+			var items = EmptyListDataApi.GetBuilds(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(!items.Any());
@@ -516,7 +516,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Build()
 		{
-			var item = Api.GetBuild(ApplicationID, "5");
+			var item = Api.GetBuild(ApplicationSlug, "5");
 			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("Succeeded", item.Status);
 			Assert.AreEqual(new DateTime(2012, 02, 28, 13, 36, 30), item.Created);
@@ -533,14 +533,14 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_Build()
 		{
-			var item = Api.GetBuild(ApplicationID, "6");
+			var item = Api.GetBuild(ApplicationSlug, "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Non_Empty_Test_List_For_Existing_Build()
 		{
-			var items = Api.GetTests(ApplicationID, "5");
+			var items = Api.GetTests(ApplicationSlug, "5");
 
 			Assert.IsNotNull(items);
 			Assert.AreEqual(2, items.Count());
@@ -599,7 +599,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Empty_Test_List_For_Existing_Build()
 		{
-			var items = EmptyListDataApi.GetTests(ApplicationID, "5");
+			var items = EmptyListDataApi.GetTests(ApplicationSlug, "5");
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(!items.Any());
@@ -608,7 +608,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Test()
 		{
-			var item = Api.GetTest(ApplicationID, "5", "3.1");
+			var item = Api.GetTest(ApplicationSlug, "5", "3.1");
 			Assert.AreEqual("3.1", item.Id);
 			Assert.AreEqual("ShouldReturnFooWhenBarIsCalled", item.Name);
 			Assert.AreEqual("Passed", item.Status);
@@ -622,21 +622,21 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_Test()
 		{
-			var item = Api.GetTest(ApplicationID, "5", "6");
+			var item = Api.GetTest(ApplicationSlug, "5", "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Null_Test_List_For_Non_Existing_Build()
 		{
-			var item = Api.GetTest(ApplicationID, "6", "6");
+			var item = Api.GetTest(ApplicationSlug, "6", "6");
 			Assert.IsNull(item);
 		}
 
 		[TestMethod]
 		public void Get_Errors()
 		{
-			var items = Api.GetErrors(ApplicationID);
+			var items = Api.GetErrors(ApplicationSlug);
 
 			Assert.IsNotNull(items);
 			Assert.IsTrue(items.Count() == 1);
@@ -659,7 +659,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Existing_Error()
 		{
-			var item = Api.GetError(ApplicationID, "5");
+			var item = Api.GetError(ApplicationSlug, "5");
 			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("foo", item.Commit_Id);
 			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 42), item.Date);
@@ -677,7 +677,7 @@ namespace AppHarbor.Test
 		[TestMethod]
 		public void Get_Null_For_Non_Existing_Error()
 		{
-			var item = Api.GetError(ApplicationID, "6");
+			var item = Api.GetError(ApplicationSlug, "6");
 			Assert.IsNull(item);
 		}
 
