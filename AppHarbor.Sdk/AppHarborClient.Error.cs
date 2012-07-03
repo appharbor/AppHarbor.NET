@@ -11,6 +11,7 @@ namespace AppHarbor
 			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
+			request.DateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'Z'";
 			request.Resource = "applications/{applicationId}/errors/{Id}";
 			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 			request.AddParameter("Id", id, ParameterType.UrlSegment);
@@ -23,6 +24,7 @@ namespace AppHarbor
 			CheckArgumentNull("applicationId", applicationId);
 
 			var request = new RestRequest();
+			request.DateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.fff'Z'";
 			request.Resource = "applications/{applicationId}/errors";
 			request.AddParameter("applicationId", applicationId, ParameterType.UrlSegment);
 
