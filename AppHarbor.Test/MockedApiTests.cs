@@ -644,7 +644,7 @@ namespace AppHarbor.Test
 			var item = items.Single();
 			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("foo", item.Commit_Id);
-			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 11), item.Date);
+			Assert.AreEqual(new DateTime(2012, 06, 30, 11, 05, 29, 647), item.Date);
 			Assert.AreEqual("/", item.Request_Path);
 			Assert.AreEqual("An unhandled exception has occurred.", item.Message);
 			Assert.AreEqual("https://appharbor.com/applications/:application/errors/5", item.Url.AbsoluteUri);
@@ -662,7 +662,7 @@ namespace AppHarbor.Test
 			var item = Api.GetError(ApplicationSlug, "5");
 			Assert.AreEqual("5", item.Id);
 			Assert.AreEqual("foo", item.Commit_Id);
-			Assert.AreEqual(new DateTime(2012, 03, 05, 15, 01, 42), item.Date);
+			Assert.AreEqual(new DateTime(2012, 06, 30, 11, 05, 29, 647), item.Date);
 			Assert.AreEqual("/", item.Request_Path);
 			Assert.AreEqual("An unhandled exception has occurred.", item.Message);
 			Assert.AreEqual("https://appharbor.com/applications/:application/errors/5", item.Url.AbsoluteUri);
