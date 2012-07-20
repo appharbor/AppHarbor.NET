@@ -1,6 +1,6 @@
 ﻿[{
-   "commit_id" : "foo",
     "date" : "2012-03-05T15:01:11",
+    "commit_id" : "foo",
     "request_path" : "/",
     "message" : "An unhandled exception has occurred.",
     "exception" :
