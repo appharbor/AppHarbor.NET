@@ -200,6 +200,13 @@ namespace AppHarbor.Test.Mocks
 			return response;
 		}
 
+		protected string GetDataPathFor(string json)
+		{
+			var dataPath = Util.GetDataPath();
+
+			return Path.Combine(dataPath, json);
+		}
+
 		HttpResponse IHttp.Delete()
 		{
 			return CreateHttpResponse(HttpStatusCode.NotFound, null);
