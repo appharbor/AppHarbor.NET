@@ -148,17 +148,6 @@ namespace AppHarbor.Test.Mocks
 	{
 		public const string BaseUrl = "http://unit.test/";
 
-		protected MockHttp()
-		{
-			BaseLocation = Util.GetCurrentBasePath();
-		}
-
-		public string BaseLocation
-		{
-			get;
-			private set;
-		}
-
 		protected HttpResponse CreateHttpResponse(HttpStatusCode statusCode, string location)
 		{
 			var encoding = Encoding.UTF8;
