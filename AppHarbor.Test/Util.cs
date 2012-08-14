@@ -12,6 +12,8 @@ namespace AppHarbor.Test
 
 		public static string GetDataPath()
 		{
+			var currentBasePath = GetCurrentBasePath();
+
 			return Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "Data");
 		}
 	}
