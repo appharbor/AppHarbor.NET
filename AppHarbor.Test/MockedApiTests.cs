@@ -28,16 +28,16 @@ namespace AppHarbor.Test
 		{
 			var authInfo = new AuthInfo("unittest");
 
-			var client = new RestSharp.RestClient(MockHttp.BaseUrl);
-			client.HttpFactory = new RestSharp.SimpleFactory<SampleDataMockHttp>();
+			var client = new RestClient(MockHttp.BaseUrl);
+			client.HttpFactory = new SimpleFactory<SampleDataMockHttp>();
 			Api = new MockedAppHarborClient(authInfo, client);
 
-			var clientEmptyListData = new RestSharp.RestClient(MockHttp.BaseUrl);
-			clientEmptyListData.HttpFactory = new RestSharp.SimpleFactory<EmptyListDataMockHttp>();
+			var clientEmptyListData = new RestClient(MockHttp.BaseUrl);
+			clientEmptyListData.HttpFactory = new SimpleFactory<EmptyListDataMockHttp>();
 			EmptyListDataApi = new MockedAppHarborClient(authInfo, clientEmptyListData);
 
-			var clientExistingData = new RestSharp.RestClient(MockHttp.BaseUrl);
-			clientExistingData.HttpFactory = new RestSharp.SimpleFactory<ExistingDataMockHttp>();
+			var clientExistingData = new RestClient(MockHttp.BaseUrl);
+			clientExistingData.HttpFactory = new SimpleFactory<ExistingDataMockHttp>();
 			ExistingDataDataApi = new MockedAppHarborClient(authInfo, clientExistingData);
 
 			ApplicationSlug = ":application";
