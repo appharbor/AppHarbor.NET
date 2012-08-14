@@ -30,39 +30,39 @@ namespace AppHarbor.Test.Mocks
 			switch (url)
 			{
 				case "/applications":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplications.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetApplications.json"));
 				case "/applications/:application":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetApplication.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetApplication.json"));
 				case "/applications/:application/collaborators":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborators.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetCollaborators.json"));
 				case "/applications/:application/collaborators/5":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetCollaborator.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetCollaborator.json"));
 				case "/applications/:application/configurationvariables":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariables.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetConfigurationVariables.json"));
 				case "/applications/:application/configurationvariables/5":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetConfigurationVariable.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetConfigurationVariable.json"));
 				case "/applications/:application/hostnames":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostnames.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetHostnames.json"));
 				case "/applications/:application/hostnames/5":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetHostname.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetHostname.json"));
 				case "/applications/:application/servicehooks":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHooks.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetServiceHooks.json"));
 				case "/applications/:application/servicehooks/5":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetServiceHook.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetServiceHook.json"));
 				case "/applications/:application/builds":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuilds.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetBuilds.json"));
 				case "/applications/:application/builds/5":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetBuild.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetBuild.json"));
 				case "/applications/:application/builds/5/tests":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTests.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetTests.json"));
 				case "/applications/:application/builds/5/tests/3.1":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetTest.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetTest.json"));
 				case "/applications/:application/errors":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetErrors.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetErrors.json"));
 				case "/applications/:application/errors/5":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetError.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetError.json"));
 				case "/user":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\GetUser.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("GetUser.json"));
 				default:
 					return CreateHttpResponse(HttpStatusCode.NotFound, null);
 			}
@@ -118,7 +118,7 @@ namespace AppHarbor.Test.Mocks
 				case "/applications/:application/builds":
 				case "/applications/:application/builds/5/tests":
 				case "/applications/:application/errors":
-					return CreateGetResponse(Url, HttpStatusCode.OK, Path.Combine(BaseLocation, @"Data\EmptyArray.json"));
+					return CreateGetResponse(Url, HttpStatusCode.OK, GetDataPathFor("EmptyArray.json"));
 				default:
 					return CreateHttpResponse(HttpStatusCode.NotFound, null);
 			}
