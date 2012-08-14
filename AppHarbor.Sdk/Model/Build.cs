@@ -34,6 +34,12 @@ namespace AppHarbor.Model
 			set;
 		}
 
+		public Branch Branch
+		{
+			get;
+			set;
+		}
+
 		public string DownloadUrl
 		{
 			get;
