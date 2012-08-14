@@ -529,6 +529,7 @@ namespace AppHarbor.Test
 			Assert.IsNotNull(item.Commit);
 			Assert.AreEqual("9f0fcea24cbb441c3ed848af3ccc5061d69cc7db", item.Commit.Id);
 			Assert.AreEqual("foo", item.Commit.Message);
+			Assert.AreEqual("master", item.Branch.Name);
 		}
 
 		[TestMethod]
