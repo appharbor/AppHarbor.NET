@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace AppHarbor.Test
 {
@@ -6,7 +7,7 @@ namespace AppHarbor.Test
 	{
 		public static string GetCurrentBasePath()
 		{
-			return Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			return AppDomain.CurrentDomain.BaseDirectory;
 		}
 
 		public static string GetDataPath()
