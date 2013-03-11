@@ -98,7 +98,7 @@ namespace AppHarbor
 				return null;
 			}
 
-			foreach (var item in data)
+			foreach (var item in data.Where(item => item.Url != null))
 			{
 				item.Id = ExtractId(item.Url);
 			}
