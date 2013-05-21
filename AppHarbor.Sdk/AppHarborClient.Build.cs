@@ -18,13 +18,15 @@ namespace AppHarbor
 			return ExecuteGetKeyed<Build>(request);
 		}
 
-		public IEnumerable<Build> GetBuilds(string applicationSlug)
+		public IEnumerable<Build> GetBuilds(string applicationSlug, int? count = null, int? offset = null)
 		{
 			CheckArgumentNull("applicationSlug", applicationSlug);
 
 			var request = new RestRequest();
-			request.Resource = "applications/{applicationSlug}/builds";
+			request.Resource = "applications/{applicationSlug}/builds?count={count}&offset={offset}";
 			request.AddParameter("applicationSlug", applicationSlug, ParameterType.UrlSegment);
+			request.AddParameter("count", count.ToString(), ParameterType.UrlSegment);
+			request.AddParameter("offset", offset.ToString(), ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<Build>(request);
 		}
