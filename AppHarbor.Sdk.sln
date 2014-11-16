@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Sample", "Samples\AppHarbor.Sample\AppHarbor.Sample.csproj", "{0C3887D5-069A-4212-9F22-EB8FDDD85D18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHarbor.Test", "AppHarbor.Test\AppHarbor.Test.csproj", "{AB19886F-C798-447A-A9CD-BEC6B3A3EBD1}"
