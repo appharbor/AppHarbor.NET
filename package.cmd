@@ -9,4 +9,4 @@ copy AppHarbor.Net\bin\Release\Web.config.transform Download\content
 copy AppHarbor.Net\bin\Release\AppHarbor.NET.dll Download\Package\lib\net35\
 copy AppHarbor.Net\bin\Release\AppHarbor.NET.xml Download\Package\lib\net35\
 
-.nuget\nuget.exe pack appharbor.nuspec -BasePath Download\Package -Output Download
+nuget pack appharbor.nuspec -BasePath Download\Package -Output Download
