@@ -29,6 +29,19 @@ namespace AppHarbor
 			request.AddParameter("offset", offset.ToString(), ParameterType.UrlSegment);
 
 			return ExecuteGetListKeyed<Build>(request);
-		}
-	}
+        }
+
+        public bool DeployBuild(string applicationSlug, string id)
+        {
+            CheckArgumentNull("name", applicationSlug);
+            CheckArgumentNull("regionIdentifier", id);
+
+            var request = new RestRequest(Method.POST);
+            request.Resource = "applications/{applicationSlug}/builds/{id}/deploy";
+            request.AddParameter("applicationSlug", applicationSlug, ParameterType.UrlSegment);
+            request.AddParameter("id", id, ParameterType.UrlSegment);
+
+            return this.ExecuteEdit(request);
+        }
+    }
 }
